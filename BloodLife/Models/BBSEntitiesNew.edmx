@@ -1,0 +1,949 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BBSModelNew.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DICT_PRODUCTS">
+          <Key>
+            <PropertyRef Name="PRODCODE" />
+            <PropertyRef Name="PRODCREDATE" />
+          </Key>
+          <Property Name="PRODCODE" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="PRODCREDATE" Type="float" Nullable="false" />
+          <Property Name="PRODTEXT" Type="nvarchar" MaxLength="50" />
+          <Property Name="BATCHPRODUCT" Type="tinyint" />
+          <Property Name="NORHESUS" Type="tinyint" />
+          <Property Name="CONSDURATION" Type="int" />
+          <Property Name="REPORTCOL" Type="int" />
+          <Property Name="FAMCODE" Type="nvarchar" MaxLength="10" />
+          <Property Name="FAMCREDATE" Type="float" />
+          <Property Name="BARCODE" Type="nvarchar" MaxLength="20" />
+          <Property Name="MANAGEREQ" Type="float" />
+          <Property Name="CHECKCOMPAT" Type="tinyint" />
+          <Property Name="FULLTEXT" Type="nvarchar(max)" />
+          <Property Name="MANYLABELS" Type="tinyint" />
+          <Property Name="STRENGTH" Type="tinyint" />
+          <Property Name="ABSVALIDITY" Type="tinyint" />
+          <Property Name="MAXOUTOFFRIDGE" Type="int" />
+          <Property Name="USEDONDATE" Type="tinyint" />
+          <Property Name="XMPANELCODE" Type="nvarchar" MaxLength="10" />
+          <Property Name="DEVICEID" Type="int" />
+          <Property Name="MAXPRODNUMLEN" Type="tinyint" />
+          <Property Name="MINPRODNUMLEN" Type="tinyint" />
+          <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DICT_TESTS">
+          <Key>
+            <PropertyRef Name="TESTCODE" />
+            <PropertyRef Name="TESTCREDATE" />
+          </Key>
+          <Property Name="TESTCODE" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="TESTCREDATE" Type="float" Nullable="false" />
+          <Property Name="TESTTEXT" Type="nvarchar" MaxLength="20" />
+          <Property Name="RESTYPE" Type="tinyint" />
+          <Property Name="UPDATEPATDEF" Type="tinyint" />
+          <Property Name="TRECOLUMN" Type="smallint" />
+          <Property Name="RESDOUBLEENTRY" Type="tinyint" />
+          <Property Name="HISTCOLUMN" Type="smallint" />
+          <Property Name="FULLTEXT" Type="nvarchar(max)" />
+          <Property Name="ALLOWSAMPLERECEPTION" Type="tinyint" />
+          <Property Name="STANDALONE" Type="tinyint" />
+          <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PATIENTS">
+          <Key>
+            <PropertyRef Name="PATNUMBER" />
+          </Key>
+          <Property Name="PATNUMBER" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PATCREATIONDATE" Type="float" />
+          <Property Name="HOSPNUMBER" Type="nvarchar" MaxLength="20" />
+          <Property Name="BENNUMBER" Type="nvarchar" MaxLength="20" />
+          <Property Name="INTNUM" Type="nvarchar" MaxLength="20" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="80" />
+          <Property Name="MAIDENNAME" Type="nvarchar" MaxLength="80" />
+          <Property Name="FIRSTNAME" Type="nvarchar" MaxLength="80" />
+          <Property Name="PATTITLE" Type="nvarchar" MaxLength="10" />
+          <Property Name="BIRTHDATE" Type="datetime2" Precision="0" />
+          <Property Name="SEX" Type="tinyint" />
+          <Property Name="PATGROUP" Type="nvarchar" MaxLength="10" />
+          <Property Name="ANTIBODIES" Type="nvarchar" MaxLength="255" />
+          <Property Name="REQUIREMENTS" Type="nvarchar" MaxLength="255" />
+          <Property Name="ADDRESS1" Type="nvarchar" MaxLength="50" />
+          <Property Name="ADDRESS2" Type="nvarchar" MaxLength="50" />
+          <Property Name="ADDRESS3" Type="nvarchar" MaxLength="50" />
+          <Property Name="TELEPHON" Type="nvarchar" MaxLength="20" />
+          <Property Name="REFDOCTOR" Type="nvarchar" MaxLength="10" />
+          <Property Name="REFLOCATION" Type="nvarchar" MaxLength="10" />
+          <Property Name="RECBYCNX" Type="tinyint" />
+          <Property Name="LINKNUMBER" Type="nvarchar" MaxLength="20" />
+          <Property Name="LINKTYPE" Type="tinyint" />
+          <Property Name="ABO" Type="nvarchar" MaxLength="10" />
+          <Property Name="RHFACTOR" Type="nvarchar" MaxLength="10" />
+          <Property Name="RHPHENO" Type="nvarchar" MaxLength="12" />
+          <Property Name="KELL" Type="nvarchar" MaxLength="10" />
+          <Property Name="BGRPSTATUS" Type="tinyint" />
+          <Property Name="BGRPSTATUSDATE" Type="datetime2" Precision="0" />
+          <Property Name="BGRPSTATUSUID" Type="nvarchar" MaxLength="8" />
+          <Property Name="ETHNICORIGIN" Type="nvarchar" MaxLength="40" />
+          <Property Name="RELIGION" Type="nvarchar" MaxLength="40" />
+          <Property Name="MOPATNUMBER" Type="nvarchar" MaxLength="20" />
+          <Property Name="ANID" Type="int" />
+          <Property Name="MANDATORYXMATCH" Type="tinyint" />
+          <Property Name="SAFETYMEASURES" Type="tinyint" />
+          <Property Name="BGRPSTATUSTMP" Type="tinyint" />
+          <Property Name="LOGUSERID" Type="nvarchar" MaxLength="8" />
+          <Property Name="LOGDATE" Type="datetime2" Precision="0" />
+          <Property Name="ADDITIONALDATA" Type="nvarchar" MaxLength="20" />
+          <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUCTS">
+          <Key>
+            <PropertyRef Name="PRODUCTID" />
+          </Key>
+          <Property Name="PRODNUM" Type="nvarchar" MaxLength="20" />
+          <Property Name="PRODCODE" Type="nvarchar" MaxLength="10" />
+          <Property Name="PRODCREDATE" Type="float" />
+          <Property Name="PRODGROUP" Type="nvarchar" MaxLength="10" />
+          <Property Name="PRODTYPE" Type="nvarchar" MaxLength="1" />
+          <Property Name="PSTATUS" Type="tinyint" />
+          <Property Name="MSTATUS" Type="tinyint" />
+          <Property Name="EXPDATE" Type="datetime2" Precision="0" />
+          <Property Name="SCREENING" Type="nvarchar" MaxLength="50" />
+          <Property Name="QTEINIT" Type="int" />
+          <Property Name="QTEDISP" Type="int" />
+          <Property Name="NBRES" Type="int" />
+          <Property Name="INVOICENUMIN" Type="nvarchar" MaxLength="20" />
+          <Property Name="INVOICETYPEIN" Type="tinyint" />
+          <Property Name="INVOICENUMOUT" Type="nvarchar" MaxLength="20" />
+          <Property Name="INVOICETYPEOUT" Type="tinyint" />
+          <Property Name="PATNUMBER" Type="nvarchar" MaxLength="20" />
+          <Property Name="ABO" Type="nvarchar" MaxLength="10" />
+          <Property Name="RHFACTOR" Type="nvarchar" MaxLength="10" />
+          <Property Name="RHPHENO" Type="nvarchar" MaxLength="12" />
+          <Property Name="KELL" Type="nvarchar" MaxLength="10" />
+          <Property Name="DATETRANS" Type="datetime2" Precision="0" />
+          <Property Name="ENTEREDUID" Type="nvarchar" MaxLength="8" />
+          <Property Name="ENTEREDDATE" Type="datetime2" Precision="0" />
+          <Property Name="RETURNUID" Type="nvarchar" MaxLength="8" />
+          <Property Name="RETURNDATE" Type="datetime2" Precision="0" />
+          <Property Name="EXCLUDETYPE" Type="tinyint" />
+          <Property Name="FRIDGEID" Type="int" />
+          <Property Name="INTENDEDUSE" Type="tinyint" />
+          <Property Name="STRENGTH" Type="nvarchar" MaxLength="10" />
+          <Property Name="FODREPORTPSTATUS" Type="tinyint" />
+          <Property Name="FODREPORTDATE" Type="datetime2" Precision="0" />
+          <Property Name="REASONFORDELETION" Type="nvarchar" MaxLength="10" />
+          <Property Name="PACKENTRYMODE" Type="tinyint" />
+          <Property Name="PRODUCTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LOGDATE" Type="datetime2" Precision="0" />
+          <Property Name="LOGUSERID" Type="nvarchar" MaxLength="8" />
+          <Property Name="REMOTEALLOCATION" Type="tinyint" />
+          <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REQUEST_PRODUCT">
+          <Key>
+            <PropertyRef Name="ACCESSNUMBER" />
+            <PropertyRef Name="REQCREATIONDATE" />
+            <PropertyRef Name="PRODUCTID" />
+          </Key>
+          <Property Name="ACCESSNUMBER" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="REQCREATIONDATE" Type="float" Nullable="false" />
+          <Property Name="PSTATUS" Type="tinyint" />
+          <Property Name="MSTATUS" Type="tinyint" />
+          <Property Name="PRODTYPE" Type="nvarchar" MaxLength="1" />
+          <Property Name="QUANTITY" Type="int" />
+          <Property Name="RESERVUID" Type="nvarchar" MaxLength="8" />
+          <Property Name="RESERVDATE" Type="datetime2" Precision="0" />
+          <Property Name="XMATCHUID" Type="nvarchar" MaxLength="8" />
+          <Property Name="XMATCHDATE" Type="datetime2" Precision="0" />
+          <Property Name="XMATCHRES" Type="nvarchar" MaxLength="10" />
+          <Property Name="ISSUEUID" Type="nvarchar" MaxLength="8" />
+          <Property Name="ISSUEDATE" Type="datetime2" Precision="0" />
+          <Property Name="RETURNUID" Type="nvarchar" MaxLength="8" />
+          <Property Name="RETURNDATE" Type="datetime2" Precision="0" />
+          <Property Name="RETURNFROM" Type="nvarchar" MaxLength="10" />
+          <Property Name="TRANSREACTION" Type="nvarchar" MaxLength="10" />
+          <Property Name="ABO" Type="nvarchar" MaxLength="10" />
+          <Property Name="RHFACTOR" Type="nvarchar" MaxLength="10" />
+          <Property Name="RHPHENO" Type="nvarchar" MaxLength="12" />
+          <Property Name="KELL" Type="nvarchar" MaxLength="10" />
+          <Property Name="SAMPLEID" Type="int" />
+          <Property Name="ISSUECOMMENT" Type="nvarchar" MaxLength="255" />
+          <Property Name="APPEARANCE" Type="nvarchar" MaxLength="10" />
+          <Property Name="NOXMATCHREQUEST" Type="tinyint" />
+          <Property Name="NOXMATCHREASON" Type="nvarchar" MaxLength="255" />
+          <Property Name="FRIDGEID" Type="int" />
+          <Property Name="RETURNCOMMENT" Type="nvarchar" MaxLength="255" />
+          <Property Name="PRODUCTID" Type="int" Nullable="false" />
+          <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REQUESTS">
+          <Key>
+            <PropertyRef Name="ACCESSNUMBER" />
+            <PropertyRef Name="REQCREATIONDATE" />
+          </Key>
+          <Property Name="ACCESSNUMBER" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="REQCREATIONDATE" Type="float" Nullable="false" />
+          <Property Name="REDACCNUM" Type="nvarchar" MaxLength="10" />
+          <Property Name="PATNUMBER" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DOCCODE" Type="nvarchar" MaxLength="10" />
+          <Property Name="DOCCREDATE" Type="float" />
+          <Property Name="LOCCODE" Type="nvarchar" MaxLength="10" />
+          <Property Name="LOCCREDATE" Type="float" />
+          <Property Name="CATEGORY" Type="tinyint" />
+          <Property Name="REQDATE" Type="datetime2" Precision="0" />
+          <Property Name="REQSTATUS" Type="tinyint" />
+          <Property Name="STATUSDATE" Type="datetime2" Precision="0" />
+          <Property Name="REQUIREDDATE" Type="datetime2" Precision="0" />
+          <Property Name="REQURGENT" Type="tinyint" />
+          <Property Name="SAMPLEID" Type="int" />
+          <Property Name="LINKACCESSNUMBER" Type="nvarchar" MaxLength="10" />
+          <Property Name="LINKREQCREATIONDATE" Type="float" />
+          <Property Name="RFTID" Type="int" />
+          <Property Name="RESPRODCOMPLETED" Type="tinyint" />
+          <Property Name="HOSPITID" Type="int" />
+          <Property Name="BGMISMATCHDATE" Type="datetime2" Precision="0" />
+          <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TESTS">
+          <Key>
+            <PropertyRef Name="TESTID" />
+            <PropertyRef Name="ACCESSNUMBER" />
+            <PropertyRef Name="REQCREATIONDATE" />
+          </Key>
+          <Property Name="TESTID" Type="float" Nullable="false" />
+          <Property Name="ACCESSNUMBER" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="REQCREATIONDATE" Type="float" Nullable="false" />
+          <Property Name="TESTCODE" Type="nvarchar" MaxLength="10" />
+          <Property Name="TESTCREDATE" Type="float" />
+          <Property Name="RESTYPE" Type="tinyint" />
+          <Property Name="RESULT" Type="nvarchar" MaxLength="255" />
+          <Property Name="RESSTATUS" Type="tinyint" />
+          <Property Name="COMMENTS" Type="nvarchar" MaxLength="255" />
+          <Property Name="TESTINGUSER" Type="nvarchar" MaxLength="8" />
+          <Property Name="TESTINGDATE" Type="datetime2" Precision="0" />
+          <Property Name="VALIDUSER" Type="nvarchar" MaxLength="8" />
+          <Property Name="VALIDDATE" Type="datetime2" Precision="0" />
+          <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__PRODUCTS__3B75D760">
+          <End Role="DICT_PRODUCTS" Type="Self.DICT_PRODUCTS" Multiplicity="0..1" />
+          <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DICT_PRODUCTS">
+              <PropertyRef Name="PRODCODE" />
+              <PropertyRef Name="PRODCREDATE" />
+            </Principal>
+            <Dependent Role="PRODUCTS">
+              <PropertyRef Name="PRODCODE" />
+              <PropertyRef Name="PRODCREDATE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__REQUEST_P__PRODU__398D8EEE">
+          <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="1" />
+          <End Role="REQUEST_PRODUCT" Type="Self.REQUEST_PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTS">
+              <PropertyRef Name="PRODUCTID" />
+            </Principal>
+            <Dependent Role="REQUEST_PRODUCT">
+              <PropertyRef Name="PRODUCTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__REQUEST_PRODUCT__36B12243">
+          <End Role="REQUESTS" Type="Self.REQUESTS" Multiplicity="1" />
+          <End Role="REQUEST_PRODUCT" Type="Self.REQUEST_PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REQUESTS">
+              <PropertyRef Name="ACCESSNUMBER" />
+              <PropertyRef Name="REQCREATIONDATE" />
+            </Principal>
+            <Dependent Role="REQUEST_PRODUCT">
+              <PropertyRef Name="ACCESSNUMBER" />
+              <PropertyRef Name="REQCREATIONDATE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__REQUESTS__PATNUM__34C8D9D1">
+          <End Role="PATIENTS" Type="Self.PATIENTS" Multiplicity="1" />
+          <End Role="REQUESTS" Type="Self.REQUESTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PATIENTS">
+              <PropertyRef Name="PATNUMBER" />
+            </Principal>
+            <Dependent Role="REQUESTS">
+              <PropertyRef Name="PATNUMBER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TESTS__35BCFE0A">
+          <End Role="REQUESTS" Type="Self.REQUESTS" Multiplicity="1" />
+          <End Role="TESTS" Type="Self.TESTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REQUESTS">
+              <PropertyRef Name="ACCESSNUMBER" />
+              <PropertyRef Name="REQCREATIONDATE" />
+            </Principal>
+            <Dependent Role="TESTS">
+              <PropertyRef Name="ACCESSNUMBER" />
+              <PropertyRef Name="REQCREATIONDATE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TESTS__3C69FB99">
+          <End Role="DICT_TESTS" Type="Self.DICT_TESTS" Multiplicity="0..1" />
+          <End Role="TESTS" Type="Self.TESTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DICT_TESTS">
+              <PropertyRef Name="TESTCODE" />
+              <PropertyRef Name="TESTCREDATE" />
+            </Principal>
+            <Dependent Role="TESTS">
+              <PropertyRef Name="TESTCODE" />
+              <PropertyRef Name="TESTCREDATE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BBSModelNewStoreContainer">
+          <EntitySet Name="DICT_PRODUCTS" EntityType="Self.DICT_PRODUCTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DICT_TESTS" EntityType="Self.DICT_TESTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PATIENTS" EntityType="Self.PATIENTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCTS" EntityType="Self.PRODUCTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REQUEST_PRODUCT" EntityType="Self.REQUEST_PRODUCT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REQUESTS" EntityType="Self.REQUESTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TESTS" EntityType="Self.TESTS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__PRODUCTS__3B75D760" Association="Self.FK__PRODUCTS__3B75D760">
+            <End Role="DICT_PRODUCTS" EntitySet="DICT_PRODUCTS" />
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__REQUEST_P__PRODU__398D8EEE" Association="Self.FK__REQUEST_P__PRODU__398D8EEE">
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+            <End Role="REQUEST_PRODUCT" EntitySet="REQUEST_PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__REQUEST_PRODUCT__36B12243" Association="Self.FK__REQUEST_PRODUCT__36B12243">
+            <End Role="REQUESTS" EntitySet="REQUESTS" />
+            <End Role="REQUEST_PRODUCT" EntitySet="REQUEST_PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__REQUESTS__PATNUM__34C8D9D1" Association="Self.FK__REQUESTS__PATNUM__34C8D9D1">
+            <End Role="PATIENTS" EntitySet="PATIENTS" />
+            <End Role="REQUESTS" EntitySet="REQUESTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TESTS__35BCFE0A" Association="Self.FK__TESTS__35BCFE0A">
+            <End Role="REQUESTS" EntitySet="REQUESTS" />
+            <End Role="TESTS" EntitySet="TESTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TESTS__3C69FB99" Association="Self.FK__TESTS__3C69FB99">
+            <End Role="DICT_TESTS" EntitySet="DICT_TESTS" />
+            <End Role="TESTS" EntitySet="TESTS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BBSModelNew" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DICT_PRODUCTS">
+          <Key>
+            <PropertyRef Name="PRODCODE" />
+            <PropertyRef Name="PRODCREDATE" />
+          </Key>
+          <Property Name="PRODCODE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PRODCREDATE" Type="Double" Nullable="false" />
+          <Property Name="PRODTEXT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BATCHPRODUCT" Type="Byte" />
+          <Property Name="NORHESUS" Type="Byte" />
+          <Property Name="CONSDURATION" Type="Int32" />
+          <Property Name="REPORTCOL" Type="Int32" />
+          <Property Name="FAMCODE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FAMCREDATE" Type="Double" />
+          <Property Name="BARCODE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MANAGEREQ" Type="Double" />
+          <Property Name="CHECKCOMPAT" Type="Byte" />
+          <Property Name="FULLTEXT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MANYLABELS" Type="Byte" />
+          <Property Name="STRENGTH" Type="Byte" />
+          <Property Name="ABSVALIDITY" Type="Byte" />
+          <Property Name="MAXOUTOFFRIDGE" Type="Int32" />
+          <Property Name="USEDONDATE" Type="Byte" />
+          <Property Name="XMPANELCODE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DEVICEID" Type="Int32" />
+          <Property Name="MAXPRODNUMLEN" Type="Byte" />
+          <Property Name="MINPRODNUMLEN" Type="Byte" />
+          <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="PRODUCTS" Relationship="Self.FK__PRODUCTS__3B75D760" FromRole="DICT_PRODUCTS" ToRole="PRODUCTS" />
+        </EntityType>
+        <EntityType Name="DICT_TESTS">
+          <Key>
+            <PropertyRef Name="TESTCODE" />
+            <PropertyRef Name="TESTCREDATE" />
+          </Key>
+          <Property Name="TESTCODE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TESTCREDATE" Type="Double" Nullable="false" />
+          <Property Name="TESTTEXT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RESTYPE" Type="Byte" />
+          <Property Name="UPDATEPATDEF" Type="Byte" />
+          <Property Name="TRECOLUMN" Type="Int16" />
+          <Property Name="RESDOUBLEENTRY" Type="Byte" />
+          <Property Name="HISTCOLUMN" Type="Int16" />
+          <Property Name="FULLTEXT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ALLOWSAMPLERECEPTION" Type="Byte" />
+          <Property Name="STANDALONE" Type="Byte" />
+          <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="TESTS" Relationship="Self.FK__TESTS__3C69FB99" FromRole="DICT_TESTS" ToRole="TESTS" />
+        </EntityType>
+        <EntityType Name="PATIENT">
+          <Key>
+            <PropertyRef Name="PATNUMBER" />
+          </Key>
+          <Property Name="PATNUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PATCREATIONDATE" Type="Double" />
+          <Property Name="HOSPNUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="BENNUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="INTNUM" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NAME" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="MAIDENNAME" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="FIRSTNAME" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="PATTITLE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="BIRTHDATE" Type="DateTime" Precision="0" />
+          <Property Name="SEX" Type="Byte" />
+          <Property Name="PATGROUP" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ANTIBODIES" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="REQUIREMENTS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TELEPHON" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="REFDOCTOR" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="REFLOCATION" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="RECBYCNX" Type="Byte" />
+          <Property Name="LINKNUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LINKTYPE" Type="Byte" />
+          <Property Name="ABO" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="RHFACTOR" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="RHPHENO" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="KELL" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="BGRPSTATUS" Type="Byte" />
+          <Property Name="BGRPSTATUSDATE" Type="DateTime" Precision="0" />
+          <Property Name="BGRPSTATUSUID" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="ETHNICORIGIN" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="RELIGION" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="MOPATNUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ANID" Type="Int32" />
+          <Property Name="MANDATORYXMATCH" Type="Byte" />
+          <Property Name="SAFETYMEASURES" Type="Byte" />
+          <Property Name="BGRPSTATUSTMP" Type="Byte" />
+          <Property Name="LOGUSERID" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="LOGDATE" Type="DateTime" Precision="0" />
+          <Property Name="ADDITIONALDATA" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="REQUESTS" Relationship="Self.FK__REQUESTS__PATNUM__34C8D9D1" FromRole="PATIENTS" ToRole="REQUESTS" />
+        </EntityType>
+        <EntityType Name="PRODUCT">
+          <Key>
+            <PropertyRef Name="PRODUCTID" />
+          </Key>
+          <Property Name="PRODNUM" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PRODCODE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PRODCREDATE" Type="Double" />
+          <Property Name="PRODGROUP" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PRODTYPE" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="PSTATUS" Type="Byte" />
+          <Property Name="MSTATUS" Type="Byte" />
+          <Property Name="EXPDATE" Type="DateTime" Precision="0" />
+          <Property Name="SCREENING" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QTEINIT" Type="Int32" />
+          <Property Name="QTEDISP" Type="Int32" />
+          <Property Name="NBRES" Type="Int32" />
+          <Property Name="INVOICENUMIN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="INVOICETYPEIN" Type="Byte" />
+          <Property Name="INVOICENUMOUT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="INVOICETYPEOUT" Type="Byte" />
+          <Property Name="PATNUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ABO" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="RHFACTOR" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="RHPHENO" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="KELL" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DATETRANS" Type="DateTime" Precision="0" />
+          <Property Name="ENTEREDUID" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="ENTEREDDATE" Type="DateTime" Precision="0" />
+          <Property Name="RETURNUID" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="RETURNDATE" Type="DateTime" Precision="0" />
+          <Property Name="EXCLUDETYPE" Type="Byte" />
+          <Property Name="FRIDGEID" Type="Int32" />
+          <Property Name="INTENDEDUSE" Type="Byte" />
+          <Property Name="STRENGTH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FODREPORTPSTATUS" Type="Byte" />
+          <Property Name="FODREPORTDATE" Type="DateTime" Precision="0" />
+          <Property Name="REASONFORDELETION" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PACKENTRYMODE" Type="Byte" />
+          <Property Name="PRODUCTID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LOGDATE" Type="DateTime" Precision="0" />
+          <Property Name="LOGUSERID" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="REMOTEALLOCATION" Type="Byte" />
+          <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="DICT_PRODUCTS" Relationship="Self.FK__PRODUCTS__3B75D760" FromRole="PRODUCTS" ToRole="DICT_PRODUCTS" />
+          <NavigationProperty Name="REQUEST_PRODUCT" Relationship="Self.FK__REQUEST_P__PRODU__398D8EEE" FromRole="PRODUCTS" ToRole="REQUEST_PRODUCT" />
+        </EntityType>
+        <EntityType Name="REQUEST_PRODUCT">
+          <Key>
+            <PropertyRef Name="ACCESSNUMBER" />
+            <PropertyRef Name="REQCREATIONDATE" />
+            <PropertyRef Name="PRODUCTID" />
+          </Key>
+          <Property Name="ACCESSNUMBER" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="REQCREATIONDATE" Type="Double" Nullable="false" />
+          <Property Name="PSTATUS" Type="Byte" />
+          <Property Name="MSTATUS" Type="Byte" />
+          <Property Name="PRODTYPE" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="QUANTITY" Type="Int32" />
+          <Property Name="RESERVUID" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="RESERVDATE" Type="DateTime" Precision="0" />
+          <Property Name="XMATCHUID" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="XMATCHDATE" Type="DateTime" Precision="0" />
+          <Property Name="XMATCHRES" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ISSUEUID" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="ISSUEDATE" Type="DateTime" Precision="0" />
+          <Property Name="RETURNUID" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="RETURNDATE" Type="DateTime" Precision="0" />
+          <Property Name="RETURNFROM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TRANSREACTION" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ABO" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="RHFACTOR" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="RHPHENO" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="KELL" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SAMPLEID" Type="Int32" />
+          <Property Name="ISSUECOMMENT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="APPEARANCE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="NOXMATCHREQUEST" Type="Byte" />
+          <Property Name="NOXMATCHREASON" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FRIDGEID" Type="Int32" />
+          <Property Name="RETURNCOMMENT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PRODUCTID" Type="Int32" Nullable="false" />
+          <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="PRODUCT" Relationship="Self.FK__REQUEST_P__PRODU__398D8EEE" FromRole="REQUEST_PRODUCT" ToRole="PRODUCTS" />
+          <NavigationProperty Name="REQUEST" Relationship="Self.FK__REQUEST_PRODUCT__36B12243" FromRole="REQUEST_PRODUCT" ToRole="REQUESTS" />
+        </EntityType>
+        <EntityType Name="REQUEST">
+          <Key>
+            <PropertyRef Name="ACCESSNUMBER" />
+            <PropertyRef Name="REQCREATIONDATE" />
+          </Key>
+          <Property Name="ACCESSNUMBER" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="REQCREATIONDATE" Type="Double" Nullable="false" />
+          <Property Name="REDACCNUM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PATNUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DOCCODE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DOCCREDATE" Type="Double" />
+          <Property Name="LOCCODE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LOCCREDATE" Type="Double" />
+          <Property Name="CATEGORY" Type="Byte" />
+          <Property Name="REQDATE" Type="DateTime" Precision="0" />
+          <Property Name="REQSTATUS" Type="Byte" />
+          <Property Name="STATUSDATE" Type="DateTime" Precision="0" />
+          <Property Name="REQUIREDDATE" Type="DateTime" Precision="0" />
+          <Property Name="REQURGENT" Type="Byte" />
+          <Property Name="SAMPLEID" Type="Int32" />
+          <Property Name="LINKACCESSNUMBER" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LINKREQCREATIONDATE" Type="Double" />
+          <Property Name="RFTID" Type="Int32" />
+          <Property Name="RESPRODCOMPLETED" Type="Byte" />
+          <Property Name="HOSPITID" Type="Int32" />
+          <Property Name="BGMISMATCHDATE" Type="DateTime" Precision="0" />
+          <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="PATIENT" Relationship="Self.FK__REQUESTS__PATNUM__34C8D9D1" FromRole="REQUESTS" ToRole="PATIENTS" />
+          <NavigationProperty Name="REQUEST_PRODUCT" Relationship="Self.FK__REQUEST_PRODUCT__36B12243" FromRole="REQUESTS" ToRole="REQUEST_PRODUCT" />
+          <NavigationProperty Name="TESTS" Relationship="Self.FK__TESTS__35BCFE0A" FromRole="REQUESTS" ToRole="TESTS" />
+        </EntityType>
+        <EntityType Name="TEST">
+          <Key>
+            <PropertyRef Name="TESTID" />
+            <PropertyRef Name="ACCESSNUMBER" />
+            <PropertyRef Name="REQCREATIONDATE" />
+          </Key>
+          <Property Name="TESTID" Type="Double" Nullable="false" />
+          <Property Name="ACCESSNUMBER" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="REQCREATIONDATE" Type="Double" Nullable="false" />
+          <Property Name="TESTCODE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TESTCREDATE" Type="Double" />
+          <Property Name="RESTYPE" Type="Byte" />
+          <Property Name="RESULT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="RESSTATUS" Type="Byte" />
+          <Property Name="COMMENTS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TESTINGUSER" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="TESTINGDATE" Type="DateTime" Precision="0" />
+          <Property Name="VALIDUSER" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="VALIDDATE" Type="DateTime" Precision="0" />
+          <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="DICT_TESTS" Relationship="Self.FK__TESTS__3C69FB99" FromRole="TESTS" ToRole="DICT_TESTS" />
+          <NavigationProperty Name="REQUEST" Relationship="Self.FK__TESTS__35BCFE0A" FromRole="TESTS" ToRole="REQUESTS" />
+        </EntityType>
+        <Association Name="FK__PRODUCTS__3B75D760">
+          <End Role="DICT_PRODUCTS" Type="Self.DICT_PRODUCTS" Multiplicity="0..1" />
+          <End Role="PRODUCTS" Type="Self.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DICT_PRODUCTS">
+              <PropertyRef Name="PRODCODE" />
+              <PropertyRef Name="PRODCREDATE" />
+            </Principal>
+            <Dependent Role="PRODUCTS">
+              <PropertyRef Name="PRODCODE" />
+              <PropertyRef Name="PRODCREDATE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TESTS__3C69FB99">
+          <End Role="DICT_TESTS" Type="Self.DICT_TESTS" Multiplicity="0..1" />
+          <End Role="TESTS" Type="Self.TEST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DICT_TESTS">
+              <PropertyRef Name="TESTCODE" />
+              <PropertyRef Name="TESTCREDATE" />
+            </Principal>
+            <Dependent Role="TESTS">
+              <PropertyRef Name="TESTCODE" />
+              <PropertyRef Name="TESTCREDATE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__REQUESTS__PATNUM__34C8D9D1">
+          <End Role="PATIENTS" Type="Self.PATIENT" Multiplicity="1" />
+          <End Role="REQUESTS" Type="Self.REQUEST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PATIENTS">
+              <PropertyRef Name="PATNUMBER" />
+            </Principal>
+            <Dependent Role="REQUESTS">
+              <PropertyRef Name="PATNUMBER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__REQUEST_P__PRODU__398D8EEE">
+          <End Role="PRODUCTS" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="REQUEST_PRODUCT" Type="Self.REQUEST_PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTS">
+              <PropertyRef Name="PRODUCTID" />
+            </Principal>
+            <Dependent Role="REQUEST_PRODUCT">
+              <PropertyRef Name="PRODUCTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__REQUEST_PRODUCT__36B12243">
+          <End Role="REQUESTS" Type="Self.REQUEST" Multiplicity="1" />
+          <End Role="REQUEST_PRODUCT" Type="Self.REQUEST_PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REQUESTS">
+              <PropertyRef Name="ACCESSNUMBER" />
+              <PropertyRef Name="REQCREATIONDATE" />
+            </Principal>
+            <Dependent Role="REQUEST_PRODUCT">
+              <PropertyRef Name="ACCESSNUMBER" />
+              <PropertyRef Name="REQCREATIONDATE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TESTS__35BCFE0A">
+          <End Role="REQUESTS" Type="Self.REQUEST" Multiplicity="1" />
+          <End Role="TESTS" Type="Self.TEST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REQUESTS">
+              <PropertyRef Name="ACCESSNUMBER" />
+              <PropertyRef Name="REQCREATIONDATE" />
+            </Principal>
+            <Dependent Role="TESTS">
+              <PropertyRef Name="ACCESSNUMBER" />
+              <PropertyRef Name="REQCREATIONDATE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BBSEntitiesNew" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DICT_PRODUCTS" EntityType="Self.DICT_PRODUCTS" />
+          <EntitySet Name="DICT_TESTS" EntityType="Self.DICT_TESTS" />
+          <EntitySet Name="PATIENTS" EntityType="Self.PATIENT" />
+          <EntitySet Name="PRODUCTS" EntityType="Self.PRODUCT" />
+          <EntitySet Name="REQUEST_PRODUCT" EntityType="Self.REQUEST_PRODUCT" />
+          <EntitySet Name="REQUESTS" EntityType="Self.REQUEST" />
+          <EntitySet Name="TESTS" EntityType="Self.TEST" />
+          <AssociationSet Name="FK__PRODUCTS__3B75D760" Association="Self.FK__PRODUCTS__3B75D760">
+            <End Role="DICT_PRODUCTS" EntitySet="DICT_PRODUCTS" />
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TESTS__3C69FB99" Association="Self.FK__TESTS__3C69FB99">
+            <End Role="DICT_TESTS" EntitySet="DICT_TESTS" />
+            <End Role="TESTS" EntitySet="TESTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__REQUESTS__PATNUM__34C8D9D1" Association="Self.FK__REQUESTS__PATNUM__34C8D9D1">
+            <End Role="PATIENTS" EntitySet="PATIENTS" />
+            <End Role="REQUESTS" EntitySet="REQUESTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__REQUEST_P__PRODU__398D8EEE" Association="Self.FK__REQUEST_P__PRODU__398D8EEE">
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+            <End Role="REQUEST_PRODUCT" EntitySet="REQUEST_PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__REQUEST_PRODUCT__36B12243" Association="Self.FK__REQUEST_PRODUCT__36B12243">
+            <End Role="REQUESTS" EntitySet="REQUESTS" />
+            <End Role="REQUEST_PRODUCT" EntitySet="REQUEST_PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TESTS__35BCFE0A" Association="Self.FK__TESTS__35BCFE0A">
+            <End Role="REQUESTS" EntitySet="REQUESTS" />
+            <End Role="TESTS" EntitySet="TESTS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BBSModelNewStoreContainer" CdmEntityContainer="BBSEntitiesNew">
+          <EntitySetMapping Name="DICT_PRODUCTS">
+            <EntityTypeMapping TypeName="BBSModelNew.DICT_PRODUCTS">
+              <MappingFragment StoreEntitySet="DICT_PRODUCTS">
+                <ScalarProperty Name="PRODCODE" ColumnName="PRODCODE" />
+                <ScalarProperty Name="PRODCREDATE" ColumnName="PRODCREDATE" />
+                <ScalarProperty Name="PRODTEXT" ColumnName="PRODTEXT" />
+                <ScalarProperty Name="BATCHPRODUCT" ColumnName="BATCHPRODUCT" />
+                <ScalarProperty Name="NORHESUS" ColumnName="NORHESUS" />
+                <ScalarProperty Name="CONSDURATION" ColumnName="CONSDURATION" />
+                <ScalarProperty Name="REPORTCOL" ColumnName="REPORTCOL" />
+                <ScalarProperty Name="FAMCODE" ColumnName="FAMCODE" />
+                <ScalarProperty Name="FAMCREDATE" ColumnName="FAMCREDATE" />
+                <ScalarProperty Name="BARCODE" ColumnName="BARCODE" />
+                <ScalarProperty Name="MANAGEREQ" ColumnName="MANAGEREQ" />
+                <ScalarProperty Name="CHECKCOMPAT" ColumnName="CHECKCOMPAT" />
+                <ScalarProperty Name="FULLTEXT" ColumnName="FULLTEXT" />
+                <ScalarProperty Name="MANYLABELS" ColumnName="MANYLABELS" />
+                <ScalarProperty Name="STRENGTH" ColumnName="STRENGTH" />
+                <ScalarProperty Name="ABSVALIDITY" ColumnName="ABSVALIDITY" />
+                <ScalarProperty Name="MAXOUTOFFRIDGE" ColumnName="MAXOUTOFFRIDGE" />
+                <ScalarProperty Name="USEDONDATE" ColumnName="USEDONDATE" />
+                <ScalarProperty Name="XMPANELCODE" ColumnName="XMPANELCODE" />
+                <ScalarProperty Name="DEVICEID" ColumnName="DEVICEID" />
+                <ScalarProperty Name="MAXPRODNUMLEN" ColumnName="MAXPRODNUMLEN" />
+                <ScalarProperty Name="MINPRODNUMLEN" ColumnName="MINPRODNUMLEN" />
+                <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DICT_TESTS">
+            <EntityTypeMapping TypeName="BBSModelNew.DICT_TESTS">
+              <MappingFragment StoreEntitySet="DICT_TESTS">
+                <ScalarProperty Name="TESTCODE" ColumnName="TESTCODE" />
+                <ScalarProperty Name="TESTCREDATE" ColumnName="TESTCREDATE" />
+                <ScalarProperty Name="TESTTEXT" ColumnName="TESTTEXT" />
+                <ScalarProperty Name="RESTYPE" ColumnName="RESTYPE" />
+                <ScalarProperty Name="UPDATEPATDEF" ColumnName="UPDATEPATDEF" />
+                <ScalarProperty Name="TRECOLUMN" ColumnName="TRECOLUMN" />
+                <ScalarProperty Name="RESDOUBLEENTRY" ColumnName="RESDOUBLEENTRY" />
+                <ScalarProperty Name="HISTCOLUMN" ColumnName="HISTCOLUMN" />
+                <ScalarProperty Name="FULLTEXT" ColumnName="FULLTEXT" />
+                <ScalarProperty Name="ALLOWSAMPLERECEPTION" ColumnName="ALLOWSAMPLERECEPTION" />
+                <ScalarProperty Name="STANDALONE" ColumnName="STANDALONE" />
+                <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PATIENTS">
+            <EntityTypeMapping TypeName="BBSModelNew.PATIENT">
+              <MappingFragment StoreEntitySet="PATIENTS">
+                <ScalarProperty Name="PATNUMBER" ColumnName="PATNUMBER" />
+                <ScalarProperty Name="PATCREATIONDATE" ColumnName="PATCREATIONDATE" />
+                <ScalarProperty Name="HOSPNUMBER" ColumnName="HOSPNUMBER" />
+                <ScalarProperty Name="BENNUMBER" ColumnName="BENNUMBER" />
+                <ScalarProperty Name="INTNUM" ColumnName="INTNUM" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="MAIDENNAME" ColumnName="MAIDENNAME" />
+                <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+                <ScalarProperty Name="PATTITLE" ColumnName="PATTITLE" />
+                <ScalarProperty Name="BIRTHDATE" ColumnName="BIRTHDATE" />
+                <ScalarProperty Name="SEX" ColumnName="SEX" />
+                <ScalarProperty Name="PATGROUP" ColumnName="PATGROUP" />
+                <ScalarProperty Name="ANTIBODIES" ColumnName="ANTIBODIES" />
+                <ScalarProperty Name="REQUIREMENTS" ColumnName="REQUIREMENTS" />
+                <ScalarProperty Name="ADDRESS1" ColumnName="ADDRESS1" />
+                <ScalarProperty Name="ADDRESS2" ColumnName="ADDRESS2" />
+                <ScalarProperty Name="ADDRESS3" ColumnName="ADDRESS3" />
+                <ScalarProperty Name="TELEPHON" ColumnName="TELEPHON" />
+                <ScalarProperty Name="REFDOCTOR" ColumnName="REFDOCTOR" />
+                <ScalarProperty Name="REFLOCATION" ColumnName="REFLOCATION" />
+                <ScalarProperty Name="RECBYCNX" ColumnName="RECBYCNX" />
+                <ScalarProperty Name="LINKNUMBER" ColumnName="LINKNUMBER" />
+                <ScalarProperty Name="LINKTYPE" ColumnName="LINKTYPE" />
+                <ScalarProperty Name="ABO" ColumnName="ABO" />
+                <ScalarProperty Name="RHFACTOR" ColumnName="RHFACTOR" />
+                <ScalarProperty Name="RHPHENO" ColumnName="RHPHENO" />
+                <ScalarProperty Name="KELL" ColumnName="KELL" />
+                <ScalarProperty Name="BGRPSTATUS" ColumnName="BGRPSTATUS" />
+                <ScalarProperty Name="BGRPSTATUSDATE" ColumnName="BGRPSTATUSDATE" />
+                <ScalarProperty Name="BGRPSTATUSUID" ColumnName="BGRPSTATUSUID" />
+                <ScalarProperty Name="ETHNICORIGIN" ColumnName="ETHNICORIGIN" />
+                <ScalarProperty Name="RELIGION" ColumnName="RELIGION" />
+                <ScalarProperty Name="MOPATNUMBER" ColumnName="MOPATNUMBER" />
+                <ScalarProperty Name="ANID" ColumnName="ANID" />
+                <ScalarProperty Name="MANDATORYXMATCH" ColumnName="MANDATORYXMATCH" />
+                <ScalarProperty Name="SAFETYMEASURES" ColumnName="SAFETYMEASURES" />
+                <ScalarProperty Name="BGRPSTATUSTMP" ColumnName="BGRPSTATUSTMP" />
+                <ScalarProperty Name="LOGUSERID" ColumnName="LOGUSERID" />
+                <ScalarProperty Name="LOGDATE" ColumnName="LOGDATE" />
+                <ScalarProperty Name="ADDITIONALDATA" ColumnName="ADDITIONALDATA" />
+                <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTS">
+            <EntityTypeMapping TypeName="BBSModelNew.PRODUCT">
+              <MappingFragment StoreEntitySet="PRODUCTS">
+                <ScalarProperty Name="PRODNUM" ColumnName="PRODNUM" />
+                <ScalarProperty Name="PRODCODE" ColumnName="PRODCODE" />
+                <ScalarProperty Name="PRODCREDATE" ColumnName="PRODCREDATE" />
+                <ScalarProperty Name="PRODGROUP" ColumnName="PRODGROUP" />
+                <ScalarProperty Name="PRODTYPE" ColumnName="PRODTYPE" />
+                <ScalarProperty Name="PSTATUS" ColumnName="PSTATUS" />
+                <ScalarProperty Name="MSTATUS" ColumnName="MSTATUS" />
+                <ScalarProperty Name="EXPDATE" ColumnName="EXPDATE" />
+                <ScalarProperty Name="SCREENING" ColumnName="SCREENING" />
+                <ScalarProperty Name="QTEINIT" ColumnName="QTEINIT" />
+                <ScalarProperty Name="QTEDISP" ColumnName="QTEDISP" />
+                <ScalarProperty Name="NBRES" ColumnName="NBRES" />
+                <ScalarProperty Name="INVOICENUMIN" ColumnName="INVOICENUMIN" />
+                <ScalarProperty Name="INVOICETYPEIN" ColumnName="INVOICETYPEIN" />
+                <ScalarProperty Name="INVOICENUMOUT" ColumnName="INVOICENUMOUT" />
+                <ScalarProperty Name="INVOICETYPEOUT" ColumnName="INVOICETYPEOUT" />
+                <ScalarProperty Name="PATNUMBER" ColumnName="PATNUMBER" />
+                <ScalarProperty Name="ABO" ColumnName="ABO" />
+                <ScalarProperty Name="RHFACTOR" ColumnName="RHFACTOR" />
+                <ScalarProperty Name="RHPHENO" ColumnName="RHPHENO" />
+                <ScalarProperty Name="KELL" ColumnName="KELL" />
+                <ScalarProperty Name="DATETRANS" ColumnName="DATETRANS" />
+                <ScalarProperty Name="ENTEREDUID" ColumnName="ENTEREDUID" />
+                <ScalarProperty Name="ENTEREDDATE" ColumnName="ENTEREDDATE" />
+                <ScalarProperty Name="RETURNUID" ColumnName="RETURNUID" />
+                <ScalarProperty Name="RETURNDATE" ColumnName="RETURNDATE" />
+                <ScalarProperty Name="EXCLUDETYPE" ColumnName="EXCLUDETYPE" />
+                <ScalarProperty Name="FRIDGEID" ColumnName="FRIDGEID" />
+                <ScalarProperty Name="INTENDEDUSE" ColumnName="INTENDEDUSE" />
+                <ScalarProperty Name="STRENGTH" ColumnName="STRENGTH" />
+                <ScalarProperty Name="FODREPORTPSTATUS" ColumnName="FODREPORTPSTATUS" />
+                <ScalarProperty Name="FODREPORTDATE" ColumnName="FODREPORTDATE" />
+                <ScalarProperty Name="REASONFORDELETION" ColumnName="REASONFORDELETION" />
+                <ScalarProperty Name="PACKENTRYMODE" ColumnName="PACKENTRYMODE" />
+                <ScalarProperty Name="PRODUCTID" ColumnName="PRODUCTID" />
+                <ScalarProperty Name="LOGDATE" ColumnName="LOGDATE" />
+                <ScalarProperty Name="LOGUSERID" ColumnName="LOGUSERID" />
+                <ScalarProperty Name="REMOTEALLOCATION" ColumnName="REMOTEALLOCATION" />
+                <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REQUEST_PRODUCT">
+            <EntityTypeMapping TypeName="BBSModelNew.REQUEST_PRODUCT">
+              <MappingFragment StoreEntitySet="REQUEST_PRODUCT">
+                <ScalarProperty Name="ACCESSNUMBER" ColumnName="ACCESSNUMBER" />
+                <ScalarProperty Name="REQCREATIONDATE" ColumnName="REQCREATIONDATE" />
+                <ScalarProperty Name="PSTATUS" ColumnName="PSTATUS" />
+                <ScalarProperty Name="MSTATUS" ColumnName="MSTATUS" />
+                <ScalarProperty Name="PRODTYPE" ColumnName="PRODTYPE" />
+                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+                <ScalarProperty Name="RESERVUID" ColumnName="RESERVUID" />
+                <ScalarProperty Name="RESERVDATE" ColumnName="RESERVDATE" />
+                <ScalarProperty Name="XMATCHUID" ColumnName="XMATCHUID" />
+                <ScalarProperty Name="XMATCHDATE" ColumnName="XMATCHDATE" />
+                <ScalarProperty Name="XMATCHRES" ColumnName="XMATCHRES" />
+                <ScalarProperty Name="ISSUEUID" ColumnName="ISSUEUID" />
+                <ScalarProperty Name="ISSUEDATE" ColumnName="ISSUEDATE" />
+                <ScalarProperty Name="RETURNUID" ColumnName="RETURNUID" />
+                <ScalarProperty Name="RETURNDATE" ColumnName="RETURNDATE" />
+                <ScalarProperty Name="RETURNFROM" ColumnName="RETURNFROM" />
+                <ScalarProperty Name="TRANSREACTION" ColumnName="TRANSREACTION" />
+                <ScalarProperty Name="ABO" ColumnName="ABO" />
+                <ScalarProperty Name="RHFACTOR" ColumnName="RHFACTOR" />
+                <ScalarProperty Name="RHPHENO" ColumnName="RHPHENO" />
+                <ScalarProperty Name="KELL" ColumnName="KELL" />
+                <ScalarProperty Name="SAMPLEID" ColumnName="SAMPLEID" />
+                <ScalarProperty Name="ISSUECOMMENT" ColumnName="ISSUECOMMENT" />
+                <ScalarProperty Name="APPEARANCE" ColumnName="APPEARANCE" />
+                <ScalarProperty Name="NOXMATCHREQUEST" ColumnName="NOXMATCHREQUEST" />
+                <ScalarProperty Name="NOXMATCHREASON" ColumnName="NOXMATCHREASON" />
+                <ScalarProperty Name="FRIDGEID" ColumnName="FRIDGEID" />
+                <ScalarProperty Name="RETURNCOMMENT" ColumnName="RETURNCOMMENT" />
+                <ScalarProperty Name="PRODUCTID" ColumnName="PRODUCTID" />
+                <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REQUESTS">
+            <EntityTypeMapping TypeName="BBSModelNew.REQUEST">
+              <MappingFragment StoreEntitySet="REQUESTS">
+                <ScalarProperty Name="ACCESSNUMBER" ColumnName="ACCESSNUMBER" />
+                <ScalarProperty Name="REQCREATIONDATE" ColumnName="REQCREATIONDATE" />
+                <ScalarProperty Name="REDACCNUM" ColumnName="REDACCNUM" />
+                <ScalarProperty Name="PATNUMBER" ColumnName="PATNUMBER" />
+                <ScalarProperty Name="DOCCODE" ColumnName="DOCCODE" />
+                <ScalarProperty Name="DOCCREDATE" ColumnName="DOCCREDATE" />
+                <ScalarProperty Name="LOCCODE" ColumnName="LOCCODE" />
+                <ScalarProperty Name="LOCCREDATE" ColumnName="LOCCREDATE" />
+                <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+                <ScalarProperty Name="REQDATE" ColumnName="REQDATE" />
+                <ScalarProperty Name="REQSTATUS" ColumnName="REQSTATUS" />
+                <ScalarProperty Name="STATUSDATE" ColumnName="STATUSDATE" />
+                <ScalarProperty Name="REQUIREDDATE" ColumnName="REQUIREDDATE" />
+                <ScalarProperty Name="REQURGENT" ColumnName="REQURGENT" />
+                <ScalarProperty Name="SAMPLEID" ColumnName="SAMPLEID" />
+                <ScalarProperty Name="LINKACCESSNUMBER" ColumnName="LINKACCESSNUMBER" />
+                <ScalarProperty Name="LINKREQCREATIONDATE" ColumnName="LINKREQCREATIONDATE" />
+                <ScalarProperty Name="RFTID" ColumnName="RFTID" />
+                <ScalarProperty Name="RESPRODCOMPLETED" ColumnName="RESPRODCOMPLETED" />
+                <ScalarProperty Name="HOSPITID" ColumnName="HOSPITID" />
+                <ScalarProperty Name="BGMISMATCHDATE" ColumnName="BGMISMATCHDATE" />
+                <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TESTS">
+            <EntityTypeMapping TypeName="BBSModelNew.TEST">
+              <MappingFragment StoreEntitySet="TESTS">
+                <ScalarProperty Name="TESTID" ColumnName="TESTID" />
+                <ScalarProperty Name="ACCESSNUMBER" ColumnName="ACCESSNUMBER" />
+                <ScalarProperty Name="REQCREATIONDATE" ColumnName="REQCREATIONDATE" />
+                <ScalarProperty Name="TESTCODE" ColumnName="TESTCODE" />
+                <ScalarProperty Name="TESTCREDATE" ColumnName="TESTCREDATE" />
+                <ScalarProperty Name="RESTYPE" ColumnName="RESTYPE" />
+                <ScalarProperty Name="RESULT" ColumnName="RESULT" />
+                <ScalarProperty Name="RESSTATUS" ColumnName="RESSTATUS" />
+                <ScalarProperty Name="COMMENTS" ColumnName="COMMENTS" />
+                <ScalarProperty Name="TESTINGUSER" ColumnName="TESTINGUSER" />
+                <ScalarProperty Name="TESTINGDATE" ColumnName="TESTINGDATE" />
+                <ScalarProperty Name="VALIDUSER" ColumnName="VALIDUSER" />
+                <ScalarProperty Name="VALIDDATE" ColumnName="VALIDDATE" />
+                <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

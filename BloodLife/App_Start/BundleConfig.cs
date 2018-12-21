@@ -1,0 +1,58 @@
+﻿using System.Web;
+using System.Web.Optimization;
+
+namespace BloodLife
+{
+    public class BundleConfig
+    {
+        // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
+        public static void RegisterBundles(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+                        "~/Scripts/jquery-{version}.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+                        "~/Scripts/jquery.validate*"));
+
+            // Use the development version of Modernizr to develop with and learn from. Then, when you're
+            // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
+            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
+                        "~/Scripts/modernizr-*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/respond.js"));
+
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-grid.css",
+                      "~/Content/bootstrap-reboot.css",
+                      "~/Content/custom.css",
+                      "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                      "~/Scripts/angular.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angular-route").Include(
+                      "~/Scripts/angular-route.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angular-material").Include(
+                      "~/Scripts/angular-material.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angular-animate").Include(
+                      "~/Scripts/angular-animate.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angular-aria").Include(
+                      "~/Scripts/angular-aria.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angular-messages").Include(
+                      "~/Scripts/angular-messages.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/bloodservice")
+                .IncludeDirectory(
+                        "~/app/controllers", "*.js")
+            );
+                    
+        }
+    }
+}

@@ -1,0 +1,88 @@
+﻿
+<p>
+    <h5>Transfusion test and product request</h5>
+</p>
+
+<div class="w3-container">
+    <div class="w3-container w3-light-gray w3-padding-16">
+        <div class="w3-row">
+            <div class="w3-container w3-button w3-hover-dark-gray w3-quarter" ng-click="filterByProduct(0)">
+                <h5 class="w3-bottombar w3-border-blue">Laboratory tests</h5>
+            </div>
+            <div class="w3-container w3-button w3-hover-dark-gray w3-quarter" ng-click="filterByProduct(1)">
+                <h5 class="w3-bottombar w3-border-red">Red cells</h5>
+            </div>
+            <div class="w3-container w3-button w3-hover-dark-gray w3-quarter" ng-click="filterByProduct(2)">
+                <h5 class="w3-bottombar w3-border-green">Platelets</h5>
+            </div>
+            <div class="w3-container w3-button w3-hover-dark-gray w3-quarter" ng-click="filterByProduct(3)">
+                <h5 class="w3-bottombar w3-border-yellow">Plasma</h5>
+            </div>
+        </div>
+    </div>
+
+    <div id="indicationCheckboxList" class="w3-container">
+        <div class="w3-third">
+            <h5>Lab information</h5>
+        </div>
+        <div class="checkbox w3-twothird">
+            <h5 class="w3-bottombar w3-border-black">Indication for transfusion</h5>
+            <div ng-repeat="indication in indications | filter: productFilter">
+                <label>
+                    <input type="checkbox" ng-model="indication.isChecked"/>
+                    <span>{{indication.caption}}</span>
+                </label>
+                <div ng-show="indication.code===5 && indication.isChecked">
+                    <h5 class="w3-bottombar w3-border-black">Pre-operative or procedure request</h5>
+                    <p>
+                        Primary procedure:
+                        <select ng-model="selectedProcedure" ng-options="x for x in procedurenames"></select>
+                    </p>
+                    <p>
+                        Additional procedures:
+                        <select ng-model="selectedProcedure" ng-options="x for x in procedurenames"></select>
+                    </p>
+                    <p>Procedure date: </p>
+                    <p>Procedure time: </p>
+                    <p>
+                        Blood requirements:
+                        <select ng-model="selectedNeed" ng-options="x for x in procedureneeds"></select>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="w3-third">
+            <h5></h5>
+        </div>
+        <div class="checkbox w3-twothird">
+            <h5 class="w3-bottombar w3-border-black">When required?</h5>
+            <div ng-repeat="timing in timings"> 
+                <label>
+                    <input type="checkbox" ng-model="timing.isChecked" />
+                    <span>{{timing.timerequired}}</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+
+    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+        <tr>
+            <th></th>
+            <th>Code</th>
+            <th>Description</th>
+            <th>Charge</th>
+            <th>No required</th>
+        </tr>
+        <tr ng-repeat="item in bloodproducts | filter: productFilter">
+            <td><a href="#"><i class="glyphicon glyphicon-info-sign w3-text-blue w3-small"></i></a></td>
+            <td>{{item.prodid}}</td>
+            <td>{{item.prodname}}</td>
+            <td>{{item.prodcharge | currency}}</td>
+            <td><p ng-click="plusOne(item.noreq)">+ {{item.noreq}}</p></td>
+        </tr>
+    </table>
+</div>
+
+

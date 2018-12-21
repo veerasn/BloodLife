@@ -1,0 +1,58 @@
+﻿@model IEnumerable<BloodLife.Models.PATIENT>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>Search</h3>
+
+<p>
+    @Html.ActionLink("Create from eHIS", "Create")
+
+    @using (Html.BeginForm()){
+    <p>Search: @Html.TextBox("SearchString") </p><br />
+    <input type="submit" value="Search" />
+    } 
+
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PATNUMBER)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BIRTHDATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SEX)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PATNUMBER)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BIRTHDATE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SEX)
+        </td>
+
+        <td>
+            @Html.ActionLink("Details", "Details", new {id = item.PATNUMBER})
+        </td>
+    </tr>
+
+    }
+
+</table>

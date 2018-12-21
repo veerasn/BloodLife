@@ -1,0 +1,84 @@
+﻿<p>
+    Thanks for shopping at the Angular Store.<br />
+    This is your shopping cart. Here you can edit the items, 
+    go back to the store, clear the cart, or check out.
+</p>
+
+<div class="w3-container">
+    <div>
+        <div class="span8">
+
+            <!-- items -->
+            <table class="w3-table">
+
+                <!-- header -->
+                <tr>
+                    <td><b>Item</b></td>
+                    <td><b>Quantity</b></td>
+                    <td><b>Price</b></td>
+                    <td />
+                </tr>
+
+                <!-- empty cart message -->
+                <tr ng-hide="cart.getTotalCount() > 0" >
+                    <td colspan="4">
+                        Your cart is empty.
+                    </td>
+                </tr>
+
+                <!-- cart items -->
+                <tr ng-repeat="item in cart.items | orderBy:'name'">
+                    <td>{{item.name}}</td>
+                    <td>
+                      <div class="input-group-addon">
+                        <!-- use type=tel instead of  to prevent spinners -->
+                        <input
+                            class="span3 text-center" type="tel" 
+                            ng-model="item.quantity" 
+                            ng-change="cart.saveItems()" />
+                        <button 
+                            class="btn btn-success" type="button" 
+                            ng-disabled="item.quantity >= 1000"
+                            ng-click="cart.addItem(item.sku, item.name, item.price, +1)">+</button>
+                        <button 
+                            class="btn btn-inverse" type="button" 
+                            ng-disabled="item.quantity <= 1"
+                            ng-click="cart.addItem(item.sku, item.name, item.price, -1)">-</button>
+                      </div>
+                    </td>
+                    <td>{{item.price * item.quantity | currency}}</td>
+                    <td title="remove from cart">
+                        <a href="" ng-click="cart.addItem(item.sku, item.name, item.price, -10000000)" >
+                            <i class="icon-remove" />
+                        </a>
+                    </td>
+                </tr>
+
+                <!-- footer -->
+                <tr>
+                    <td><b>Total</b></td>
+                    <td><b>{{cart.getTotalCount()}}</b></td>
+                    <td><b>{{cart.getTotalPrice() | currency}}</b></td>
+                    <td />
+                </tr>
+            </table>
+        </div>
+
+        <!-- buttons -->
+        <div class="span4">
+            <p class="text-info">
+                <button 
+                    class="btn btn-block" 
+                    onclick="window.location.href='default.htm'">
+                    <i class="icon-chevron-left" /> back to store
+                </button>
+                <button 
+                    class="btn btn-block btn-danger" 
+                    ng-click="cart.clearItems()" 
+                    ng-disabled="cart.getTotalCount() < 1" >
+                    <i class="icon-trash icon-white" /> clear cart
+                </button>
+            </p>
+        </div>
+    </div>
+</div>

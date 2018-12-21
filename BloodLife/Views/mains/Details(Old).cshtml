@@ -1,0 +1,486 @@
+﻿@model IEnumerable<BloodLife.ViewModels.mainViewModel>
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@section scripts {
+    <script src="~/Scripts/angular-route.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+    <script src="~/app/module.js"></script>
+    <script src="~/app/route.js"></script>
+    <script src="~/app/bloodservice.details/controller.js"></script>
+
+    <script src="~/app/bloodservice.store/store.js"></script>
+    <script src="~/app/bloodservice.store/controller.js"></script>
+    <script src="~/app/bloodservice.store/product.js"></script>
+    <script src="~/app/bloodservice.cart/shoppingCart.js"></script>
+
+    <script src="~/app/bloodservice.store/controller.js"></script>
+    }
+
+@Scripts.Render("~/bundles/bloodservice")
+
+<html>
+<head>
+    <title>UMMC Blood Transfusion Information System</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"-->
+    <link rel="stylesheet" href="~/content/w3.css">
+    <link rel="stylesheet" href="~/Content/custom.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}</style>
+</head>
+
+<body class="w3-light-grey">
+
+<!-- Top container -->
+<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+    <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+    <span class="w3-bar-item w3-right">Logo</span>
+</div>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container w3-row">
+    <div class="w3-col s8 w3-bar "> 
+        <h1>Patient Info</h1>
+        <span>
+        <strong>@Model.First().NAME</strong><br>
+        Sex: <strong>
+            @{switch (Model.First().SEX)
+                {
+                    case 0: <strong>Male</strong>
+                        break;
+                    case 1: <strong>Female</strong>
+                        break;
+                    default: <strong>Unknown</strong>
+                        break;
+                } };
+                </strong><br>
+        Birthdate: <strong>
+            @if (Model.First().BIRTHDATE.HasValue)
+            {
+                @Model.First().BIRTHDATE.Value.ToString("dd/MMM/yyyy")
+            }
+            </strong><br>
+
+        UHRN:<strong>
+            @if (!String.IsNullOrEmpty(Model.First().HOSPNUMBER))
+            {
+                @Model.First().HOSPNUMBER.Substring(10, 8)
+            }
+            </strong><br>
+
+        NRIC: <strong>
+            @if (!String.IsNullOrEmpty(Model.First().BENNUMBER))
+            {
+                @Model.First().BENNUMBER.TrimStart('0')
+            }
+            </strong><br>    
+        </span>
+      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-info-circle" ></i></a>
+      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-commenting-o"></i></a>
+      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-whatsapp"></i></a>
+    </div>
+  </div>
+  <hr>
+  <div class="w3-container">
+    <h5>Dashboard</h5>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="	fa fa-id-card-o"></i>  Patient Overview</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-heart"></i>  Transfusion History</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file-text-o"></i>  Transfusion Tests</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cart-plus"></i>  Place A Request</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-stethoscope"></i>  Obtain Blood Sample</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-plus-square"></i>  Review Blood Status</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-hotel"></i>  Record Transfusion</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-credit-card fa-fw"></i>   Billing</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-info-circle"></i>  Guidelines</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog"></i>  Settings</a><br><br>
+  </div>
+</nav>
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+  <!-- Header
+  <header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="fa fa-dashboard"></i> Patient Name: Syakira | RN: 01234567 | DOB: 12/12/2000 | Sex: Female </b></h5>
+  </header> -->
+
+  <div class="w3-row-padding w3-margin-bottom">
+    <div class="w3-quarter">
+      <div class="w3-container w3-red w3-padding-16">
+        <div class="w3-left"><i class="fa fa-th-large w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>@ViewBag.PassArray[1]
+            <button class="w3-button w3-transparent" onclick="showLabRes()">+</button>
+          </h3>
+        </div>
+        <div class="w3-clear"></div> 
+          @if (ViewBag.PassArray[1] + ViewBag.PassArray[3] > 0) //At least one ABO or RHD result available
+          {
+            if (ViewBag.PassArray[2] + ViewBag.PassArray[4] > 0)
+            {
+                //ABO or RHD discrepancy
+                <h4><font color="grey">@Model.First().ABO @Model.First().RHFACTOR.ToUpper()</font></h4>
+            }
+            else
+            {
+                //No ABO or RHD discrepancy
+                <h4> @Model.First().ABO @Model.First().RHFACTOR.ToUpper()</h4>
+            }
+          }
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-blue w3-padding-16">
+        <div class="w3-left"><i class="	fa fa-tint w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>@ViewBag.PassArray[5]
+              <button class="w3-button w3-transparent" onclick="showLabRes()">+</button>
+          </h3>
+        </div>
+        <div class="w3-clear"></div>
+          @if (ViewBag.PassArray[5] > 0) //At least one ABS result available
+          {
+            if (ViewBag.PassArray[6] > 0)
+            {
+                //ABS positive
+                <h4><font color="red">ABS Positive</font></h4>
+            }
+            else
+            {
+                //ABS negative
+                <h4>ABS Negative</h4>
+            }
+          }
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-teal w3-padding-16">
+        <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <!--Count number of red cells transfused-->
+          <h3>@Model.Where(i => i.PRODCODE.Substring(0,2) == "RC" & i.PSTATUS==4).ToList().Count
+              <button class="w3-button w3-transparent" onclick="showTransRes()">+</button></h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Red cell units</h4>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-orange w3-text-white w3-padding-16">
+        <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <!--Count no of plasma products transfused-->
+          <h3>@Model.Where(i => (i.PRODCODE.Substring(0, 2) == "FF"|| i.PRODCODE.Substring(0, 2) == "CR") & i.PSTATUS == 4).ToList().Count
+              <button class="w3-button w3-transparent" onclick="showTransRes()">+</button>
+          </h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Plasma products</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-panel w3-red w3-margin">
+      @if (ViewBag.PassArray[6] > 0)
+      {
+        //Date of last ABS+ and AB identified
+        <p>@ViewBag.AbsDate @Model.First().ANTIBODIES </p> //Date 
+      }
+  </div>
+
+  <!--Partial view of request form-->
+    <div ng-app="bloodservice" class="w3-container">
+        <div ng-controller="DetailsController" class="container">
+            <input type="text" ng-model="models.helloAngular" />
+            <h1>{{models.helloAngular}}</h1>
+        </div>
+
+        <div ng-view></div>
+    </div>
+
+  <div>
+        <!--Laboratory results-->
+      <div class="w3-container" id="labRES" style="display: none">
+          <h5>Laboratory results</h5>
+          <div>
+            <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+                <tr>
+                    <th>Accessnumber</th>
+                    <th>Request Date</th>
+                    <th>ABO</th>
+                    <th>RhD</th>
+                    <th>Antibody Screen</th>
+                </tr>
+
+                @for (int row = 0; row < ViewBag.iRow; row++)
+                {
+                    <tr>
+                        @for (int col = 0; col < ViewBag.arrT.GetLength(1); col++)
+                        {
+                            <td>@ViewBag.arrT[row, col]</td>
+                        }
+                    </tr>
+                }
+            </table>
+          </div>
+      </div><br />
+
+        <!--Transfusion records-->
+      <div class="w3-container" id="transRES" style="display: none">
+          <h5>Transfusion records</h5>
+          <div>
+                <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PRODNUM)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PRODCODE)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.prABO) @Html.DisplayNameFor(model => model.prRHFACTOR)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.cSTATUS)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.xmSTATUS)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.XMATCHDATE)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ISSUEDATE)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RETURNDATE)
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PRODNUM)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PRODCODE)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.prABO) @Html.DisplayFor(modelItem => item.RHFACTOR)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.cSTATUS)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.xmSTATUS)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.XMATCHDATE)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ISSUEDATE)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RETURNDATE)
+                            </td>
+                        </tr>
+                }
+                </table>
+          </div>
+      </div><br />
+  </div>
+
+<!--Haematology test result summary-->
+  <div class="w3-panel">
+    <div class="w3-row-padding" style="margin:0 -16px">
+      <div class="w3-third">
+        <h5>Trends</h5>
+        <!--
+        <img src="/w3images/region.jpg" style="width:100%" alt="Google Regional Map">
+        -->
+      </div>
+      <div class="w3-twothird">
+        <h5>Latest Laboratory Results</h5>
+        <table class="w3-table w3-striped w3-white">
+          <tr>
+            <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
+            <td>Haemoglobin, 8 hours ago.</td>
+            <td><i>68 g/L</i></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-bell w3-text-red w3-large"></i></td>
+            <td>Platelets, 8 hours ago.</td>
+            <td><i>212 x 10^9/L</i></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
+            <td>INR, more than 1 day ago.</td>
+            <td><i>12 secs</i></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-comment w3-text-red w3-large"></i></td>
+            <td>PTT, more than 1 day ago.</td>
+            <td><i>36 secs</i></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-bookmark w3-text-blue w3-large"></i></td>
+            <td>Fibrinogen</td>
+            <td><i>No available results</i></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  <div class="w3-container">
+    <h5>Transfusion Summary</h5>
+    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+      <tr>
+        <td>Valid ABO, RhD and antibody screen available</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td>Issues to resolve with regards to ABO, RhD and antibody screen</td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <td>Crossmatched red cell units available in BB for collection</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>Crossmatching in progress</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>Red cell units issued / transfusion in progress</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>Platelet units issued / transfusion in progress</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>Plasma components issued / transfusion in progress</td>
+        <td>0</td>
+      </tr>
+    </table><br>
+  </div>
+  <div class="w3-container">
+    <h5>Recent Comments</h5>
+    <div class="w3-row">
+      <div class="w3-col m2 text-center">
+        <img class="w3-circle" src="/w3images/avatar3.png" style="width:96px;height:96px">
+      </div>
+      <div class="w3-col m10 w3-container">
+        <h4>Dr. Indra Jeyajothi, Medical Officer <span class="w3-opacity w3-medium">March 29, 2017, 9:12 AM</span></h4>
+        <p>This patient has an anti-E identified previously. 
+        R1R1 crossmtach-compatible blood will be issued to this patient if required.</p><br>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="w3-container w3-dark-grey w3-padding-32">
+    <div class="w3-row">
+      <div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-green">Demographics</h5>
+      </div>
+      <div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-red">Blood Stock Levels</h5>
+      </div>
+      <div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-orange">Guidelines</h5>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-16 w3-light-grey">
+    <h4>USE BLOOD WISELY</h4>
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+  </footer>
+
+  <!-- End page content -->
+</div>
+
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+    if (mySidebar.style.display === 'block') {
+        mySidebar.style.display = 'none';
+        overlayBg.style.display = "none";
+    } else {
+        mySidebar.style.display = 'block';
+        overlayBg.style.display = "block";
+    }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+    overlayBg.style.display = "none";
+    }
+
+//Show lab results
+function showLabRes() {
+    var x = document.getElementById('labRES');
+    if (x.style.display == 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none'
+    }
+}
+
+//Show transfusion results
+function showTransRes() {
+    var x = document.getElementById('transRES');
+    if (x.style.display == 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none'
+    }
+}
+
+function show(id) {
+        document.getElementById(id).style.visibility = "visible";
+    }
+
+function hide(id) {
+        document.getElementById(id).style.visibility = "hidden";
+    }
+
+//Show transfusion results
+function showTransRes() {
+    var x = document.getElementById('transRES');
+    if (x.style.display == 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none'
+    }
+    }
+
+</script>
+
+</body>
+</html>

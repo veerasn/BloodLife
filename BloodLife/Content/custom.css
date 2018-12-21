@@ -1,0 +1,166 @@
+﻿/*Accordion*/
+button.custaccordion{
+    background-color: #EEE;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+button.custaccordion.active, button.custaccordion:hover{
+    background-color: #ddd;
+}
+
+div.custpanel{
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+}
+
+.accordion{
+    width: 100%;
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    border: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+.accordion:after{
+    content: "\0028";
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.active::after{
+    content: "\2122";
+}
+
+.panel{
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+.accordion .accordion-head{
+    color: #000000;
+    background-color: #808080;
+    border-bottom: 1px solid #fff;
+    position: relative;
+    padding: 13px;
+    font-size: 0.87em;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.accordion .accordion-head *{
+    cursor: pointer;
+}
+
+.accordion .accordion-head h4{
+    float: left;
+}
+
+.accordion .accordion-head:hover{
+    filter: alpha(opacity=60);
+    opacity: 0.60;
+}
+
+.accordion .accordion-body{
+    border-bottom: 1px solid #fff;
+    padding: 2px;
+    height: auto;
+    display: none;
+}
+
+.arrow{
+    float: right;
+    width: 0px;
+    height: 0px;
+    margin-top: 20px;
+    border: 10px solid transparent;
+    margin-top: 18px;
+    border-top-color: #F3F3F3;
+}
+
+.accordion-head.open .arrow{
+    margin-top: 11px;
+    border-bottom-color: #F3F3F3;
+    border-top-color: transparent;
+}
+
+.result{
+    display: none;
+}
+
+/*Pure HTML + CSS Accordion (Dandi Wiratsangka)*/
+
+.acc-kontainer{
+    width: 100%;
+    margin:auto;
+}
+
+.acc-kontainer .acc-body{
+    width: 98%;
+    width: calc(100% - 20px);
+    margin: 0 auto;
+    height: 0;
+    color: rgba(0,0,0,0);
+    background-color: rgba(255,255,255,0.2);
+    line-height: 28px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    transition: 0.5s;
+}
+
+.acc-kontainer label{
+    cursor: pointer;
+    background-color: rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    display: block;
+    padding: 15px;
+    width: 100%;
+    color: #fff;
+    font-weight: 400;
+    box-sizing: border-box;
+    z-index:100;
+}
+
+.acc-kontainer input{
+    display: none;
+}
+
+.acc-kontainer label:before {
+    font-family: 'FontAwesome';
+    content: '\f067';
+    font-weight: bolder;
+    float: right;
+}
+
+.acc-kontainer input:checked+label:before{
+    font-family: 'FontAwesome';
+    content: '\f00d';
+    transition: 0.5s;
+}
+
+.acc-kontainer input:checked~.acc-body{
+    height: auto;
+    color: #fff;
+    font-size: 16px;
+    padding: 20px;
+    transition: 0.5s;
+}

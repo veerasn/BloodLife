@@ -1,0 +1,2 @@
+﻿bloodserviceApp.controller("DetailsController", DetailsController);
+
