@@ -21,14 +21,13 @@ namespace BloodLife
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
+                      "~/Scripts/bootstrap.min.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/bootstrap-grid.css",
-                      "~/Content/bootstrap-reboot.css",
-                      "~/Content/custom.css",
-                      "~/Content/site.css"));
+                      "~/Content/bootstrap.min.css"
+                      ));
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                       "~/Scripts/angular.js"));
