@@ -61,6 +61,7 @@ namespace BloodLife.Controllers
                 join test in db.TESTS
                 on rq.ACCESSNUMBER equals test.ACCESSNUMBER
                 where rq.PATNUMBER == id
+                orderby rq.REQDATE descending
                 select new
                 {
                     RequestDate = rq.REQDATE,
@@ -84,6 +85,7 @@ namespace BloodLife.Controllers
                 join pr in db.PRODUCTS on rp.PRODUCTID equals pr.PRODUCTID into List3
                 from pr in List3.DefaultIfEmpty()
                 where p.PATNUMBER == id
+                orderby r.REQDATE descending
                 select new
                 {
                     Patnumber = p.PATNUMBER,
@@ -120,7 +122,10 @@ namespace BloodLife.Controllers
                     
                 });
 
-            ViewBag.Rccount = prodrequests.Count(x => x.PRODCODE != null);
+            ViewBag.Rccount = prodrequests.Count(x => x.PRODNUM != null && x.PRODCODE.Substring(0,2)== "RC");
+            ViewBag.Plcount = prodrequests.Count(x => x.PRODNUM != null && x.PRODCODE.Substring(0, 2) == "PL");
+            ViewBag.Fpcount = prodrequests.Count(x => x.PRODNUM != null && (x.PRODCODE.Substring(0, 2) == "FF"|| x.PRODCODE.Substring(0, 2) == "CR"));
+
             ViewBag.Tcount = prodrequests.Count();
 
             //Populate dropdown boxes
