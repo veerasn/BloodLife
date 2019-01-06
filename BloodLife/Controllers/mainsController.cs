@@ -100,7 +100,14 @@ namespace BloodLife.Controllers
                     Accessno = r.ACCESSNUMBER,
                     Reqdate = r.REQDATE,
                     Prodcode = pr.PRODCODE,
-                    Prodnum = pr.PRODNUM
+                    Prodnum = pr.PRODNUM,
+                    Mstatus = rp.MSTATUS,
+                    Pstatus = rp.PSTATUS,
+                    Reservdate = rp.RESERVDATE,
+                    Xmatchdate = rp.XMATCHDATE, 
+                    Issuedate = rp.ISSUEDATE,
+                    Returndate = rp.RETURNDATE, 
+                    Transreaction = rp.TRANSREACTION
 
                 }).ToList()
 
@@ -118,13 +125,32 @@ namespace BloodLife.Controllers
                     ACCESSNUMBER = x.Accessno,
                     REQDATE = x.Reqdate,
                     PRODCODE = x.Prodcode,
-                    PRODNUM = x.Prodnum
-                    
+                    PRODNUM = x.Prodnum,
+                    MSTATUS = x.Mstatus,
+                    PSTATUS = x.Pstatus,
+                    RESERVDATE = x.Reservdate,
+                    XMATCHDATE = x.Xmatchdate,
+                    ISSUEDATE = x.Issuedate,
+                    RETURNDATE = x.Returndate, 
+                    TRANSREACTION = x.Transreaction
                 });
 
-            ViewBag.Rccount = prodrequests.Count(x => x.PRODNUM != null && x.PRODCODE.Substring(0,2)== "RC");
-            ViewBag.Plcount = prodrequests.Count(x => x.PRODNUM != null && x.PRODCODE.Substring(0, 2) == "PL");
-            ViewBag.Fpcount = prodrequests.Count(x => x.PRODNUM != null && (x.PRODCODE.Substring(0, 2) == "FF"|| x.PRODCODE.Substring(0, 2) == "CR"));
+            if(prodrequests.Count(x => x.PRODNUM != null) > 0)
+            {
+                ViewBag.Rccount = prodrequests.Count(x => x.PRODNUM != null && x.PRODCODE.Substring(0,2)== "RC");
+                ViewBag.Xm = prodrequests.Count(x => x.PRODNUM != null && x.PRODCODE.Substring(0, 2) == "RC" && x.MSTATUS == 2);
+                ViewBag.Issued = prodrequests.Count(x => x.PRODNUM != null && x.PRODCODE.Substring(0, 2) == "RC" && x.PSTATUS == 4);
+                ViewBag.Returned = prodrequests.Count(x => x.PRODNUM != null && x.PRODCODE.Substring(0, 2) == "RC" && x.PSTATUS == 6);
+                ViewBag.Plcount = prodrequests.Count(x => x.PRODNUM != null && x.PRODCODE.Substring(0, 2) == "PL");
+                ViewBag.Fpcount = prodrequests.Count(x => x.PRODNUM != null && (x.PRODCODE.Substring(0, 2) == "FF"|| x.PRODCODE.Substring(0, 2) == "CR"));
+            }
+            else
+            {
+                ViewBag.Rccount = 0;
+                ViewBag.Plcount = 0;
+                ViewBag.Fpcount = 0;
+            }
+            
 
             ViewBag.Tcount = prodrequests.Count();
 

@@ -116,26 +116,27 @@
                         <a data-toggle="collapse" data-parent="#accordion-review" href="#collapse1">Requests and results (@ViewBag.TestCount)</a>
                     </h4>
                 </div>
-                <div id="collapse1" class="panel-collapse collapse in">
+                <div id="collapse1" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Access No.</th>
-                                    <th>Date </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
+                        <div>
+                            <table class="table table-striped">
+                                <thead>
                                     <tr>
-                                        <td>@item.ACCESSNUMBER</td>
-                                        <td>@item.REQDATE</td>
+                                        <th>Access No.</th>
+                                        <th>Date </th>
                                     </tr>
-                                }
-                            </tbody>
-                            
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.ACCESSNUMBER</td>
+                                            <td>@item.REQDATE</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -143,40 +144,48 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion-review" href="#collapse2">Red blood cells (@ViewBag.Rccount)</a>
+                        <a data-toggle="collapse" data-parent="#accordion-review" href="#collapse2">Red blood cells - </a>
+                        <img src="~/Content/img/crossmatch.png" style="vertical-align:top;width:20px;height:20px;" /> @ViewBag.Xm
+                        <img src="~/Content/img/issued.png" style="width:16px;height:16px;" /> @ViewBag.Issued
+                        <img src="~/Content/img/returned.png" style="width:16px;height:16px;" /> @ViewBag.Returned
                     </h4>
                 </div>
                 <div id="collapse2" class="panel-collapse collapse">
                     <div class="panel-body">
-                        @if (ViewBag.Rccount > 0)
-                        {
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Request Date</th>
-                                        <th>Time</th>
-                                        <th>RC Type</th>
-                                        <th>Pack ID</th>
-                                        <th>History</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model)
-                                    {
-                                        if (item.PRODNUM != null && item.PRODCODE.Substring(0, 2) == "RC")
+                        <div>
+                            @if (ViewBag.Rccount > 0)
+                            {
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Request Date</th>
+                                            <th>RC Type</th>
+                                            <th>Pack ID</th>
+                                            <th>History</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
                                         {
-                                            <tr>
-                                                <td>@item.ACCESSNUMBER</td>
-                                                <td>@Html.DisplayFor(modelItem => item.REQDATE)</td>
-                                                <td>@item.PRODCODE</td>
-                                                <td>@item.PRODNUM</td>
-                                            </tr>
+                                            if (item.PRODNUM != null && item.PRODCODE.Substring(0, 2) == "RC")
+                                            {
+                                                <tr>
+                                                    <td>@item.ACCESSNUMBER</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.REQDATE)</td>
+                                                    <td>@item.PRODCODE</td>
+                                                    <td>@item.PRODNUM</td>
+                                                    <td>@item.RESERVDATE.Value.ToString("HH.mm") 
+                                                        @item.XMATCHDATE.Value.ToString("HH.mm")
+                                                    </td>
+                                                    <td>@item.TRANSREACTION</td>
+                                                </tr>
+                                            }
                                         }
-                                    }
-                                </tbody>
-                            </table>
-                        }
+                                    </tbody>
+                                </table>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
@@ -189,35 +198,37 @@
                 </div>
                 <div id="collapse3" class="panel-collapse collapse">
                     <div class="panel-body">
-                        @if (ViewBag.Plcount > 0)
-                        {
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Request Date</th>
-                                        <th>Time</th>
-                                        <th>RC Type</th>
-                                        <th>Pack ID</th>
-                                        <th>History</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model)
-                                    {
-                                        if (item.PRODNUM != null && item.PRODCODE.Substring(0, 2) == "PL")
+                        <div>
+                            @if (ViewBag.Plcount > 0)
+                            {
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Request Date</th>
+                                            <th>Time</th>
+                                            <th>RC Type</th>
+                                            <th>Pack ID</th>
+                                            <th>History</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
                                         {
-                                            <tr>
-                                                <td>@item.ACCESSNUMBER</td>
-                                                <td>@Html.DisplayFor(modelItem => item.REQDATE)</td>
-                                                <td>@item.PRODCODE</td>
-                                                <td>@item.PRODNUM</td>
-                                            </tr>
+                                            if (item.PRODNUM != null && item.PRODCODE.Substring(0, 2) == "PL")
+                                            {
+                                                <tr>
+                                                    <td>@item.ACCESSNUMBER</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.REQDATE)</td>
+                                                    <td>@item.PRODCODE</td>
+                                                    <td>@item.PRODNUM</td>
+                                                </tr>
+                                            }
                                         }
-                                    }
-                                </tbody>
-                            </table>
-                        }
+                                    </tbody>
+                                </table>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
@@ -230,35 +241,37 @@
                 </div>
                 <div id="collapse4" class="panel-collapse collapse">
                     <div class="panel-body">
-                        @if (ViewBag.Fpcount > 0)
-                        {
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Request Date</th>
-                                        <th>Time</th>
-                                        <th>RC Type</th>
-                                        <th>Pack ID</th>
-                                        <th>History</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model)
-                                    {
-                                        if (item.PRODNUM != null && (item.PRODCODE.Substring(0, 2) == "FF"|| item.PRODCODE.Substring(0, 2) == "CR"))
+                        <div>
+                            @if (ViewBag.Fpcount > 0)
+                            {
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Request Date</th>
+                                            <th>Time</th>
+                                            <th>RC Type</th>
+                                            <th>Pack ID</th>
+                                            <th>History</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
                                         {
-                                            <tr>
-                                                <td>@item.ACCESSNUMBER</td>
-                                                <td>@Html.DisplayFor(modelItem => item.REQDATE)</td>
-                                                <td>@item.PRODCODE</td>
-                                                <td>@item.PRODNUM</td>
-                                            </tr>
+                                            if (item.PRODNUM != null && (item.PRODCODE.Substring(0, 2) == "FF" || item.PRODCODE.Substring(0, 2) == "CR"))
+                                            {
+                                                <tr>
+                                                    <td>@item.ACCESSNUMBER</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.REQDATE)</td>
+                                                    <td>@item.PRODCODE</td>
+                                                    <td>@item.PRODNUM</td>
+                                                </tr>
+                                            }
                                         }
-                                    }
-                                </tbody>
-                            </table>
-                        }
+                                    </tbody>
+                                </table>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
