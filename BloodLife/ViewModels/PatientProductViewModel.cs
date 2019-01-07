@@ -58,7 +58,7 @@ namespace BloodLife.ViewModels
         //Request fields
         public string ACCESSNUMBER { get; set; }
         public string LOCCODE { get; set; }
-        [DisplayFormat(DataFormatString = "{0: dd MMM yyyy}")]
+        [DisplayFormat(DataFormatString = "{0: HH:mm dd MMM yyyy}")]
         public Nullable<System.DateTime> REQDATE { get; set; }
         [DisplayFormat(DataFormatString = "{0:hh\\:mm tt}")]
         public Nullable<System.DateTime> REQTIME { get; set; }

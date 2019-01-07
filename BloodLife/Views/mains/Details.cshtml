@@ -145,9 +145,11 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion-review" href="#collapse2">Red blood cells - </a>
-                        <img src="~/Content/img/crossmatch.png" style="vertical-align:top;width:20px;height:20px;" /> @ViewBag.Xm
+                        <img src="~/Content/img/crossmatch.png" style="vertical-align:top;width:20px;height:20px;" /> @ViewBag.Reserved
                         <img src="~/Content/img/issued.png" style="width:16px;height:16px;" /> @ViewBag.Issued
+                        <img src="~/Content/img/transfuse-ok.png" style="width:16px;height:16px;" /> @ViewBag.Transfused
                         <img src="~/Content/img/returned.png" style="width:16px;height:16px;" /> @ViewBag.Returned
+                        <img src="~/Content/img/reaction.png" style="width:16px;height:16px;" /> @ViewBag.Reaction
                     </h4>
                 </div>
                 <div id="collapse2" class="panel-collapse collapse">
@@ -159,7 +161,7 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Request Date</th>
+                                            <th>Request Time & Date</th>
                                             <th>RC Type</th>
                                             <th>Pack ID</th>
                                             <th>History</th>
@@ -175,10 +177,33 @@
                                                     <td>@Html.DisplayFor(modelItem => item.REQDATE)</td>
                                                     <td>@item.PRODCODE</td>
                                                     <td>@item.PRODNUM</td>
-                                                    <td>@item.RESERVDATE.Value.ToString("HH.mm") 
-                                                        @item.XMATCHDATE.Value.ToString("HH.mm")
+
+                                                    <td>
+                                                        <img src="~/Content/img/reserve.png" style="vertical-align:top;width:20px;height:20px;" />
+                                                        <sup>@item.RESERVDATE.Value.ToString("HH:mm")</sup>
+                                                        
+                                                        @if (item.XMATCHDATE != null)
+                                                        {
+                                                            <img src="~/Content/img/crossmatch.png" style="vertical-align:top;width:20px;height:20px;" />
+                                                            <sup>@item.XMATCHDATE.Value.ToString("HH:mm")</sup>
+                                                        }
+                                                        @if (item.ISSUEDATE != null)
+                                                        {
+                                                            <img src="~/Content/img/issued.png" style="vertical-align:top;width:20px;height:20px;" />
+                                                            <sup>@item.ISSUEDATE.Value.ToString("HH:mm")</sup>
+                                                        }
+                                                        @if (item.RETURNDATE != null)
+                                                        {
+                                                            <img src="~/Content/img/returned.png" style="vertical-align:top;width:20px;height:20px;" />
+                                                            <sup>@item.RETURNDATE.Value.ToString("HH:mm")</sup>
+                                                        }
                                                     </td>
-                                                    <td>@item.TRANSREACTION</td>
+                                                    <td>
+                                                        @if (item.TRANSREACTION != null)
+                                                        {
+                                                            <img src="~/Content/img/reaction.png" style="vertical-align:top;width:20px;height:20px;" />
+                                                        }
+                                                    </td>
                                                 </tr>
                                             }
                                         }
