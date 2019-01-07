@@ -81,6 +81,38 @@ namespace BloodLife.ViewModels
         public string TRANSREACTION { get; set; }
         public int PRODUCTID { get; set; }
 
+        public int ReservIntDay
+        {
+            get
+            {
+                return XMATCHDATE != null ? (RESERVDATE - REQDATE).Value.Days : 99;
+            }
+        }
+
+        public int XmatchIntDay
+        {
+            get
+            {
+                return XMATCHDATE != null ? (XMATCHDATE - REQDATE).Value.Days : 99;
+            }
+        }
+
+        public int IssueIntDay
+        {
+            get
+            {
+                return XMATCHDATE != null ? (ISSUEDATE - REQDATE).Value.Days : 99;
+            }
+        }
+
+        public int ReturnIntDay
+        {
+            get
+            {
+                return XMATCHDATE != null ? (RETURNDATE - REQDATE).Value.Days : 99;
+            }
+        }
+
         //Product
         public string PRODNUM { get; set; }
         public string PRODCODE { get; set; }

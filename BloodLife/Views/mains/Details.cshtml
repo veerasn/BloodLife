@@ -180,22 +180,22 @@
 
                                                     <td>
                                                         <img src="~/Content/img/reserve.png" style="vertical-align:top;width:20px;height:20px;" />
-                                                        <sup>@item.RESERVDATE.Value.ToString("HH:mm")</sup>
+                                                        <sup>@item.RESERVDATE.Value.ToString("HH:mm") d:@item.ReservIntDay</sup>
                                                         
-                                                        @if (item.XMATCHDATE != null)
+                                                        @if (item.XMATCHDATE != null && item.XmatchIntDay < 8) 
                                                         {
                                                             <img src="~/Content/img/crossmatch.png" style="vertical-align:top;width:20px;height:20px;" />
-                                                            <sup>@item.XMATCHDATE.Value.ToString("HH:mm")</sup>
+                                                            <sup>@item.XMATCHDATE.Value.ToString("HH:mm") d:@item.XmatchIntDay</sup>
                                                         }
-                                                        @if (item.ISSUEDATE != null)
+                                                        @if (item.ISSUEDATE != null && item .IssueIntDay < 8)
                                                         {
                                                             <img src="~/Content/img/issued.png" style="vertical-align:top;width:20px;height:20px;" />
-                                                            <sup>@item.ISSUEDATE.Value.ToString("HH:mm")</sup>
+                                                            <sup>@item.ISSUEDATE.Value.ToString("HH:mm") d:@item.IssueIntDay</sup>
                                                         }
-                                                        @if (item.RETURNDATE != null)
+                                                        @if (item.RETURNDATE != null && item.ReturnIntDay < 8)
                                                         {
                                                             <img src="~/Content/img/returned.png" style="vertical-align:top;width:20px;height:20px;" />
-                                                            <sup>@item.RETURNDATE.Value.ToString("HH:mm")</sup>
+                                                            <sup>@item.RETURNDATE.Value.ToString("HH:mm") d:@item.ReturnIntDay</sup>
                                                         }
                                                     </td>
                                                     <td>
