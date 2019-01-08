@@ -73,47 +73,53 @@ namespace BloodLife.Controllers
 
             //Create array for populating results table
             int ireq = testrequests.Select(x => x.AccessNumber).Distinct().Count();
-            int j = 0;
-            string[,] res = new string[ireq,8];
-            string accnum = testrequests.First().AccessNumber;
+            ViewBag.TestCount = ireq;
 
-            for (int i = 0; i < ireq; i++)
+            if (ireq > 0)
             {
-                if (accnum != testrequests[i].AccessNumber)
-                {
-                    j = j + 1;
-                    accnum = testrequests[i].AccessNumber;
-                }
+                int j = 0;
+                string[,] res = new string[ireq, 8];
+                string accnum = testrequests.First().AccessNumber;
 
-                res[j, 0] = testrequests[i].AccessNumber;
-                res[j, 1] = testrequests[i].RequestDate.Value.ToString();
-
-                switch (testrequests[i].TestCode)
+                for (int i = 0; i < testrequests.Count(); i++)
                 {
-                    case "RJ":
-                        res[j, 2] = testrequests[i].TestResult;
-                        break;
-                    case "GROUP":
-                        res[j, 3] = testrequests[i].TestResult;
-                        break;
-                    case "ABO":
-                        res[j, 3] = testrequests[i].TestResult;
-                        break;
-                    case "RH":
-                        res[j, 4] = testrequests[i].TestResult;
-                        break;
-                    case "DAT":
-                        res[j, 5] = testrequests[i].TestResult;
-                        break;
-                    case "ABS":
-                        res[j, 6] = testrequests[i].TestResult;
-                        break;
-                    case "ABID":
-                        res[j, 7] = testrequests[i].TestResult;
-                        break;
+                    if (accnum != testrequests[i].AccessNumber)
+                    {
+                        j = j + 1;
+                        accnum = testrequests[i].AccessNumber;
+                    }
+
+                    res[j, 0] = testrequests[i].AccessNumber;
+                    res[j, 1] = testrequests[i].RequestDate.Value.ToString();
+
+                    switch (testrequests[i].TestCode)
+                    {
+                        case "RJ":
+                            res[j, 2] = testrequests[i].TestResult;
+                            break;
+                        case "GROUP":
+                            res[j, 3] = testrequests[i].TestResult;
+                            break;
+                        case "ABO":
+                            res[j, 3] = testrequests[i].TestResult;
+                            break;
+                        case "RH":
+                            res[j, 4] = testrequests[i].TestResult;
+                            break;
+                        case "DAT":
+                            res[j, 5] = testrequests[i].TestResult;
+                            break;
+                        case "ABS":
+                            res[j, 6] = testrequests[i].TestResult;
+                            break;
+                        case "ABID":
+                            res[j, 7] = testrequests[i].TestResult;
+                            break;
+                    }
                 }
+                ViewData["TestResults"] = res;
             }
-
+            
 
             List<PatientProductViewModel> testresultList = new List<PatientProductViewModel>();
             foreach (var t in testrequests)
@@ -125,9 +131,6 @@ namespace BloodLife.Controllers
                 tr.RESULT = t.TestResult;
                 testresultList.Add(tr);
             }
-
-            ViewData["TestResults"] = testresultList;
-            ViewBag.TestCount = ireq;
 
             //Product requests
 

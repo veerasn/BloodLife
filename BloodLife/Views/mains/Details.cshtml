@@ -120,24 +120,51 @@
                 <div id="collapse1" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div>
-                            
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Access No.</th>
-                                        <th>Date </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in ViewData["TestResults"] as List<PatientProductViewModel>)
-                                    {
+                            @if (ViewBag.TestCount > 0)
+                            {
+                                <table class="table table-striped">
+                                    <thead>
                                         <tr>
-                                            <td>@item.ACCESSNUMBER</td>
-                                            <td>@item.REQDATE</td>
+                                            <th>ID</th>
+                                            <th>Date </th>
+                                            <th></th>
+                                            <th>ABO</th>
+                                            <th>Rh</th>
+                                            <th>DAT</th>
+                                            <th>Ab screen</th>
                                         </tr>
-                                    }
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @{var res = ViewData["TestResults"] as string[,];
+                                            for (int row = 0; row < res.GetLength(0); row++)
+                                            {
+                                                <tr>
+                                                    @for (int column = 0; column < res.GetLength(1); column++)
+                                                    {
+                                                        switch (column)
+                                                        {
+                                                            case 2:
+                                                                if(res[row, column] != null)
+                                                                {
+                                                                    <td><img src="~/Content/img/blood-sample.png" style="width:16px;height:16px;" /><sup>@res[row, column]</sup></td>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <td>@res[row, column]</td>
+                                                                };
+                                                                break;
+
+                                                            default:
+                                                                    <td>@res[row, column]</td>
+                                                                break;
+                                                        }
+                                                    }
+                                                </tr>
+                                            }
+                                         }
+                                    </tbody>
+                                </table>
+                            }
                         </div>
                     </div>
                 </div>
@@ -146,7 +173,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion-review" href="#collapse2">Red blood cells - </a>
+                        <a data-toggle="collapse" data-parent="#accordion-review" href="#collapse2">Red blood cells - (@ViewBag.Rccount)  </a>
                         <img src="~/Content/img/crossmatch.png" style="vertical-align:top;width:20px;height:20px;" /> @ViewBag.Reserved
                         <img src="~/Content/img/issued.png" style="width:16px;height:16px;" /> @ViewBag.Issued
                         <img src="~/Content/img/transfuse-ok.png" style="width:16px;height:16px;" /> @ViewBag.Transfused
@@ -158,7 +185,7 @@
                     <div class="panel-body">
                         <div>
                             @if (ViewBag.Rccount > 0)
-                            {
+                                                        {
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
@@ -171,9 +198,9 @@
                                     </thead>
                                     <tbody>
                                         @foreach (var item in Model)
-                                        {
-                                            if (item.PRODNUM != null && item.PRODCODE.Substring(0, 2) == "RC")
-                                            {
+                                                        {
+                                                            if (item.PRODNUM != null && item.PRODCODE.Substring(0, 2) == "RC")
+                                                            {
                                                 <tr>
                                                     <td>@item.ACCESSNUMBER</td>
                                                     <td>@Html.DisplayFor(modelItem => item.REQDATE)</td>
@@ -182,7 +209,7 @@
 
                                                     <td>
                                                         @if (item.RESERVDATE != null && item.ReservIntDay < 8)
-                                                        {
+                                                                        {
                                                         <img src="~/Content/img/reserve.png" style="vertical-align:top;width:20px;height:20px;" />
                                                         <sup>@item.RESERVDATE.Value.ToString("HH:mm") d:@item.ReservIntDay</sup>
                                                         }

@@ -229,12 +229,14 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom.css" />
+    <Content Include="Content\img\testing.png" />
+    <Content Include="Content\img\blood-sample.png" />
     <Content Include="Content\img\reaction.png" />
     <Content Include="Content\img\reserve.png" />
     <Content Include="Content\img\transfuse-ok.png" />
     <Content Include="Content\img\crossmatch.png" />
     <Content Include="Content\img\issued.png" />
-    <Content Include="Content\img\004-blood.png" />
+    <Content Include="Content\img\abo-not-ok.png" />
     <Content Include="Content\img\returned.png" />
     <Content Include="Content\img\blood-donation.png" />
     <Content Include="Content\img\blood.png" />
