@@ -48,7 +48,7 @@ namespace BloodLife.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            PATIENT Patient  = db.PATIENTS.Find(id);
+            PATIENT Patient = db.PATIENTS.Find(id);
 
             if (Patient == null)
             {
@@ -67,11 +67,67 @@ namespace BloodLife.Controllers
                     RequestDate = rq.REQDATE,
                     AccessNumber = rq.ACCESSNUMBER,
                     TestCode = test.TESTCODE,
-                    TestResult = test.RESULT, 
+                    TestResult = test.RESULT,
                 }
                 ).ToList();
 
-            ViewBag.TestCount = testrequests.Count();
+            //Create array for populating results table
+            int ireq = testrequests.Select(x => x.AccessNumber).Distinct().Count();
+            int j = 0;
+            string[,] res = new string[ireq,8];
+            string accnum = testrequests.First().AccessNumber;
+
+            for (int i = 0; i < ireq; i++)
+            {
+                if (accnum != testrequests[i].AccessNumber)
+                {
+                    j = j + 1;
+                    accnum = testrequests[i].AccessNumber;
+                }
+
+                res[j, 0] = testrequests[i].AccessNumber;
+                res[j, 1] = testrequests[i].RequestDate.Value.ToString();
+
+                switch (testrequests[i].TestCode)
+                {
+                    case "RJ":
+                        res[j, 2] = testrequests[i].TestResult;
+                        break;
+                    case "GROUP":
+                        res[j, 3] = testrequests[i].TestResult;
+                        break;
+                    case "ABO":
+                        res[j, 3] = testrequests[i].TestResult;
+                        break;
+                    case "RH":
+                        res[j, 4] = testrequests[i].TestResult;
+                        break;
+                    case "DAT":
+                        res[j, 5] = testrequests[i].TestResult;
+                        break;
+                    case "ABS":
+                        res[j, 6] = testrequests[i].TestResult;
+                        break;
+                    case "ABID":
+                        res[j, 7] = testrequests[i].TestResult;
+                        break;
+                }
+            }
+
+
+            List<PatientProductViewModel> testresultList = new List<PatientProductViewModel>();
+            foreach (var t in testrequests)
+            {
+                PatientProductViewModel tr = new PatientProductViewModel();
+                tr.ACCESSNUMBER = t.AccessNumber;
+                tr.REQDATE = t.RequestDate;
+                tr.TESTCODE = t.TestCode;
+                tr.RESULT = t.TestResult;
+                testresultList.Add(tr);
+            }
+
+            ViewData["TestResults"] = testresultList;
+            ViewBag.TestCount = ireq;
 
             //Product requests
 

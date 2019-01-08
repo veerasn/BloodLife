@@ -68,6 +68,18 @@ namespace BloodLife.ViewModels
         public Nullable<byte> REQURGENT { get; set; }
         public Nullable<System.DateTime> BGMISMATCHDATE { get; set; }
 
+        //Test fields
+        public string TESTCODE { get; set; }
+        public string RESULT { get; set; }
+        public string RJ { get; set; }
+        public string ABOGRP { get; set; }
+        public string RHD { get; set; }
+        public string ABS { get; set; }
+        public string DAT { get; set; }
+        public string ABID { get; set; }
+        public string TRI { get; set; }
+
+
         //Request_product
         public Nullable<byte> PSTATUS { get; set; }
         public Nullable<byte> MSTATUS { get; set; }
@@ -85,7 +97,7 @@ namespace BloodLife.ViewModels
         {
             get
             {
-                return XMATCHDATE != null ? (RESERVDATE - REQDATE).Value.Days : 99;
+                return RESERVDATE != null ? (RESERVDATE - REQDATE).Value.Days : 99;
             }
         }
 
@@ -101,7 +113,7 @@ namespace BloodLife.ViewModels
         {
             get
             {
-                return XMATCHDATE != null ? (ISSUEDATE - REQDATE).Value.Days : 99;
+                return ISSUEDATE != null ? (ISSUEDATE - REQDATE).Value.Days : 99;
             }
         }
 
@@ -109,7 +121,7 @@ namespace BloodLife.ViewModels
         {
             get
             {
-                return XMATCHDATE != null ? (RETURNDATE - REQDATE).Value.Days : 99;
+                return RETURNDATE != null ? (RETURNDATE - REQDATE).Value.Days : 99;
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 
 @@model BloodLife.Models.PATIENT
+@using BloodLife.ViewModels
 @model IEnumerable<BloodLife.ViewModels.PatientProductViewModel>
 
 <html>
@@ -119,6 +120,7 @@
                 <div id="collapse1" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div>
+                            
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
@@ -127,7 +129,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in Model)
+                                    @foreach (var item in ViewData["TestResults"] as List<PatientProductViewModel>)
                                     {
                                         <tr>
                                             <td>@item.ACCESSNUMBER</td>
@@ -179,9 +181,12 @@
                                                     <td>@item.PRODNUM</td>
 
                                                     <td>
+                                                        @if (item.RESERVDATE != null && item.ReservIntDay < 8)
+                                                        {
                                                         <img src="~/Content/img/reserve.png" style="vertical-align:top;width:20px;height:20px;" />
                                                         <sup>@item.RESERVDATE.Value.ToString("HH:mm") d:@item.ReservIntDay</sup>
-                                                        
+                                                        }
+
                                                         @if (item.XMATCHDATE != null && item.XmatchIntDay < 8) 
                                                         {
                                                             <img src="~/Content/img/crossmatch.png" style="vertical-align:top;width:20px;height:20px;" />
