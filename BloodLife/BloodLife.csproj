@@ -229,6 +229,11 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom.css" />
+    <Content Include="Content\img\alert.png" />
+    <Content Include="Content\img\error.png" />
+    <Content Include="Content\img\return-blood.png" />
+    <Content Include="Content\img\gift.png" />
+    <Content Include="Content\img\sick.png" />
     <Content Include="Content\img\testing.png" />
     <Content Include="Content\img\blood-sample.png" />
     <Content Include="Content\img\reaction.png" />
@@ -241,6 +246,7 @@
     <Content Include="Content\img\blood-donation.png" />
     <Content Include="Content\img\blood.png" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\img\warning.png" />
     <Content Include="Content\w3.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

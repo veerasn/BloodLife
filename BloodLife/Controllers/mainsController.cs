@@ -75,6 +75,9 @@ namespace BloodLife.Controllers
             int ireq = testrequests.Select(x => x.AccessNumber).Distinct().Count();
             ViewBag.TestCount = ireq;
 
+            string abo = "", rh = "";
+            int aboerr = 0, rherr = 0, abserr = 0, abonum = 0;
+
             if (ireq > 0)
             {
                 int j = 0;
@@ -98,19 +101,45 @@ namespace BloodLife.Controllers
                             res[j, 2] = testrequests[i].TestResult;
                             break;
                         case "GROUP":
-                            res[j, 3] = testrequests[i].TestResult;
-                            break;
                         case "ABO":
                             res[j, 3] = testrequests[i].TestResult;
+                            //Check for any abo discrepancies
+                            if (abo == "" && testrequests[i].TestResult != null)
+                            {
+                                abo = testrequests[i].TestResult;
+                                abonum = abonum + 1;
+                            }
+                            else
+                            {
+                                abonum = abonum + 1;
+                            }
+                            if (testrequests[i].TestResult != abo && testrequests[i].TestResult != null)
+                            {
+                                aboerr = 1;
+                            }
                             break;
                         case "RH":
                             res[j, 4] = testrequests[i].TestResult;
+                            //Check for any rh discrepancies
+                            if (rh == "" && testrequests[i].TestResult != null)
+                            {
+                                rh = testrequests[i].TestResult;
+                            }
+                            if (testrequests[i].TestResult != rh && testrequests[i].TestResult != null)
+                            {
+                                rherr = 1;
+                            }
                             break;
                         case "DAT":
                             res[j, 5] = testrequests[i].TestResult;
                             break;
                         case "ABS":
                             res[j, 6] = testrequests[i].TestResult;
+                            //Check for any abs positives
+                            if (testrequests[i].TestResult != null && testrequests[i].TestResult.Contains("POS"))
+                            {
+                                abserr = abserr + 1;
+                            }
                             break;
                         case "ABID":
                             res[j, 7] = testrequests[i].TestResult;
@@ -118,18 +147,7 @@ namespace BloodLife.Controllers
                     }
                 }
                 ViewData["TestResults"] = res;
-            }
-            
-
-            List<PatientProductViewModel> testresultList = new List<PatientProductViewModel>();
-            foreach (var t in testrequests)
-            {
-                PatientProductViewModel tr = new PatientProductViewModel();
-                tr.ACCESSNUMBER = t.AccessNumber;
-                tr.REQDATE = t.RequestDate;
-                tr.TESTCODE = t.TestCode;
-                tr.RESULT = t.TestResult;
-                testresultList.Add(tr);
+                ViewBag.AboErr = aboerr; ViewBag.RhErr = rherr; ViewBag.AbsErr = abserr; ViewBag.Abonum = abonum;
             }
 
             //Product requests
@@ -206,6 +224,7 @@ namespace BloodLife.Controllers
                 ViewBag.Reaction = prodrequests.Count(x => x.PRODNUM != null && x.PRODCODE.Substring(0, 2) == "RC" && x.PSTATUS == 9);
 
                 ViewBag.Plcount = prodrequests.Count(x => x.PRODNUM != null && x.PRODCODE.Substring(0, 2) == "PL");
+
                 ViewBag.Fpcount = prodrequests.Count(x => x.PRODNUM != null && (x.PRODCODE.Substring(0, 2) == "FF"|| x.PRODCODE.Substring(0, 2) == "CR"));
             }
             else

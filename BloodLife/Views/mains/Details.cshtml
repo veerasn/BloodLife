@@ -81,7 +81,22 @@
                     <div class="w3-clear"><h1><b>@Html.DisplayFor(model => model.FirstOrDefault().PATGROUP) </b></h1></div>
                 </div>
                 <div class="w3-right">
-                    <img src="~/Content/img/blood.png" style="width:64px;height:64px;" />
+                    @if (ViewBag.RhErr > 0 || ViewBag.AboErr > 0)
+                    {
+                        <img src="~/Content/img/error.png" style="width:64px;height:64px;" />
+                    }
+                    else
+                    {
+                        if (ViewBag.Abonum < 2)
+                        {
+                            <img src="~/Content/img/abo-not-ok.png" style="width:64px;height:64px;" />
+                        }
+                        else
+                        {
+                            <img src="~/Content/img/blood.png" style="width:64px;height:64px;" />
+                        }
+                    }
+
                 </div>
             </div>
         </div>
@@ -91,7 +106,15 @@
                     <div class="w3-clear"><h1><b>@Html.DisplayFor(model => model.FirstOrDefault().ABSHORT)</b></h1></div>
                 </div>
                 <div class="w3-right">
-                    <img src="~/Content/img/blood-donation.png" style="width:64px;height:64px;" />
+                    @if (ViewBag.AbsErr > 0)
+                    {
+                        <img src="~/Content/img/alert.png" style="width:64px;height:64px;" />
+                    }
+                    else
+                    {
+                        <img src="~/Content/img/blood-donation.png" style="width:64px;height:64px;" />
+                    }
+
                 </div>
             </div>
         </div>
@@ -132,34 +155,57 @@
                                             <th>Rh</th>
                                             <th>DAT</th>
                                             <th>Ab screen</th>
+                                            <th>Ab ID</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @{var res = ViewData["TestResults"] as string[,];
                                             for (int row = 0; row < res.GetLength(0); row++)
                                             {
-                                                <tr>
-                                                    @for (int column = 0; column < res.GetLength(1); column++)
-                                                    {
-                                                        switch (column)
+                                        <tr>
+                                            @for (int column = 0; column < res.GetLength(1); column++)
+                                            {
+                                                switch (column)
+                                                {
+                                                    case 2:
+                                                        if (res[row, column] != null)
                                                         {
-                                                            case 2:
-                                                                if(res[row, column] != null)
-                                                                {
-                                                                    <td><img src="~/Content/img/blood-sample.png" style="width:16px;height:16px;" /><sup>@res[row, column]</sup></td>
-                                                                }
-                                                                else
-                                                                {
-                                                                    <td>@res[row, column]</td>
-                                                                };
-                                                                break;
-
-                                                            default:
-                                                                    <td>@res[row, column]</td>
-                                                                break;
+                                                            <td><img src="~/Content/img/blood-sample.png" style="width:16px;height:16px;" /><sup>@res[row, column]</sup></td>
                                                         }
-                                                    }
-                                                </tr>
+                                                        else
+                                                        {
+                                                            <td>@res[row, column]</td>
+                                                        };
+                                                        break;
+
+                                                    case 6:
+                                                        if (res[row, column] != null && res[row, column].Contains("POS"))
+                                                        {
+                                                            <td><b><font color="red">@res[row, column]</font></b></td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>@res[row, column]</td>
+                                                        };
+                                                        break;
+
+                                                    case 7:
+                                                        if (res[row, column] != null)
+                                                        {
+                                                            <td><img src="~/Content/img/warning.png" style="width:16px;height:16px;" /></td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>@res[row, column]</td>
+                                                        };
+                                                        break;
+
+                                                    default:
+                                                        <td>@res[row, column]</td>
+                                                        break;
+                                                }
+                                            }
+                                        </tr>
                                             }
                                          }
                                     </tbody>
@@ -175,10 +221,10 @@
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion-review" href="#collapse2">Red blood cells - (@ViewBag.Rccount)  </a>
                         <img src="~/Content/img/crossmatch.png" style="vertical-align:top;width:20px;height:20px;" /> @ViewBag.Reserved
-                        <img src="~/Content/img/issued.png" style="width:16px;height:16px;" /> @ViewBag.Issued
+                        <img src="~/Content/img/gift.png" style="width:16px;height:16px;" /> @ViewBag.Issued
                         <img src="~/Content/img/transfuse-ok.png" style="width:16px;height:16px;" /> @ViewBag.Transfused
-                        <img src="~/Content/img/returned.png" style="width:16px;height:16px;" /> @ViewBag.Returned
-                        <img src="~/Content/img/reaction.png" style="width:16px;height:16px;" /> @ViewBag.Reaction
+                        <img src="~/Content/img/return-blood.png" style="width:16px;height:16px;" /> @ViewBag.Returned
+                        <img src="~/Content/img/sick.png" style="width:16px;height:16px;" /> @ViewBag.Reaction
                     </h4>
                 </div>
                 <div id="collapse2" class="panel-collapse collapse">
@@ -221,19 +267,19 @@
                                                         }
                                                         @if (item.ISSUEDATE != null && item .IssueIntDay < 8)
                                                         {
-                                                            <img src="~/Content/img/issued.png" style="vertical-align:top;width:20px;height:20px;" />
+                                                            <img src="~/Content/img/gift.png" style="vertical-align:top;width:20px;height:20px;" />
                                                             <sup>@item.ISSUEDATE.Value.ToString("HH:mm") d:@item.IssueIntDay</sup>
                                                         }
                                                         @if (item.RETURNDATE != null && item.ReturnIntDay < 8)
                                                         {
-                                                            <img src="~/Content/img/returned.png" style="vertical-align:top;width:20px;height:20px;" />
+                                                            <img src="~/Content/img/return-blood.png" style="vertical-align:top;width:20px;height:20px;" />
                                                             <sup>@item.RETURNDATE.Value.ToString("HH:mm") d:@item.ReturnIntDay</sup>
                                                         }
                                                     </td>
                                                     <td>
                                                         @if (item.TRANSREACTION != null)
                                                         {
-                                                            <img src="~/Content/img/reaction.png" style="vertical-align:top;width:20px;height:20px;" />
+                                                            <img src="~/Content/img/sick.png" style="vertical-align:top;width:20px;height:20px;" />
                                                         }
                                                     </td>
                                                 </tr>
