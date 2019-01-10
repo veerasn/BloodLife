@@ -229,6 +229,9 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom.css" />
+    <Content Include="Content\img\blood-sample-valid.png" />
+    <Content Include="Content\img\ok.png" />
+    <Content Include="Content\img\blood-bag.png" />
     <Content Include="Content\img\alert.png" />
     <Content Include="Content\img\error.png" />
     <Content Include="Content\img\return-blood.png" />

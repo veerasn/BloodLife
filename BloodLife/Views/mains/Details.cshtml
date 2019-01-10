@@ -41,17 +41,15 @@
     <h5>Dashboard</h5>
   </div>
   <div class="w3-bar-block">
-    <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="	fa fa-id-card-o"></i>  Patient Overview</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-heart"></i>  Transfusion History</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file-text-o"></i>  Transfusion Tests</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cart-plus"></i>  Place A Request</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-stethoscope"></i>  Obtain Blood Sample</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-plus-square"></i>  Review Blood Status</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-hotel"></i>  Record Transfusion</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-credit-card fa-fw"></i>   Billing</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-info-circle"></i>  Guidelines</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog"></i>  Settings</a><br><br>
+      <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="	fa fa-id-card-o"></i>  Review and request</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-heart"></i>  Obtain blood sample</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file-text-o"></i>  Transfuse and monitor</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cart-plus"></i>  Adverse event reporting</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cart-plus"></i>  Transfusion lab results</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-credit-card fa-fw"></i>   Billing</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-info-circle"></i>  Guidelines</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog"></i>  Settings</a><br><br>
   </div>
 </nav>
 
@@ -96,7 +94,6 @@
                             <img src="~/Content/img/blood.png" style="width:64px;height:64px;" />
                         }
                     }
-
                 </div>
             </div>
         </div>
@@ -126,8 +123,42 @@
             </div>
         </div>
     </div>
-    <div class="w3-row-padding w3-red w3-margin">
-        <p>Current status of patient and ongoing testing </p>
+    <div class="w3-container">
+        <div class="w3-row-padding w3-section w3-red">
+            <p><b>Current status of patient and ongoing testing</b></p>
+            <div>
+                @if (ViewBag.RhErr > 0 || ViewBag.AboErr > 0)
+                {
+                    <p>Discepancy in blood grouping identified. Please contact the transfusion laboratory if clarification required.</p>
+                }
+                else
+                {
+                    if (ViewBag.Abonum < 2)
+                    {
+                        <p>Blood group based on single determination. Please submit second sample for confirmation.</p>
+                    }
+                    else
+                    {
+                        <p>Blood group confirmed based on two or more determinations.</p>
+                    }
+                }
+            </div>
+            <div>
+                @if (ViewBag.ReqValid > 0)
+                {
+                    <img src="~/Content/img/blood-sample-valid.png" style="width:24px;height:24px;" />
+                    <img src="~/Content/img/ok.png" style="width:24px;height:24px;" />
+                    <sup>@ViewBag.ReqValidDate</sup>
+                }
+            </div>
+            <div>
+                @if (ViewBag.InReserve > 0)
+                {
+                    <img src="~/Content/img/blood-bag.png" style="width:24px;height:24px;" />
+                    <sup>X @ViewBag.InReserve</sup>
+                }
+            </div>
+        </div>
     </div>
 
     <!-- Review results and transfusions -->
@@ -142,7 +173,6 @@
                 </div>
                 <div id="collapse1" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <div>
                             @if (ViewBag.TestCount > 0)
                             {
                                 <table class="table table-striped">
@@ -211,7 +241,6 @@
                                     </tbody>
                                 </table>
                             }
-                        </div>
                     </div>
                 </div>
             </div>
@@ -219,17 +248,19 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion-review" href="#collapse2">Red blood cells - (@ViewBag.Rccount)  </a>
+                        <a data-toggle="collapse" data-parent="#accordion-review" href="#collapse2">Red blood cells (@ViewBag.Rccount)  </a>
+                        @if(ViewBag.Rccount > 0)
+                        {
                         <img src="~/Content/img/crossmatch.png" style="vertical-align:top;width:20px;height:20px;" /> @ViewBag.Reserved
                         <img src="~/Content/img/gift.png" style="width:16px;height:16px;" /> @ViewBag.Issued
                         <img src="~/Content/img/transfuse-ok.png" style="width:16px;height:16px;" /> @ViewBag.Transfused
                         <img src="~/Content/img/return-blood.png" style="width:16px;height:16px;" /> @ViewBag.Returned
                         <img src="~/Content/img/sick.png" style="width:16px;height:16px;" /> @ViewBag.Reaction
+                        }
                     </h4>
                 </div>
                 <div id="collapse2" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <div>
                             @if (ViewBag.Rccount > 0)
                                                         {
                                 <table class="table table-striped">
@@ -244,9 +275,9 @@
                                     </thead>
                                     <tbody>
                                         @foreach (var item in Model)
-                                                        {
-                                                            if (item.PRODNUM != null && item.PRODCODE.Substring(0, 2) == "RC")
-                                                            {
+                                        {
+                                            if (item.PRODNUM != null && item.PRODCODE.Substring(0, 2) == "RC")
+                                            {
                                                 <tr>
                                                     <td>@item.ACCESSNUMBER</td>
                                                     <td>@Html.DisplayFor(modelItem => item.REQDATE)</td>
@@ -288,7 +319,6 @@
                                     </tbody>
                                 </table>
                             }
-                        </div>
                     </div>
                 </div>
             </div>
@@ -297,11 +327,18 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion-review" href="#collapse3">Platelets (@ViewBag.Plcount)</a>
+
+                        @if (ViewBag.Plcount > 0)
+                        {
+                            <img src="~/Content/img/gift.png" style="width:16px;height:16px;" /> @ViewBag.PlIssued
+                            <img src="~/Content/img/transfuse-ok.png" style="width:16px;height:16px;" /> @ViewBag.PlTransfused
+                            <img src="~/Content/img/return-blood.png" style="width:16px;height:16px;" /> @ViewBag.PlReturned
+                            <img src="~/Content/img/sick.png" style="width:16px;height:16px;" /> @ViewBag.Reaction
+                        }
                     </h4>
                 </div>
                 <div id="collapse3" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <div>
                             @if (ViewBag.Plcount > 0)
                             {
                                 <table class="table table-striped">
@@ -320,18 +357,46 @@
                                         {
                                             if (item.PRODNUM != null && item.PRODCODE.Substring(0, 2) == "PL")
                                             {
-                                                <tr>
-                                                    <td>@item.ACCESSNUMBER</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.REQDATE)</td>
-                                                    <td>@item.PRODCODE</td>
-                                                    <td>@item.PRODNUM</td>
-                                                </tr>
+                                        <tr>
+                                            <td>@item.ACCESSNUMBER</td>
+                                            <td>@Html.DisplayFor(modelItem => item.REQDATE)</td>
+                                            <td>@item.PRODCODE</td>
+                                            <td>@item.PRODNUM</td>
+                                            <td>
+                                                @if (item.RESERVDATE != null && item.ReservIntDay < 8)
+                                                {
+                                                    <img src="~/Content/img/reserve.png" style="vertical-align:top;width:20px;height:20px;" />
+                                                    <sup>@item.RESERVDATE.Value.ToString("HH:mm") d:@item.ReservIntDay</sup>
+                                                }
+
+                                                @if (item.XMATCHDATE != null && item.XmatchIntDay < 8)
+                                                {
+                                                    <img src="~/Content/img/crossmatch.png" style="vertical-align:top;width:20px;height:20px;" />
+                                                    <sup>@item.XMATCHDATE.Value.ToString("HH:mm") d:@item.XmatchIntDay</sup>
+                                                }
+                                                @if (item.ISSUEDATE != null && item.IssueIntDay < 8)
+                                                {
+                                                    <img src="~/Content/img/gift.png" style="vertical-align:top;width:20px;height:20px;" />
+                                                    <sup>@item.ISSUEDATE.Value.ToString("HH:mm") d:@item.IssueIntDay</sup>
+                                                }
+                                                @if (item.RETURNDATE != null && item.ReturnIntDay < 8)
+                                                {
+                                                    <img src="~/Content/img/return-blood.png" style="vertical-align:top;width:20px;height:20px;" />
+                                                    <sup>@item.RETURNDATE.Value.ToString("HH:mm") d:@item.ReturnIntDay</sup>
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (item.TRANSREACTION != null)
+                                                {
+                                                    <img src="~/Content/img/sick.png" style="vertical-align:top;width:20px;height:20px;" />
+                                                }
+                                            </td>
+                                        </tr>
                                             }
                                         }
                                     </tbody>
                                 </table>
                             }
-                        </div>
                     </div>
                 </div>
             </div>
@@ -340,11 +405,18 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion-review" href="#collapse4">Plasma products (@ViewBag.Fpcount)</a>
+
+                        @if (ViewBag.Fpcount > 0)
+                        {
+                            <img src="~/Content/img/gift.png" style="width:16px;height:16px;" /> @ViewBag.FpIssued
+                            <img src="~/Content/img/transfuse-ok.png" style="width:16px;height:16px;" /> @ViewBag.FpTransfused
+                            <img src="~/Content/img/return-blood.png" style="width:16px;height:16px;" /> @ViewBag.FpReturned
+                            <img src="~/Content/img/sick.png" style="width:16px;height:16px;" /> @ViewBag.Reaction
+                        }
                     </h4>
                 </div>
                 <div id="collapse4" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <div>
                             @if (ViewBag.Fpcount > 0)
                             {
                                 <table class="table table-striped">
@@ -363,18 +435,47 @@
                                         {
                                             if (item.PRODNUM != null && (item.PRODCODE.Substring(0, 2) == "FF" || item.PRODCODE.Substring(0, 2) == "CR"))
                                             {
-                                                <tr>
-                                                    <td>@item.ACCESSNUMBER</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.REQDATE)</td>
-                                                    <td>@item.PRODCODE</td>
-                                                    <td>@item.PRODNUM</td>
-                                                </tr>
+                                        <tr>
+                                            <td>@item.ACCESSNUMBER</td>
+                                            <td>@Html.DisplayFor(modelItem => item.REQDATE)</td>
+                                            <td>@item.PRODCODE</td>
+                                            <td>@item.PRODNUM</td>
+
+                                            <td>
+                                                @if (item.RESERVDATE != null && item.ReservIntDay < 8)
+                                                {
+                                                    <img src="~/Content/img/reserve.png" style="vertical-align:top;width:20px;height:20px;" />
+                                                    <sup>@item.RESERVDATE.Value.ToString("HH:mm") d:@item.ReservIntDay</sup>
+                                                }
+
+                                                @if (item.XMATCHDATE != null && item.XmatchIntDay < 8)
+                                                {
+                                                    <img src="~/Content/img/crossmatch.png" style="vertical-align:top;width:20px;height:20px;" />
+                                                    <sup>@item.XMATCHDATE.Value.ToString("HH:mm") d:@item.XmatchIntDay</sup>
+                                                }
+                                                @if (item.ISSUEDATE != null && item.IssueIntDay < 8)
+                                                {
+                                                    <img src="~/Content/img/gift.png" style="vertical-align:top;width:20px;height:20px;" />
+                                                    <sup>@item.ISSUEDATE.Value.ToString("HH:mm") d:@item.IssueIntDay</sup>
+                                                }
+                                                @if (item.RETURNDATE != null && item.ReturnIntDay < 8)
+                                                {
+                                                    <img src="~/Content/img/return-blood.png" style="vertical-align:top;width:20px;height:20px;" />
+                                                    <sup>@item.RETURNDATE.Value.ToString("HH:mm") d:@item.ReturnIntDay</sup>
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (item.TRANSREACTION != null)
+                                                {
+                                                    <img src="~/Content/img/sick.png" style="vertical-align:top;width:20px;height:20px;" />
+                                                }
+                                            </td>
+                                        </tr>
                                             }
                                         }
                                     </tbody>
                                 </table>
                             }
-                        </div>
                     </div>
                 </div>
             </div>
@@ -404,10 +505,7 @@
 
 
         <section id="content1">
-            <div class="shopping-cart">
-                <div class="title">Tests</div>
-            </div>
-
+            <div class="shopping-cart"></div>
             <p>
                 Select tests
             </p>
@@ -417,12 +515,8 @@
         </section>
 
         <section id="content2">
-            <div class="shopping-cart">
-                <div class="title">Red cells</div>
-            </div>
-
+            <div class="shopping-cart"></div>
             <p>Select suitable products and required quantity. Remember more is not better.</p>
-
             <div class="w3-third">
                 <div class="form-group">
                     @Html.DropDownList("RbcProducts", (IEnumerable<SelectListItem>)ViewBag.RbcProducts, "Select RBC product", new { @class = "form-control" })
@@ -431,19 +525,14 @@
                 </div>
             </div>
             <div class="w3-twothird">
-                <div class="form-group">
+                <div class="col-md-7">
                     @Html.DropDownList("RbcIndication", (IEnumerable<SelectListItem>)ViewBag.RbcIndication, "Select most appropriate indication", new { @class = "form-control" })
                 </div>
             </div>
-
-
         </section>
 
         <section id="content3">
-            <div class="shopping-cart">
-                <div class="title">Platelets</div>
-            </div>
-
+            <div class="shopping-cart"></div>
             <p>
                 Select platelet product
             </p>
@@ -453,10 +542,7 @@
         </section>
 
         <section id="content4">
-            <div class="shopping-cart">
-                <div class="title">Plasma products</div>
-            </div>
-
+            <div class="shopping-cart"></div>
             <p>
                 Select plasma product
             </p>
@@ -466,17 +552,13 @@
         </section>
 
         <section id="content5">
-            <div class="shopping-cart">
-                <div class="title">When required?</div>
-            </div>
-
+            <div class="shopping-cart"></div>
             <p>
                 Select time
             </p>
             <p>
                 Indication list
         </section>
-
     </div>
 
 
@@ -486,28 +568,12 @@
         <div class="w3-row">
             <div class="w3-container w3-third">
                 <h5 class="w3-bottombar w3-border-green">Demographics</h5>
-                <!--
-                <p>Language</p>
-                <p>Country</p>
-                <p>City</p>
-                -->
             </div>
             <div class="w3-container w3-third">
                 <h5 class="w3-bottombar w3-border-red">Blood Stock Levels</h5>
-                <!--
-                <p>Browser</p>
-                <p>OS</p>
-                <p>More</p>
-                -->
             </div>
             <div class="w3-container w3-third">
                 <h5 class="w3-bottombar w3-border-orange">Guidelines</h5>
-                <!--
-                <p>Users</p>
-                <p>Active</p>
-                <p>Geo</p>
-                <p>Interests</p>
-                -->
             </div>
         </div>
     </div>
@@ -544,7 +610,6 @@
         mySidebar.style.display = "none";
         overlayBg.style.display = "none";
     }
-
 
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

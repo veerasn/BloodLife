@@ -67,7 +67,7 @@ namespace BloodLife.Controllers
                     RequestDate = rq.REQDATE,
                     AccessNumber = rq.ACCESSNUMBER,
                     TestCode = test.TESTCODE,
-                    TestResult = test.RESULT,
+                    TestResult = test.RESULT
                 }
                 ).ToList();
 
@@ -75,8 +75,8 @@ namespace BloodLife.Controllers
             int ireq = testrequests.Select(x => x.AccessNumber).Distinct().Count();
             ViewBag.TestCount = ireq;
 
-            string abo = "", rh = "";
-            int aboerr = 0, rherr = 0, abserr = 0, abonum = 0;
+            string abo = "", rh = "", reqvaliddate = "none";
+            int aboerr = 0, rherr = 0, abserr = 0, abonum = 0, reqvalid = 0;
 
             if (ireq > 0)
             {
@@ -93,7 +93,7 @@ namespace BloodLife.Controllers
                     }
 
                     res[j, 0] = testrequests[i].AccessNumber;
-                    res[j, 1] = testrequests[i].RequestDate.Value.ToString();
+                    res[j, 1] = testrequests[i].RequestDate.Value.ToString("HH:mm dd MMM yyyy");
 
                     switch (testrequests[i].TestCode)
                     {
@@ -116,6 +116,12 @@ namespace BloodLife.Controllers
                             if (testrequests[i].TestResult != abo && testrequests[i].TestResult != null)
                             {
                                 aboerr = 1;
+                            }
+                            //Check if any sample with ABO determination within last 3 days
+                            if (testrequests[i].RequestDate != null && (DateTime.Today - testrequests[i].RequestDate).Value.Days < 180)
+                            {
+                                reqvalid = reqvalid + 1;
+                                reqvaliddate = testrequests[i].RequestDate.ToString();
                             }
                             break;
                         case "RH":
@@ -148,6 +154,7 @@ namespace BloodLife.Controllers
                 }
                 ViewData["TestResults"] = res;
                 ViewBag.AboErr = aboerr; ViewBag.RhErr = rherr; ViewBag.AbsErr = abserr; ViewBag.Abonum = abonum;
+                ViewBag.ReqValid = reqvalid; ViewBag.ReqValidDate = reqvaliddate;
             }
 
             //Product requests
@@ -223,9 +230,17 @@ namespace BloodLife.Controllers
                 ViewBag.Returned = prodrequests.Count(x => x.PRODNUM != null && x.PRODCODE.Substring(0, 2) == "RC" && x.PSTATUS == 6);
                 ViewBag.Reaction = prodrequests.Count(x => x.PRODNUM != null && x.PRODCODE.Substring(0, 2) == "RC" && x.PSTATUS == 9);
 
+                ViewBag.InReserve = prodrequests.Count(x => x.PRODNUM != null && x.PRODCODE.Substring(0, 2) == "RC" && x.PSTATUS == 2 && (DateTime.Today - x.XMATCHDATE).Value.Days < 3);
+
                 ViewBag.Plcount = prodrequests.Count(x => x.PRODNUM != null && x.PRODCODE.Substring(0, 2) == "PL");
+                ViewBag.PlIssued = prodrequests.Count(x => x.PRODNUM != null && x.PRODCODE.Substring(0, 2) == "PL" && x.PSTATUS == 3);
+                ViewBag.PlTransfused = prodrequests.Count(x => x.PRODNUM != null && x.PRODCODE.Substring(0, 2) == "PL" && x.PSTATUS == 4);
+                ViewBag.PlReturned = prodrequests.Count(x => x.PRODNUM != null && x.PRODCODE.Substring(0, 2) == "PL" && x.PSTATUS == 6);
 
                 ViewBag.Fpcount = prodrequests.Count(x => x.PRODNUM != null && (x.PRODCODE.Substring(0, 2) == "FF"|| x.PRODCODE.Substring(0, 2) == "CR"));
+                ViewBag.FpIssued = prodrequests.Count(x => x.PRODNUM != null && (x.PRODCODE.Substring(0, 2) == "FF" || x.PRODCODE.Substring(0, 2) == "CR") && x.PSTATUS == 3);
+                ViewBag.FpTransfused = prodrequests.Count(x => x.PRODNUM != null && (x.PRODCODE.Substring(0, 2) == "FF" || x.PRODCODE.Substring(0, 2) == "CR") && x.PSTATUS == 4);
+                ViewBag.FpReturned = prodrequests.Count(x => x.PRODNUM != null && (x.PRODCODE.Substring(0, 2) == "FF" || x.PRODCODE.Substring(0, 2) == "CR") && x.PSTATUS == 6);
             }
             else
             {

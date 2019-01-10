@@ -68,6 +68,14 @@ namespace BloodLife.ViewModels
         public Nullable<byte> REQURGENT { get; set; }
         public Nullable<System.DateTime> BGMISMATCHDATE { get; set; }
 
+        public int SampleIntDay
+        {
+            get
+            {
+                return REQDATE != null ? (DateTime.Today - REQDATE).Value.Days : 99;
+            }
+        }
+
         //Test fields
         public string TESTCODE { get; set; }
         public string RESULT { get; set; }
@@ -122,6 +130,14 @@ namespace BloodLife.ViewModels
             get
             {
                 return RETURNDATE != null ? (RETURNDATE - REQDATE).Value.Days : 99;
+            }
+        }
+
+        public int ReserveDays
+        {
+            get
+            {
+                return XMATCHDATE != null ? (DateTime.Today - XMATCHDATE).Value.Days : 99;
             }
         }
 
