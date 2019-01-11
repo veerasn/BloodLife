@@ -2,6 +2,7 @@
 
 @@model BloodLife.Models.PATIENT
 @using BloodLife.ViewModels
+@using BloodLife.Models
 @model IEnumerable<BloodLife.ViewModels.PatientProductViewModel>
 
 <html>
@@ -85,13 +86,17 @@
                     }
                     else
                     {
-                        if (ViewBag.Abonum < 2)
+                        if (ViewBag.Abonum == 1)
                         {
                             <img src="~/Content/img/abo-not-ok.png" style="width:64px;height:64px;" />
                         }
-                        else
+                        else if (ViewBag.Abonum > 1)
                         {
                             <img src="~/Content/img/blood.png" style="width:64px;height:64px;" />
+                        }
+                        else
+                        {
+                            <img src="" style="width:64px;height:64px;" />
                         }
                     }
                 </div>
@@ -133,13 +138,17 @@
                 }
                 else
                 {
-                    if (ViewBag.Abonum < 2)
+                    if (ViewBag.Abonum > 1)
+                    {
+                        <p>Blood group confirmed based on two or more determinations.</p>
+                    }
+                    else if (ViewBag.Abonum == 1)
                     {
                         <p>Blood group based on single determination. Please submit second sample for confirmation.</p>
                     }
                     else
                     {
-                        <p>Blood group confirmed based on two or more determinations.</p>
+                        <p>No blood group records available.</p>
                     }
                 }
             </div>
@@ -517,18 +526,35 @@
         <section id="content2">
             <div class="shopping-cart"></div>
             <p>Select suitable products and required quantity. Remember more is not better.</p>
-            <div class="w3-third">
-                <div class="form-group">
-                    @Html.DropDownList("RbcProducts", (IEnumerable<SelectListItem>)ViewBag.RbcProducts, "Select RBC product", new { @class = "form-control" })
-                    @Html.DropDownList("UnitQuantity", (IEnumerable<SelectListItem>)ViewBag.UnitQuantity, "Number of units required", new { @class = "form-control" })
-                    @Html.DropDownList("SecondProcess", (IEnumerable<SelectListItem>)ViewBag.SecondProcess, "Any required additional processing?", new { @class = "form-control" })
-                </div>
-            </div>
+
+
+
+
             <div class="w3-twothird">
-                <div class="col-md-7">
-                    @Html.DropDownList("RbcIndication", (IEnumerable<SelectListItem>)ViewBag.RbcIndication, "Select most appropriate indication", new { @class = "form-control" })
-                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (BloodProduct bloodProduct in ViewBag.bloodProducts)
+                        {
+                            if (bloodProduct.Id.Substring(0,2).Contains("RC"))
+                            {
+                                <tr>
+                                    <td>@bloodProduct.Id</td>
+                                    <td>@bloodProduct.Name</td>
+                                </tr>
+                            }
+                            
+                        }
+                    </tbody>
+                </table>
             </div>
+ 
         </section>
 
         <section id="content3">

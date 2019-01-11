@@ -252,43 +252,10 @@ namespace BloodLife.Controllers
 
             ViewBag.Tcount = prodrequests.Count();
 
-            //Populate dropdown boxes
-            #region ViewBag
-            List<SelectListItem> rbcProducts = new List<SelectListItem>()
-            {
-                new SelectListItem {Text="Whole Blood (RCWB)    ", Value = "1"},
-                new SelectListItem {Text="Red Cells in Additive Solution (RCSAG)    ", Value = "2"},
-            };
-            ViewBag.RbcProducts = rbcProducts;
 
-            List<SelectListItem> unitQuantity = new List<SelectListItem>()
-            {
-                new SelectListItem {Text="1 unit", Value = "1"},
-                new SelectListItem {Text="2 units", Value = "2"},
-                new SelectListItem {Text="3 units", Value = "3"},
-                new SelectListItem {Text="4 units", Value = "4"},
-            };
-            ViewBag.UnitQuantity = unitQuantity;
-
-            List<SelectListItem> secondProcess = new List<SelectListItem>()
-            {
-                new SelectListItem {Text="No additional processing", Value = "0"},
-                new SelectListItem {Text="Irradiated", Value = "1"},
-                new SelectListItem {Text="Washed", Value = "2"},
-            };
-            ViewBag.SecondProcess = secondProcess;
-
-            List<SelectListItem> rbcIndication = new List<SelectListItem>()
-            {
-                new SelectListItem {Text="Hb equals or below 70g/L in a haemodynamically stable ICU patient.", Value = "1"},
-                new SelectListItem {Text="Hb equals or below 80g/L in a non-ICU patient with symptomatic anaemia.", Value = "2"},
-                new SelectListItem {Text="Hb equals or below 100g/L in a patient experiencing cardiac ischaemia (angina pectoris, acute myocardial infacrction).", Value = "3"},
-                new SelectListItem {Text="Acute bleeding with haemodynamic instability requiring urgent RBC transfusion", Value = "4"},
-                new SelectListItem {Text="Pre-operative request and reservation for an elective or semi-elective scheduled procedure/surgical operation ", Value = "5"},
-                new SelectListItem {Text="Others", Value = "6"},
-            };
-            ViewBag.RbcIndication = rbcIndication;
-            #endregion
+            //Create table for choosing blood products
+            BloodProductModel bloodProductModel = new BloodProductModel();
+            ViewBag.bloodProducts = bloodProductModel.findAll();
 
             //return View("Details",Patient);
             return View("Details", prodrequests);

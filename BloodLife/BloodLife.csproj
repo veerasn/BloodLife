@@ -180,6 +180,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BBSEntitiesNew.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\BloodProduct.cs" />
+    <Compile Include="Models\BloodProductModel.cs" />
+    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\DICT_PRODUCTS.cs">
       <DependentUpon>BBSEntitiesNew.tt</DependentUpon>
     </Compile>
