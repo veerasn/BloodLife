@@ -8,10 +8,8 @@
 <html>
 <head>
     <title>UMMC Blood Transfusion Information System</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/Content/w3.css">
-    <link rel="stylesheet" href="~/Content/Site.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
@@ -19,10 +17,6 @@
             font-family: "Raleway", sans-serif
         }
     </style>
-
-    <!-- Angular Material style sheet -->
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
-
 </head>
 
 <body class="w3-light-grey">
@@ -174,14 +168,14 @@
     <div class="w3-container">
         <div class="panel-group" id="accordion-review">
             <!-- Requests and results -->
-            <div class="panel panel-default">
+            <div class="w3-panel w3-gray panel-default">
                 <div class="panel-heading">
-                    <h4 class="panel-title">
+                    <h5 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion-review" href="#collapse1">Requests and results (@ViewBag.TestCount)</a>
-                    </h4>
+                    </h5>
                 </div>
                 <div id="collapse1" class="panel-collapse collapse">
-                    <div class="panel-body">
+                    <div class="panel-body w3-light-gray">
                             @if (ViewBag.TestCount > 0)
                             {
                                 <table class="table table-striped">
@@ -254,9 +248,9 @@
                 </div>
             </div>
             <!-- Red Cells -->
-            <div class="panel panel-default">
+            <div class="w3-panel w3-gray panel-default">
                 <div class="panel-heading">
-                    <h4 class="panel-title">
+                    <h5 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion-review" href="#collapse2">Red blood cells (@ViewBag.Rccount)  </a>
                         @if(ViewBag.Rccount > 0)
                         {
@@ -266,10 +260,10 @@
                         <img src="~/Content/img/return-blood.png" style="width:16px;height:16px;" /> @ViewBag.Returned
                         <img src="~/Content/img/sick.png" style="width:16px;height:16px;" /> @ViewBag.Reaction
                         }
-                    </h4>
+                    </h5>
                 </div>
                 <div id="collapse2" class="panel-collapse collapse">
-                    <div class="panel-body">
+                    <div class="panel-body w3-light-gray">
                             @if (ViewBag.Rccount > 0)
                                                         {
                                 <table class="table table-striped">
@@ -332,9 +326,9 @@
                 </div>
             </div>
             <!-- Platelets -->
-            <div class="panel panel-default">
+            <div class="w3-panel w3-gray panel-default">
                 <div class="panel-heading">
-                    <h4 class="panel-title">
+                    <h5 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion-review" href="#collapse3">Platelets (@ViewBag.Plcount)</a>
 
                         @if (ViewBag.Plcount > 0)
@@ -344,10 +338,10 @@
                             <img src="~/Content/img/return-blood.png" style="width:16px;height:16px;" /> @ViewBag.PlReturned
                             <img src="~/Content/img/sick.png" style="width:16px;height:16px;" /> @ViewBag.Reaction
                         }
-                    </h4>
+                    </h5>
                 </div>
                 <div id="collapse3" class="panel-collapse collapse">
-                    <div class="panel-body">
+                    <div class="panel-body w3-light-gray">
                             @if (ViewBag.Plcount > 0)
                             {
                                 <table class="table table-striped">
@@ -410,9 +404,9 @@
                 </div>
             </div>
             <!-- Plasma products -->
-            <div class="panel panel-default">
+            <div class="w3-panel w3-gray panel-default">
                 <div class="panel-heading">
-                    <h4 class="panel-title">
+                    <h5 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion-review" href="#collapse4">Plasma products (@ViewBag.Fpcount)</a>
 
                         @if (ViewBag.Fpcount > 0)
@@ -422,10 +416,10 @@
                             <img src="~/Content/img/return-blood.png" style="width:16px;height:16px;" /> @ViewBag.FpReturned
                             <img src="~/Content/img/sick.png" style="width:16px;height:16px;" /> @ViewBag.Reaction
                         }
-                    </h4>
+                    </h5>
                 </div>
                 <div id="collapse4" class="panel-collapse collapse">
-                    <div class="panel-body">
+                    <div class="panel-body w3-light-gray">
                             @if (ViewBag.Fpcount > 0)
                             {
                                 <table class="table table-striped">
@@ -494,6 +488,70 @@
     <h2></h2>
 
     <!--Tabs for selection of requests-->
+    <div class="w3-container">
+        <div class="w3-row">
+            <a href="javacript:void(0)" onclick="openRequest(event, 'Test');">
+                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">Tests</div>
+            </a>
+            <a href="javacript:void(0)" onclick="openRequest(event, 'Rbc');">
+                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">Red Cells</div>
+            </a>
+            <a href="javacript:void(0)" onclick="openRequest(event, 'Platelet');">
+                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">Platelets</div>
+            </a>
+            <a href="javacript:void(0)" onclick="openRequest(event, 'Plasma');">
+                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">Plasma Products</div>
+            </a>
+
+            <div id="Test" class="w3-container request" style="display:none">
+                <h4>Panel for tests</h4>
+            </div>
+            <div id="Rbc" class="w3-container request" style="display:none">
+                <h4>Select suitable products and required quantity. Remember more is not better.</h4>
+                <div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Check</th>
+                                <th>Name</th>
+                                <th>ID</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (BloodProduct bloodProduct in ViewBag.bloodProducts)
+                            {
+                                if (bloodProduct.Id.Substring(0, 2).Contains("RC"))
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.CheckBox(bloodProduct.Id)
+                                            @Html.Hidden(bloodProduct.Id)
+                                        </td>
+                                        <td>
+                                            @bloodProduct.Id
+                                            @Html.Hidden(bloodProduct.Id)
+                                        </td>
+                                        <td>
+                                            @bloodProduct.Name
+                                            @Html.Hidden(bloodProduct.Name)
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="Platelet" class="w3-container request" style="display:none">
+                <h4>Panel for platelets</h4>
+            </div>
+            <div id="Plasma" class="w3-container request" style="display:none">
+                <h4>Panel for plasma products</h4>
+            </div>
+        </div>
+    </div>
+
 
     <div class="w3-container">
 
@@ -526,35 +584,20 @@
         <section id="content2">
             <div class="shopping-cart"></div>
             <p>Select suitable products and required quantity. Remember more is not better.</p>
-
-
-
-
             <div class="w3-twothird">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Name</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (BloodProduct bloodProduct in ViewBag.bloodProducts)
+                <ul class="list-group">
+                    @foreach (BloodProduct bloodProduct in ViewBag.bloodProducts)
+                    {
+                        if (bloodProduct.Id.Substring(0, 2).Contains("RC"))
                         {
-                            if (bloodProduct.Id.Substring(0,2).Contains("RC"))
-                            {
-                                <tr>
-                                    <td>@bloodProduct.Id</td>
-                                    <td>@bloodProduct.Name</td>
-                                </tr>
-                            }
-                            
+                            <li class="list-group-item">
+                                @bloodProduct.Name
+                                <span class="badge badge-pill">info</span>
+                            </li>
                         }
-                    </tbody>
-                </table>
+                    }
+                </ul>
             </div>
- 
         </section>
 
         <section id="content3">
@@ -636,11 +679,29 @@
         mySidebar.style.display = "none";
         overlayBg.style.display = "none";
     }
-
 </script>
+
+<script>
+    //Open and close request tabs
+    function openRequest(evt, requestName) {
+        var i, x, tablinks;
+        x = document.getElementsByClassName("request");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < x.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" w3-border-red", "");
+        }
+        document.getElementById(requestName).style.display = "block";
+        evt.currentTarget.firstElementChild.className += " w3-border-red";
+    }
+</script>
+
+<!--script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></!--script-->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
 
 </body>
 </html>
