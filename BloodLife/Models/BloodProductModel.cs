@@ -17,25 +17,29 @@ namespace BloodLife.Models
                     Id = "RCWB",
                     Name = "Whole Blood",
                     Charge = 230,
-                    Filelocation = "a"
+                    Filelocation = "a",
+                    Comments = ""
                 },
                 new BloodProduct{
                     Id = "RCSAG",
                     Name = "Red Cells in Additive Solution (SAGM)",
                     Charge = 230,
-                    Filelocation = "a"
+                    Filelocation = "a",
+                    Comments = ""
                 },
                 new BloodProduct{
                     Id = "RCWB-ET",
                     Name = "Whole Blood for Exchange Transfusion",
                     Charge = 230,
-                    Filelocation = "a"
+                    Filelocation = "none",
+                    Comments = ""
                 },
                 new BloodProduct{
                     Id = "PLTRD",
                     Name = "Platelets from random donors, unpooled",
                     Charge = 230,
-                    Filelocation = "a"
+                    Filelocation = "a",
+                    Comments = ""
                 },
                 new BloodProduct{
                     Id = "PLTPL",
@@ -47,25 +51,30 @@ namespace BloodLife.Models
                     Id = "PLLR",
                     Name = "Apheresis Platelets from single donors, leucodepleted",
                     Charge = 230,
-                    Filelocation = "a"
+                    Filelocation = "a",
+                    Comments = ""
+
                 },
                 new BloodProduct{
                     Id = "FFPRD",
                     Name = "Fresh Frozen Plasma",
                     Charge = 230,
-                    Filelocation = "a"
+                    Filelocation = "a",
+                    Comments = ""
                 },
                 new BloodProduct{
                     Id = "CRYPP",
                     Name = "Cryoprecipitate",
                     Charge = 230,
-                    Filelocation = "a"
+                    Filelocation = "a",
+                    Comments = ""
                 },
                 new BloodProduct{
                     Id = "CRYSP",
                     Name = "Cryosupernatant/ Cryo-poor Plasma",
                     Charge = 230,
-                    Filelocation = "a"
+                    Filelocation = "a",
+                    Comments = ""
                 }
             };
         }

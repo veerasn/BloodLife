@@ -11,5 +11,7 @@ namespace BloodLife.Models
         public string Name { get; set; }
         public double Charge { get; set; }
         public string Filelocation { get; set; }
+        public string Comments { get; set; }
+        public int Quantity { get; set; }
     }
 }

@@ -10,6 +10,7 @@
     <title>UMMC Blood Transfusion Information System</title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/Content/w3.css">
+    <link rel="stylesheet" href="~/Content/Site.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
@@ -491,30 +492,34 @@
     <div class="w3-container">
         <div class="w3-row">
             <a href="javacript:void(0)" onclick="openRequest(event, 'Test');">
-                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">Tests</div>
+                <div class="w3-quarter tablink w3-bottombar w3-hover-grey w3-padding">Tests</div>
             </a>
             <a href="javacript:void(0)" onclick="openRequest(event, 'Rbc');">
-                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">Red Cells</div>
+                <div class="w3-quarter tablink w3-bottombar w3-hover-grey w3-padding">Red Cells</div>
             </a>
             <a href="javacript:void(0)" onclick="openRequest(event, 'Platelet');">
-                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">Platelets</div>
+                <div class="w3-quarter tablink w3-bottombar w3-hover-grey w3-padding">Platelets</div>
             </a>
             <a href="javacript:void(0)" onclick="openRequest(event, 'Plasma');">
-                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">Plasma Products</div>
+                <div class="w3-quarter tablink w3-bottombar w3-hover-grey w3-padding">Plasma Products</div>
             </a>
-
+            <!--Test requests-->
             <div id="Test" class="w3-container request" style="display:none">
                 <h4>Panel for tests</h4>
             </div>
+            <!--Red cell requests-->
             <div id="Rbc" class="w3-container request" style="display:none">
-                <h4>Select suitable products and required quantity. Remember more is not better.</h4>
+                <h6>
+                    Select suitable products and required quantity. Remember that the minimum number of units should be transfused to
+                    achieve the desired response. Refer to <a href="#"><b>Guidelines for Red Cell Use</b></a> to make your transfusion decision.
+                </h6>
                 <div>
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Check</th>
-                                <th>Name</th>
-                                <th>ID</th>
+                                <th>Quantity</th>
+                                <th>Code</th>
+                                <th>Product Name</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -525,16 +530,27 @@
                                 {
                                     <tr>
                                         <td>
-                                            @Html.CheckBox(bloodProduct.Id)
-                                            @Html.Hidden(bloodProduct.Id)
+                                            <div class="input-group input-number-group">
+                                                <div class="input-group-button">
+                                                    <span class="input-number-decrement">-</span>
+                                                </div>
+                                                <input class="input-number" type="number" name="@bloodProduct.Id" value="0" min="0" max="6" , step="1" />
+                                                <div class="input-group-button">
+                                                    <span class="input-number-increment">+</span>
+                                                </div>
+                                            </div>
                                         </td>
                                         <td>
                                             @bloodProduct.Id
-                                            @Html.Hidden(bloodProduct.Id)
                                         </td>
                                         <td>
                                             @bloodProduct.Name
-                                            @Html.Hidden(bloodProduct.Name)
+                                            @if (bloodProduct.Filelocation != "none")
+                                            {
+                                                <a href="@bloodProduct.Filelocation">
+                                                    <sup><i class="fa-info-circle"></i>info</sup>
+                                                </a>
+                                            }
                                         </td>
                                     </tr>
                                 }
@@ -543,94 +559,16 @@
                     </table>
                 </div>
             </div>
+            <!--Platelet requests-->
             <div id="Platelet" class="w3-container request" style="display:none">
                 <h4>Panel for platelets</h4>
             </div>
+            <!--Plasma requests-->
             <div id="Plasma" class="w3-container request" style="display:none">
                 <h4>Panel for plasma products</h4>
             </div>
         </div>
     </div>
-
-
-    <div class="w3-container">
-
-        <input id="tab1" type="radio" name="tabs" checked>
-        <label for="tab1">Tests Only</label>
-
-        <input id="tab2" type="radio" name="tabs">
-        <label for="tab2">Red Cells</label>
-
-        <input id="tab3" type="radio" name="tabs">
-        <label for="tab3">Platelets</label>
-
-        <input id="tab4" type="radio" name="tabs">
-        <label for="tab4">Plasma Products</label>
-
-        <input id="tab5" type="radio" name="tabs">
-        <label for="tab5">When Required?</label>
-
-
-        <section id="content1">
-            <div class="shopping-cart"></div>
-            <p>
-                Select tests
-            </p>
-            <p>
-                List of tests
-            </p>
-        </section>
-
-        <section id="content2">
-            <div class="shopping-cart"></div>
-            <p>Select suitable products and required quantity. Remember more is not better.</p>
-            <div class="w3-twothird">
-                <ul class="list-group">
-                    @foreach (BloodProduct bloodProduct in ViewBag.bloodProducts)
-                    {
-                        if (bloodProduct.Id.Substring(0, 2).Contains("RC"))
-                        {
-                            <li class="list-group-item">
-                                @bloodProduct.Name
-                                <span class="badge badge-pill">info</span>
-                            </li>
-                        }
-                    }
-                </ul>
-            </div>
-        </section>
-
-        <section id="content3">
-            <div class="shopping-cart"></div>
-            <p>
-                Select platelet product
-            </p>
-            <p>
-                Product list and indications
-            </p>
-        </section>
-
-        <section id="content4">
-            <div class="shopping-cart"></div>
-            <p>
-                Select plasma product
-            </p>
-            <p>
-                Product list and indications
-            </p>
-        </section>
-
-        <section id="content5">
-            <div class="shopping-cart"></div>
-            <p>
-                Select time
-            </p>
-            <p>
-                Indication list
-        </section>
-    </div>
-
-
 
     <br>
     <div class="w3-container w3-dark-grey w3-padding-32">
@@ -656,47 +594,64 @@
     <!-- End page content -->
 </div>
 
-<script>
-    // Get the Sidebar
-    var mySidebar = document.getElementById("mySidebar");
+    <script>
+        // Get the Sidebar
+        var mySidebar = document.getElementById("mySidebar");
 
-    // Get the DIV with overlay effect
-    var overlayBg = document.getElementById("myOverlay");
+        // Get the DIV with overlay effect
+        var overlayBg = document.getElementById("myOverlay");
 
-    // Toggle between showing and hiding the sidebar, and add overlay effect
-    function w3_open() {
-        if (mySidebar.style.display === 'block') {
-            mySidebar.style.display = 'none';
+        // Toggle between showing and hiding the sidebar, and add overlay effect
+        function w3_open() {
+            if (mySidebar.style.display === 'block') {
+                mySidebar.style.display = 'none';
+                overlayBg.style.display = "none";
+            } else {
+                mySidebar.style.display = 'block';
+                overlayBg.style.display = "block";
+            }
+        }
+
+        // Close the sidebar with the close button
+        function w3_close() {
+            mySidebar.style.display = "none";
             overlayBg.style.display = "none";
-        } else {
-            mySidebar.style.display = 'block';
-            overlayBg.style.display = "block";
         }
-    }
+    </script>
 
-    // Close the sidebar with the close button
-    function w3_close() {
-        mySidebar.style.display = "none";
-        overlayBg.style.display = "none";
-    }
-</script>
+    <script>
+        //Open and close request tabs
+        function openRequest(evt, requestName) {
+            var i, x, tablinks;
+            x = document.getElementsByClassName("request");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < x.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" w3-border-red", "");
+            }
+            document.getElementById(requestName).style.display = "block";
+            evt.currentTarget.firstElementChild.className += " w3-border-red";
+        }
+    </script>
 
-<script>
-    //Open and close request tabs
-    function openRequest(evt, requestName) {
-        var i, x, tablinks;
-        x = document.getElementsByClassName("request");
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablink");
-        for (i = 0; i < x.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" w3-border-red", "");
-        }
-        document.getElementById(requestName).style.display = "block";
-        evt.currentTarget.firstElementChild.className += " w3-border-red";
-    }
-</script>
+    <script>
+        //Increment and decrement counters
+        $('.input-number-increment').click(function () {
+            var $input = $(this).parents('.input-number-group').find('.input-number');
+            var val = parseInt($input.val(), 10);
+            $input.val(val + 1);
+        });
+
+        $('.input-number-decrement').click(function () {
+            var $input = $(this).parents('.input-number-group').find('.input-number');
+            var val = parseInt($input.val(), 10);
+            $input.val(val - 1);
+        })
+
+
+    </script>
 
 <!--script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></!--script-->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
