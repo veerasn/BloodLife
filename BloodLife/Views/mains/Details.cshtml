@@ -526,7 +526,8 @@
 
                             @foreach (BloodProduct bloodProduct in ViewBag.bloodProducts)
                             {
-                                if (bloodProduct.Id.Substring(0, 2).Contains("RC"))
+                                if (bloodProduct.Id.Substring(0, 2).Contains("RC") && 
+                                    (Model.FirstOrDefault().AGE >= bloodProduct.Lowerage && Model.FirstOrDefault().AGE <= bloodProduct.Upperage))
                                 {
                                     <tr>
                                         <td>
@@ -550,6 +551,14 @@
                                                 <a href="@bloodProduct.Filelocation">
                                                     <sup><i class="fa-info-circle"></i>info</sup>
                                                 </a>
+                                            }
+                                            @if (bloodProduct.Irradiate == 1)
+                                            {
+                                                <img src="~/Content/img/radiation.png" style="width:12px;height:px;" />
+                                            }
+                                            @if (bloodProduct.Leucodeplete == 1)
+                                            {
+                                                <img src="~/Content/img/funnel.png" style="width:12px;height:12px;" />
                                             }
                                         </td>
                                     </tr>

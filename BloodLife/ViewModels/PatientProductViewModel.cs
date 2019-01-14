@@ -19,6 +19,14 @@ namespace BloodLife.ViewModels
         public string NAME { get; set; }
         [DisplayFormat(DataFormatString = "{0: dd MMM yyyy}")]
         public Nullable<System.DateTime> BIRTHDATE { get; set; }
+        public int AGE
+        {
+            get
+            {
+                return BIRTHDATE != null ? (DateTime.Today - BIRTHDATE).Value.Days : 0;
+            }
+        }
+
         public Nullable<byte> SEX { get; set; }
         public string SEXLONG
         {

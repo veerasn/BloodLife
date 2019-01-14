@@ -32,5 +32,7 @@ namespace BloodLife.Models
         public virtual DbSet<REQUEST_PRODUCT> REQUEST_PRODUCT { get; set; }
         public virtual DbSet<REQUEST> REQUESTS { get; set; }
         public virtual DbSet<TEST> TESTS { get; set; }
+
+        public System.Data.Entity.DbSet<BloodLife.Models.BloodProduct> BloodProducts { get; set; }
     }
 }
