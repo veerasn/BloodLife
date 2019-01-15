@@ -257,6 +257,10 @@ namespace BloodLife.Controllers
             BloodProductModel bloodProductModel = new BloodProductModel();
             ViewBag.bloodProducts = bloodProductModel.findAll();
 
+            //Create dropdown for indications
+            BloodProductModel IndicationModel = new BloodProductModel();
+            ViewBag.Indications = new SelectList(IndicationModel.IndicationAll(), "Id", "Caption");
+
             //return View("Details",Patient);
             return View("Details", prodrequests);
         }
