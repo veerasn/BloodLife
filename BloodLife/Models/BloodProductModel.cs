@@ -190,7 +190,7 @@ namespace BloodLife.Models
                     Comments = ""
                 },
                 new BloodProduct{
-                    Id = "PPRHD",
+                    Id = "PDRHD",
                     Name = "Anti-D Immunoglobulin (WinRho) ",
                     Charge = 230,
                     Leucodeplete = 0,
@@ -201,7 +201,7 @@ namespace BloodLife.Models
                     Comments = ""
                 },
                 new BloodProduct{
-                    Id = "PPCC3",
+                    Id = "PDCC3",
                     Name = "Prothrombin Complex Concentrate, 3-Factor (Prothrombinex)",
                     Charge = 230,
                     Leucodeplete = 0,
@@ -212,7 +212,7 @@ namespace BloodLife.Models
                     Comments = ""
                 },
                 new BloodProduct{
-                    Id = "PPCC4",
+                    Id = "PDCC4",
                     Name = "Prothrombin Complex Concentrate, 4-Factor (Octaplex)",
                     Charge = 230,
                     Leucodeplete = 0,
@@ -223,7 +223,7 @@ namespace BloodLife.Models
                     Comments = ""
                 },
                 new BloodProduct{
-                    Id = "PPF8",
+                    Id = "PDF8",
                     Name = "Factor 8 Concentrate, Intermediate Purity",
                     Charge = 230,
                     Leucodeplete = 0,
@@ -234,7 +234,7 @@ namespace BloodLife.Models
                     Comments = ""
                 },
                 new BloodProduct{
-                    Id = "PPF7a",
+                    Id = "PDF7a",
                     Name = "Recombinant Factor VIIa (NovoSeven)",
                     Charge = 230,
                     Leucodeplete = 0,

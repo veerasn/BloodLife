@@ -492,16 +492,19 @@
     <div class="w3-container">
         <div class="w3-row">
             <a href="javacript:void(0)" onclick="openRequest(event, 'Test');">
-                <div class="w3-quarter tablink w3-bottombar w3-hover-grey w3-padding">Tests</div>
+                <div class="w3-col tablink w3-bottombar w3-hover-grey w3-padding" style="width:20%">Tests</div>
             </a>
             <a href="javacript:void(0)" onclick="openRequest(event, 'Rbc');">
-                <div class="w3-quarter tablink w3-bottombar w3-hover-grey w3-padding">Red Cells</div>
+                <div class="w3-col tablink w3-bottombar w3-hover-grey w3-padding" style="width:20%">Red Cells</div>
             </a>
             <a href="javacript:void(0)" onclick="openRequest(event, 'Platelet');">
-                <div class="w3-quarter tablink w3-bottombar w3-hover-grey w3-padding">Platelets</div>
+                <div class="w3-col tablink w3-bottombar w3-hover-grey w3-padding" style="width:20%">Platelets</div>
             </a>
             <a href="javacript:void(0)" onclick="openRequest(event, 'Plasma');">
-                <div class="w3-quarter tablink w3-bottombar w3-hover-grey w3-padding">Plasma Products</div>
+                <div class="w3-col tablink w3-bottombar w3-hover-grey w3-padding" style="width:20%">Plasma Products</div>
+            </a>
+            <a href="javacript:void(0)" onclick="openRequest(event, 'Factor');">
+                <div class="w3-col tablink w3-bottombar w3-hover-grey w3-padding" style="width:20%">Factor Conc.</div>
             </a>
             <!--Test requests-->
             <div id="Test" class="w3-container request" style="display:none">
@@ -526,7 +529,7 @@
 
                             @foreach (BloodProduct bloodProduct in ViewBag.bloodProducts)
                             {
-                                if (bloodProduct.Id.Substring(0, 2).Contains("RC") && 
+                                if (bloodProduct.Id.Substring(0, 2).Contains("RC") &&
                                     (Model.FirstOrDefault().AGE >= bloodProduct.Lowerage && Model.FirstOrDefault().AGE <= bloodProduct.Upperage))
                                 {
                                     <tr>
@@ -641,13 +644,17 @@
                     <table class="table">
                         <tr>
                             <td><input type="radio" name="platelet" value="PL1" /></td>
-                            <td>Prophylactic transfusion to prevent spontaneous bleeding in a stable patient with 
-                            platelet count &#8804 10 x 10<sup>9</sup>/L.</td>
+                            <td>
+                                Prophylactic transfusion to prevent spontaneous bleeding in a stable patient with
+                                platelet count &#8804 10 x 10<sup>9</sup>/L.
+                            </td>
                         </tr>
                         <tr>
                             <td><input type="radio" name="platelet" value="PL2" /></td>
-                            <td>Prophylactic transfusion to prevent spontaneous bleeding in patient with 
-                            consumptive state (e.g. high fever, sepsis, DIC, splenomegaly) and platelet count &#8804 20 x 10<sup>9</sup>/L</td>
+                            <td>
+                                Prophylactic transfusion to prevent spontaneous bleeding in patient with
+                                consumptive state (e.g. high fever, sepsis, DIC, splenomegaly) and platelet count &#8804 20 x 10<sup>9</sup>/L
+                            </td>
                         </tr>
                         <tr>
                             <td><input type="radio" name="platelet" value="PL3" /></td>
@@ -655,13 +662,17 @@
                         </tr>
                         <tr>
                             <td><input type="radio" name="platelet" value="PL4" /></td>
-                            <td>Active bleeding or pre-procedure involving an enclosed space 
-                            (e.g. intracranial, opthalmic) with platelet count &#8804 100 x 10<sup>9</sup>/L.</td>
+                            <td>
+                                Active bleeding or pre-procedure involving an enclosed space
+                                (e.g. intracranial, opthalmic) with platelet count &#8804 100 x 10<sup>9</sup>/L.
+                            </td>
                         </tr>
                         <tr>
                             <td><input type="radio" name="platelet" value="PL5" /></td>
-                            <td>Pre-procedure or bleeding patient who has taken a recent dose of anti-platelet medications, 
-                            or with documented platelet dysfunction.</td>
+                            <td>
+                                Pre-procedure or bleeding patient who has taken a recent dose of anti-platelet medications,
+                                or with documented platelet dysfunction.
+                            </td>
                         </tr>
                         <tr>
                             <td><input type="radio" name="platelet" value="PL6" /></td>
@@ -691,6 +702,105 @@
                             @foreach (BloodProduct bloodProduct in ViewBag.bloodProducts)
                             {
                                 if (bloodProduct.Id.Substring(0, 2).Contains("PP") &&
+                                    (Model.FirstOrDefault().AGE >= bloodProduct.Lowerage && Model.FirstOrDefault().AGE <= bloodProduct.Upperage))
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.Editor(bloodProduct.Id, new { htmlAttributes = new { type = "number", value = "0", min = "0", max = "12", @class = "form-control" } })
+                                        </td>
+                                        <td>
+                                            @bloodProduct.Id
+                                        </td>
+                                        <td>
+                                            @bloodProduct.Name
+                                            @if (bloodProduct.Filelocation != "none")
+                                            {
+                                                <a href="@bloodProduct.Filelocation">
+                                                    <sup><i class="fa-info-circle"></i>info</sup>
+                                                </a>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <h6>Please provide the most appropriate indication for the plasma components requested</h6>
+                <div class="w3-container w3-white">
+                    <table class="table">
+                        <tr>
+                            <td><input type="radio" name="plasma" value="PP1" /></td>
+                            <td>
+                                INR &#8805 1.6 and the patient is actively bleeding and NOT a candidate for vitamin K or PPC.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="plasma" value="PP2" /></td>
+                            <td>
+                                INR &#8805 1.6 and the patient is planned for a procedure with risk of bleeding and NOT a candidate for
+                                vitamin K.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="plasma" value="PP3" /></td>
+                            <td>
+                                Massive bleeding requiring multiple RBC transfusion.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="plasma" value="PP4" /></td>
+                            <td>
+                                DIC with active bleeding and fibrinogen &#8804 1.5g/L.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="plasma" value="PP5" /></td>
+                            <td>Plasma required for therapeutic plasma exchange.</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="plasma" value="PP6" /></td>
+                            <td>
+                                Fibrinogen &#8804 1.5g/L and active bleeding or pre-procedure.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="plasma" value="PP7" /></td>
+                            <td>
+                                Congenital deficiency of coagulation factor not routinely replaceable with factor concentrates (e.g. FXI).
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="plasma" value="PP8" /></td>
+                            <td>
+                                Congenital deficiency of von Willebrand Factor, Fibrinogen or FXIII.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="plasma" value="PP9" /></td>
+                            <td>
+                                Other.
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div id="Factor" class="w3-container request" style="display:none">
+                <h6>Select the factor concentrate required. Please note that prior consultation and mutual agreement 
+                with a haematologist or transfusion medicine specialist is required before request of these products. </h6>
+                <div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Quantity</th>
+                                <th>Code</th>
+                                <th>Product Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (BloodProduct bloodProduct in ViewBag.bloodProducts)
+                            {
+                                if (bloodProduct.Id.Substring(0, 2).Contains("PD") &&
                                     (Model.FirstOrDefault().AGE >= bloodProduct.Lowerage && Model.FirstOrDefault().AGE <= bloodProduct.Upperage))
                                 {
                                     <tr>
