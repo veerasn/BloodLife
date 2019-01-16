@@ -559,8 +559,30 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="w3-container">
-                   @Html.DropDownList("Id", (IEnumerable<SelectListItem>) ViewBag.Indications, new {@class= "form-control" } )
+                <h6>Please provide the most appropriate indication for the red cell request</h6>
+                <div class="w3-container w3-white">
+                    <table class="table">
+                        <tr>
+                            <td><input type="radio" name="redcell" value="RC1" /></td>
+                            <td>Hb &#8804 70g/L in a hemodynamically stable ICU patient</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="redcell" value="RC2" /></td>
+                            <td>Hb &#8804 80g/L in a non- ICU patient with symptomatic anaemia</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="redcell" value="RC3" /></td>
+                            <td>Hb &#8804 100g/L in a patient experiencing acute ischaemiac cardiovascular disease (e.g. angina pectoris, acute myocardial infarction).</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="redcell" value="RC4" /></td>
+                            <td>Acute bleeding with hemodynamic instability requiring urgent RBC transfusion.</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="redcell" value="RC5" /></td>
+                            <td>Others</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
             <!--Platelet requests-->
@@ -612,6 +634,41 @@
                                 }
                             }
                         </tbody>
+                    </table>
+                </div>
+                <h6>Please provide the most appropriate indication for the platelet request</h6>
+                <div class="w3-container w3-white">
+                    <table class="table">
+                        <tr>
+                            <td><input type="radio" name="platelet" value="PL1" /></td>
+                            <td>Prophylactic transfusion to prevent spontaneous bleeding in a stable patient with 
+                            platelet count &#8804 10 x 10<sup>9</sup>/L.</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="platelet" value="PL2" /></td>
+                            <td>Prophylactic transfusion to prevent spontaneous bleeding in patient with 
+                            consumptive state (e.g. high fever, sepsis, DIC, splenomegaly) and platelet count &#8804 20 x 10<sup>9</sup>/L</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="platelet" value="PL3" /></td>
+                            <td>Active bleeding or pre-procedure with platelet count &#8804 50 x 10<sup>9</sup>/L.</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="platelet" value="PL4" /></td>
+                            <td>Active bleeding or pre-procedure involving an enclosed space 
+                            (e.g. intracranial, opthalmic) with platelet count &#8804 100 x 10<sup>9</sup>/L.</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="platelet" value="PL5" /></td>
+                            <td>Pre-procedure or bleeding patient who has taken a recent dose of anti-platelet medications, 
+                            or with documented platelet dysfunction.</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="platelet" value="PL6" /></td>
+                            <td>
+                                Other.
+                            </td>
+                        </tr>
                     </table>
                 </div>
             </div>
