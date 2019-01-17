@@ -534,7 +534,9 @@
                                 {
                                     <tr>
                                         <td>
-                                            @Html.Editor(bloodProduct.Id, new { htmlAttributes = new { type = "number", value = "0", min = "0", max = "6", @class = "form-control" } })
+                                            @Html.Editor(bloodProduct.Id, new {
+                                                htmlAttributes = new { onchange = "showIndication(this.value)", type = "number", min = "0", max = "6", @Value = "0", @class = "form-control" }
+                                            })
                                         </td>
                                         <td>
                                             @bloodProduct.Id
@@ -562,30 +564,32 @@
                         </tbody>
                     </table>
                 </div>
-                <h6>Please provide the most appropriate indication for the red cell request</h6>
-                <div class="w3-container w3-white">
-                    <table class="table">
-                        <tr>
-                            <td><input type="radio" name="redcell" value="RC1" /></td>
-                            <td>Hb &#8804 70g/L in a hemodynamically stable ICU patient</td>
-                        </tr>
-                        <tr>
-                            <td><input type="radio" name="redcell" value="RC2" /></td>
-                            <td>Hb &#8804 80g/L in a non- ICU patient with symptomatic anaemia</td>
-                        </tr>
-                        <tr>
-                            <td><input type="radio" name="redcell" value="RC3" /></td>
-                            <td>Hb &#8804 100g/L in a patient experiencing acute ischaemiac cardiovascular disease (e.g. angina pectoris, acute myocardial infarction).</td>
-                        </tr>
-                        <tr>
-                            <td><input type="radio" name="redcell" value="RC4" /></td>
-                            <td>Acute bleeding with hemodynamic instability requiring urgent RBC transfusion.</td>
-                        </tr>
-                        <tr>
-                            <td><input type="radio" name="redcell" value="RC5" /></td>
-                            <td>Others</td>
-                        </tr>
-                    </table>
+                <div id="rbc_indication" style="display:none">
+                    <h6>Please provide the most appropriate indication for the red cell request</h6>
+                    <div class="w3-container w3-white">
+                        <table class="table">
+                            <tr>
+                                <td><input type="radio" name="redcell" value="RC1" /></td>
+                                <td>Hb &#8804 70g/L in a hemodynamically stable ICU patient</td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio" name="redcell" value="RC2" /></td>
+                                <td>Hb &#8804 80g/L in a non- ICU patient with symptomatic anaemia</td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio" name="redcell" value="RC3" /></td>
+                                <td>Hb &#8804 100g/L in a patient experiencing acute ischaemiac cardiovascular disease (e.g. angina pectoris, acute myocardial infarction).</td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio" name="redcell" value="RC4" /></td>
+                                <td>Acute bleeding with hemodynamic instability requiring urgent RBC transfusion.</td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio" name="redcell" value="RC5" /></td>
+                                <td>Others</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
             <!--Platelet requests-->
@@ -894,7 +898,17 @@
             evt.currentTarget.firstElementChild.className += " w3-border-red";
         }
     </script>
-
+    <script>
+        //Show indication
+        function showIndication(val) {
+            if (val == 0) {
+                document.getElementById("rbc_indication").style.display = "none";
+            }
+            else {
+                document.getElementById("rbc_indication").style.display = "block";
+            }
+        }
+    </script>
 
 <!--script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></!--script-->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
