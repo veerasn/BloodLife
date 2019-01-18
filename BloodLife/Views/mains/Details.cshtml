@@ -535,7 +535,7 @@
                                     <tr>
                                         <td>
                                             @Html.Editor(bloodProduct.Id, new {
-                                                htmlAttributes = new { onchange = "showIndication(this.value)", type = "number", min = "0", max = "6", @Value = "0", @class = "form-control" }
+                                                htmlAttributes = new { @Name= "RC", onchange = "showIndication('RC')", type = "number", min = "0", max = "6", @Value = "0", @class = "form-control" }
                                             })
                                         </td>
                                         <td>
@@ -564,7 +564,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="rbc_indication" style="display:none">
+                <div id="RC" style="display:none">
                     <h6>Please provide the most appropriate indication for the red cell request</h6>
                     <div class="w3-container w3-white">
                         <table class="table">
@@ -615,7 +615,9 @@
                                 {
                                     <tr>
                                         <td>
-                                            @Html.Editor(bloodProduct.Id, new { htmlAttributes = new { type = "number", value = "0", min = "0", max = "6", @class = "form-control" } })
+                                            @Html.Editor(bloodProduct.Id, new {
+                                                htmlAttributes = new { @Name= "PL", onchange = "showIndication('PL')", type = "number", min = "0", max = "6", @Value = "0", @class = "form-control" }
+                                            })
                                         </td>
                                         <td>
                                             @bloodProduct.Id
@@ -643,49 +645,52 @@
                         </tbody>
                     </table>
                 </div>
-                <h6>Please provide the most appropriate indication for the platelet request</h6>
-                <div class="w3-container w3-white">
-                    <table class="table">
-                        <tr>
-                            <td><input type="radio" name="platelet" value="PL1" /></td>
-                            <td>
-                                Prophylactic transfusion to prevent spontaneous bleeding in a stable patient with
-                                platelet count &#8804 10 x 10<sup>9</sup>/L.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="radio" name="platelet" value="PL2" /></td>
-                            <td>
-                                Prophylactic transfusion to prevent spontaneous bleeding in patient with
-                                consumptive state (e.g. high fever, sepsis, DIC, splenomegaly) and platelet count &#8804 20 x 10<sup>9</sup>/L
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="radio" name="platelet" value="PL3" /></td>
-                            <td>Active bleeding or pre-procedure with platelet count &#8804 50 x 10<sup>9</sup>/L.</td>
-                        </tr>
-                        <tr>
-                            <td><input type="radio" name="platelet" value="PL4" /></td>
-                            <td>
-                                Active bleeding or pre-procedure involving an enclosed space
-                                (e.g. intracranial, opthalmic) with platelet count &#8804 100 x 10<sup>9</sup>/L.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="radio" name="platelet" value="PL5" /></td>
-                            <td>
-                                Pre-procedure or bleeding patient who has taken a recent dose of anti-platelet medications,
-                                or with documented platelet dysfunction.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="radio" name="platelet" value="PL6" /></td>
-                            <td>
-                                Other.
-                            </td>
-                        </tr>
-                    </table>
+                <div id="PL" style="display:none">
+                    <h6>Please provide the most appropriate indication for the platelet request</h6>
+                    <div class="w3-container w3-white">
+                        <table class="table">
+                            <tr>
+                                <td><input type="radio" name="platelet" value="PL1" /></td>
+                                <td>
+                                    Prophylactic transfusion to prevent spontaneous bleeding in a stable patient with
+                                    platelet count &#8804 10 x 10<sup>9</sup>/L.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio" name="platelet" value="PL2" /></td>
+                                <td>
+                                    Prophylactic transfusion to prevent spontaneous bleeding in patient with
+                                    consumptive state (e.g. high fever, sepsis, DIC, splenomegaly) and platelet count &#8804 20 x 10<sup>9</sup>/L
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio" name="platelet" value="PL3" /></td>
+                                <td>Active bleeding or pre-procedure with platelet count &#8804 50 x 10<sup>9</sup>/L.</td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio" name="platelet" value="PL4" /></td>
+                                <td>
+                                    Active bleeding or pre-procedure involving an enclosed space
+                                    (e.g. intracranial, opthalmic) with platelet count &#8804 100 x 10<sup>9</sup>/L.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio" name="platelet" value="PL5" /></td>
+                                <td>
+                                    Pre-procedure or bleeding patient who has taken a recent dose of anti-platelet medications,
+                                    or with documented platelet dysfunction.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio" name="platelet" value="PL6" /></td>
+                                <td>
+                                    Other.
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
+                
             </div>
             <!--Plasma requests-->
             <div id="Plasma" class="w3-container request" style="display:none">
@@ -901,12 +906,19 @@
     <script>
         //Show indication
         function showIndication(val) {
-            if (val == 0) {
-                document.getElementById("rbc_indication").style.display = "none";
+            var vis = "none"; 
+            var cnt = 0;
+            var inp = document.getElementsByName (val);
+            for (i = 0; i < inp.length; i++) {
+                cnt = cnt + parseInt(inp[i].value);
+            }
+            if (cnt != 0) {
+                vis = "block"
             }
             else {
-                document.getElementById("rbc_indication").style.display = "block";
+                vis = "none";
             }
+            document.getElementById(val).style.display = vis;
         }
     </script>
 
