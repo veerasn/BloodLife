@@ -1141,6 +1141,7 @@
     <Content Include="Views\mains\Index%28Old%29.cshtml" />
     <Content Include="Views\Shared\LongDate.cshtml" />
     <Content Include="Views\mains\Index.cshtml" />
+    <Content Include="Views\Shared\_ChooseProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

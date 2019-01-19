@@ -1,0 +1,41 @@
+﻿
+@using BloodLife.Models;
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Quantity</th>
+                <th>Code</th>
+                <th>Product Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (BloodProduct bloodProduct in ViewContext.Controller.ViewBag.bloodProducts)
+            {
+                if (bloodProduct.Id.Substring(0, 2).Contains("PPFFP"))
+                {
+                    <tr>
+                        <td>
+                            @Html.Editor(bloodProduct.Id, new {
+                                htmlAttributes = new { onchange = "showIndication('PPFFP')", type = "number", min = "0", max = "6", @Value = "0", @class = "form-control" }
+                            })
+                        </td>
+                        <td>
+                            @bloodProduct.Id
+                        </td>
+                        <td>
+                            @bloodProduct.Name
+                            @if (bloodProduct.Filelocation != "none")
+                            {
+                                <a href="@bloodProduct.Filelocation">
+                                    <sup><i class="fa-info-circle"></i>info</sup>
+                                </a>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
