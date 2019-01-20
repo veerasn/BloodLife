@@ -191,7 +191,7 @@ namespace BloodLife.Models
                 },
                 new BloodProduct{
                     Id = "RHD",
-                    Name = "Anti-D Immunoglobulin (WinRho) ",
+                    Name = "Anti-D Immunoglobulin (WinRho)",
                     Charge = 230,
                     Leucodeplete = 0,
                     Irradiate = 0,

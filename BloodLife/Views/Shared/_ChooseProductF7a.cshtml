@@ -3,22 +3,15 @@
 
 <div>
     <table class="table">
-        <thead>
-            <tr>
-                <th>Quantity</th>
-                <th>Code</th>
-                <th>Product Name</th>
-            </tr>
-        </thead>
         <tbody>
             @foreach (BloodProduct bloodProduct in ViewContext.Controller.ViewBag.bloodProducts)
             {
-                if (bloodProduct.Id.Substring(0, 2).Contains("PPFFP"))
+                if (bloodProduct.Id.Contains("PDF7a"))
                 {
                     <tr>
                         <td>
                             @Html.Editor(bloodProduct.Id, new {
-                                htmlAttributes = new { onchange = "showIndication('PPFFP')", type = "number", min = "0", max = "6", @Value = "0", @class = "form-control" }
+                                htmlAttributes = new {@Name="F7a", onchange = "showIndication('F7a')", type = "number", min = "0", max = "6", @Value = "0", @class = "form-control" }
                             })
                         </td>
                         <td>
@@ -38,4 +31,18 @@
             }
         </tbody>
     </table>
+</div>
+<div id="F7a" style="display:none">
+    <h6>Please provide the most appropriate indication for 3-Factor PCC request</h6>
+    <div class="w3-container w3-white">
+        <table class="table">
+            <tr>
+                <td><input type="radio" name="platelet" value="PL1" /></td>
+                <td>
+                    Prophylactic transfusion to prevent spontaneous bleeding in a stable patient with
+                    platelet count &#8804 10 x 10<sup>9</sup>/L.
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>

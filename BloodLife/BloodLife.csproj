@@ -1141,7 +1141,14 @@
     <Content Include="Views\mains\Index%28Old%29.cshtml" />
     <Content Include="Views\Shared\LongDate.cshtml" />
     <Content Include="Views\mains\Index.cshtml" />
-    <Content Include="Views\Shared\_ChooseProduct.cshtml" />
+    <Content Include="Views\Shared\_ChooseProductRh.cshtml" />
+    <Content Include="Views\Shared\_ChooseProductCc3.cshtml" />
+    <Content Include="Views\Shared\_ChooseProductCc4.cshtml" />
+    <Content Include="Views\Shared\_ChooseProductF8.cshtml" />
+    <Content Include="Views\Shared\_ChooseProductF7a.cshtml" />
+    <Content Include="Views\Shared\_ChooseProductFfp.cshtml" />
+    <Content Include="Views\Shared\_ChooseProductCsp.cshtml" />
+    <Content Include="Views\Shared\_ChooseProductCpt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,49 @@
+﻿
+@using BloodLife.Models;
+
+<div>
+    <table class="table">
+        <tbody>
+            @foreach (BloodProduct bloodProduct in ViewContext.Controller.ViewBag.bloodProducts)
+            {
+                if (bloodProduct.Id.Contains("PPCPT"))
+                {
+                    <tr>
+                        <td>
+                            @Html.Editor(bloodProduct.Id, new {
+                                htmlAttributes = new {@Name="CPT", onchange = "showIndication('CPT')", type = "number", min = "0", max = "6", @Value = "0", @class = "form-control" }
+                            })
+                        </td>
+                        <td>
+                            @bloodProduct.Id
+                        </td>
+                        <td>
+                            @bloodProduct.Name
+                            @if (bloodProduct.Filelocation != "none")
+                            {
+                                <a href="@bloodProduct.Filelocation">
+                                    <sup><i class="fa-info-circle"></i>info</sup>
+                                </a>
+                            }
+                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<div id="CPT" style="display:none">
+    <h6>Please provide the most appropriate indication for the anti-D request</h6>
+    <div class="w3-container w3-white">
+        <table class="table">
+            <tr>
+                <td><input type="radio" name="platelet" value="PL1" /></td>
+                <td>
+                    Prophylactic transfusion to prevent spontaneous bleeding in a stable patient with
+                    platelet count &#8804 10 x 10<sup>9</sup>/L.
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
