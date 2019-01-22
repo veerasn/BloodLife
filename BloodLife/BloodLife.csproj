@@ -1149,6 +1149,8 @@
     <Content Include="Views\Shared\_ChooseProductFfp.cshtml" />
     <Content Include="Views\Shared\_ChooseProductCsp.cshtml" />
     <Content Include="Views\Shared\_ChooseProductCpt.cshtml" />
+    <Content Include="Views\Shared\_ChooseProductPlt.cshtml" />
+    <Content Include="Views\Shared\_ChooseProductHla.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

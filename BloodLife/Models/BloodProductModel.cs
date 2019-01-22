@@ -92,7 +92,7 @@ namespace BloodLife.Models
                     Comments = ""
                 },
                 new BloodProduct{
-                    Id = "PLTRD-HLA",
+                    Id = "HLA-PLRD",
                     Name = "HLA-compatible Platelet from Random Donors, Unpooled",
                     Charge = 230,
                     Leucodeplete = 1,
@@ -113,7 +113,7 @@ namespace BloodLife.Models
                     Filelocation = "a"
                 },
                 new BloodProduct{
-                    Id = "PLLR",
+                    Id = "PLTLR",
                     Name = "Single Donor Apheresis Platelet, Leucodepleted",
                     Charge = 230,
                     Leucodeplete = 1,
@@ -124,7 +124,7 @@ namespace BloodLife.Models
                     Comments = ""
                 },
                 new BloodProduct{
-                    Id = "PLLR-HLA",
+                    Id = "HLA-PLLR",
                     Name = "HLA-compatible Single Donor Apheresis Platelet, Leucodepleted",
                     Charge = 230,
                     Leucodeplete = 1,
@@ -135,7 +135,7 @@ namespace BloodLife.Models
                     Comments = ""
                 },
                 new BloodProduct{
-                    Id = "PLLR-PP",
+                    Id = "PLTLR-PP",
                     Name = "Pedi-pack, Single Donor Apheresis Platelet, Leucodepleted",
                     Charge = 230,
                     Leucodeplete = 1,
@@ -146,7 +146,7 @@ namespace BloodLife.Models
                     Comments = ""
                 },
                 new BloodProduct{
-                    Id = "PLLR-PP-HLA",
+                    Id = "HLA-PLLR-PP",
                     Name = "HLA-compatible Pedi-pack, Single Donor Apheresis Platelet, Leucodepleted",
                     Charge = 230,
                     Leucodeplete = 1,
@@ -158,7 +158,7 @@ namespace BloodLife.Models
                 },
                 new BloodProduct{
                     Id = "PPFFP",
-                    Name = "Fresh Frozen Plasma",
+                    Name = "Fresh Frozen Plasma, Random Donor",
                     Charge = 230,
                     Leucodeplete = 0,
                     Irradiate = 0,
@@ -169,7 +169,7 @@ namespace BloodLife.Models
                 },
                 new BloodProduct{
                     Id = "PPCPT",
-                    Name = "Cryoprecipitate",
+                    Name = "Cryoprecipitate, Random Donor, Unpooled",
                     Charge = 230,
                     Leucodeplete = 0,
                     Irradiate = 0,
@@ -180,7 +180,7 @@ namespace BloodLife.Models
                 },
                 new BloodProduct{
                     Id = "PPCSP",
-                    Name = "Cryosupernatant/ Cryo-poor Plasma",
+                    Name = "Cryo-poor Plasma,Random Donor, Unpooled",
                     Charge = 230,
                     Leucodeplete = 0,
                     Irradiate = 0,
@@ -224,7 +224,7 @@ namespace BloodLife.Models
                 },
                 new BloodProduct{
                     Id = "PDF8",
-                    Name = "Factor 8 Concentrate, Intermediate Purity",
+                    Name = "Factor 8 Concentrate, Plasma-derived, Intermediate Purity",
                     Charge = 230,
                     Leucodeplete = 0,
                     Irradiate = 0,
