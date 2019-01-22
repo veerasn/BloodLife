@@ -46,6 +46,6 @@ namespace BloodLife.Models
         public byte[] SSMA_TimeStamp { get; set; }
     
         public virtual PRODUCT PRODUCT { get; set; }
-        public virtual REQUEST REQUEST { get; set; }
+        public virtual BBSREQUEST REQUEST { get; set; }
     }
 }

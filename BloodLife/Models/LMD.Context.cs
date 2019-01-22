@@ -13,10 +13,10 @@ namespace BloodLife.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BBSEntitiesNew : DbContext
+    public partial class LMDLABEntities : DbContext
     {
-        public BBSEntitiesNew()
-            : base("name=BBSEntitiesNew")
+        public LMDLABEntities()
+            : base("name=LMDLABEntities")
         {
         }
     
@@ -25,12 +25,8 @@ namespace BloodLife.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<DICT_PRODUCTS> DICT_PRODUCTS { get; set; }
-        public virtual DbSet<DICT_TESTS> DICT_TESTS { get; set; }
-        public virtual DbSet<BBSPATIENT> PATIENTS { get; set; }
-        public virtual DbSet<PRODUCT> PRODUCTS { get; set; }
-        public virtual DbSet<REQUEST_PRODUCT> REQUEST_PRODUCT { get; set; }
-        public virtual DbSet<BBSREQUEST> REQUESTS { get; set; }
-        public virtual DbSet<BBSTEST> TESTS { get; set; }
+        public virtual DbSet<PATIENT> PATIENTS { get; set; }
+        public virtual DbSet<REQUEST> REQUESTS { get; set; }
+        public virtual DbSet<TEST> TESTS { get; set; }
     }
 }

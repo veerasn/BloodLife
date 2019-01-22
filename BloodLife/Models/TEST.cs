@@ -14,22 +14,47 @@ namespace BloodLife.Models
     
     public partial class TEST
     {
-        public double TESTID { get; set; }
-        public string ACCESSNUMBER { get; set; }
-        public double REQCREATIONDATE { get; set; }
-        public string TESTCODE { get; set; }
-        public Nullable<double> TESTCREDATE { get; set; }
+        public int REQTESTID { get; set; }
+        public Nullable<int> CHAPID { get; set; }
+        public int TESTID { get; set; }
+        public Nullable<int> STNID { get; set; }
+        public int REQUESTID { get; set; }
+        public int LISTESTID { get; set; }
+        public Nullable<int> TESTORDER { get; set; }
+        public Nullable<byte> DEPTH { get; set; }
+        public string TXTCOLLCOND { get; set; }
+        public Nullable<byte> URGENT { get; set; }
+        public Nullable<byte> NOTPRINTABLE { get; set; }
+        public Nullable<byte> VALIDATIONCAUSE { get; set; }
+        public string VALIDATIONINITIALS { get; set; }
+        public Nullable<byte> VALIDATIONSTATUS { get; set; }
         public Nullable<byte> RESTYPE { get; set; }
-        public string RESULT { get; set; }
+        public string RESVALUE { get; set; }
         public Nullable<byte> RESSTATUS { get; set; }
-        public string COMMENTS { get; set; }
-        public string TESTINGUSER { get; set; }
-        public Nullable<System.DateTime> TESTINGDATE { get; set; }
-        public string VALIDUSER { get; set; }
-        public Nullable<System.DateTime> VALIDDATE { get; set; }
-        public byte[] SSMA_TimeStamp { get; set; }
+        public Nullable<System.DateTime> RESUPDDATE { get; set; }
+        public Nullable<System.DateTime> LASTUPDTESTDATE { get; set; }
+        public Nullable<int> CODEDRESULTID { get; set; }
+        public string MINIMUM { get; set; }
+        public string MAXIMUM { get; set; }
+        public string TESTURL { get; set; }
+        public Nullable<int> SAMPLEID { get; set; }
+        public string LOGUSERID { get; set; }
+        public System.DateTime LOGDATE { get; set; }
+        public Nullable<byte> SECRETTEST { get; set; }
+        public Nullable<byte> UPDSTATUS { get; set; }
+        public Nullable<byte> BINDATALINK { get; set; }
+        public string ORDERPLACERNUMBER { get; set; }
+        public string ORDERFILLERNUMBER { get; set; }
+        public Nullable<int> LABOID { get; set; }
+        public Nullable<int> INSTPERI { get; set; }
+        public Nullable<int> INSTNUM { get; set; }
+        public string TECHNICALINITIALS { get; set; }
+        public Nullable<byte> CREATEDONTDR { get; set; }
+        public string INST_IDENTIFIER { get; set; }
+        public Nullable<byte> RERUN { get; set; }
+        public Nullable<System.DateTime> VALIDATIONDATE { get; set; }
+        public Nullable<System.DateTime> FIRSTVALIDATIONDATE { get; set; }
     
-        public virtual DICT_TESTS DICT_TESTS { get; set; }
         public virtual REQUEST REQUEST { get; set; }
     }
 }

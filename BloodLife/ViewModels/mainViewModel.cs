@@ -8,8 +8,8 @@ namespace BloodLife.ViewModels
 {
     public class MainViewModel
     {
-        public PATIENT Patients { get; set; } 
-        public REQUEST Requests { get; set; }
+        public BBSPATIENT Patients { get; set; } 
+        public BBSREQUEST Requests { get; set; }
         public REQUEST_PRODUCT RequestProducts { get; set; }
     }
 }

@@ -1,0 +1,697 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LMDLABModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="PATIENTS">
+          <Key>
+            <PropertyRef Name="PATID" />
+          </Key>
+          <Property Name="PATID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PATNUMBER" Type="varchar" MaxLength="20" />
+          <Property Name="REFHOSPNUMBER" Type="varchar" MaxLength="15" />
+          <Property Name="BENNUMBER" Type="varchar" MaxLength="20" />
+          <Property Name="INTNUMBER" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="PATCREATIONDATE" Type="int" />
+          <Property Name="TITLEID" Type="int" />
+          <Property Name="NAME" Type="varchar" MaxLength="80" />
+          <Property Name="MAIDENNAME" Type="varchar" MaxLength="80" />
+          <Property Name="FIRSTNAME" Type="varchar" MaxLength="80" />
+          <Property Name="NAMESK" Type="varchar" MaxLength="80" />
+          <Property Name="MAIDENNAMESK" Type="varchar" MaxLength="80" />
+          <Property Name="FIRSTNAMESK" Type="varchar" MaxLength="80" />
+          <Property Name="ADDRESS1" Type="varchar" MaxLength="65" />
+          <Property Name="ADDRESS2" Type="varchar" MaxLength="65" />
+          <Property Name="CITY" Type="varchar" MaxLength="50" />
+          <Property Name="STATE" Type="varchar" MaxLength="50" />
+          <Property Name="POSTALCODE" Type="varchar" MaxLength="20" />
+          <Property Name="COUNTRY" Type="varchar" MaxLength="50" />
+          <Property Name="BIRTHDATE" Type="datetime" />
+          <Property Name="ETHNICORIGIN" Type="varchar" MaxLength="40" />
+          <Property Name="RELIGION" Type="varchar" MaxLength="40" />
+          <Property Name="SEX" Type="tinyint" />
+          <Property Name="TELEPHON" Type="varchar" MaxLength="20" />
+          <Property Name="FAX" Type="varchar" MaxLength="20" />
+          <Property Name="INCOMMINGDATE" Type="datetime" />
+          <Property Name="OUTPUTDATE" Type="datetime" />
+          <Property Name="ROOMNUMBER" Type="varchar" MaxLength="20" />
+          <Property Name="REFDOCTOR" Type="varchar" MaxLength="10" />
+          <Property Name="REFLOCATION" Type="varchar" MaxLength="10" />
+          <Property Name="RECBYCNX" Type="tinyint" />
+          <Property Name="LASTUPDTESTDATE" Type="datetime" />
+          <Property Name="LASTREVIEWDATE" Type="datetime" />
+          <Property Name="DEATHDATE" Type="datetime" />
+          <Property Name="RECALLDATE" Type="datetime" />
+          <Property Name="RECALLREQNUM" Type="varchar" MaxLength="10" />
+          <Property Name="REMINDERDATE" Type="datetime" />
+          <Property Name="REMINDERLEVEL" Type="tinyint" />
+          <Property Name="REMINDERTIME1" Type="int" />
+          <Property Name="REMINDERTIME2" Type="int" />
+          <Property Name="REMINDERTIME3" Type="int" />
+          <Property Name="PAYERPATID" Type="int" />
+          <Property Name="HOLDERPROFID" Type="int" />
+          <Property Name="INSUREDPROFID" Type="int" />
+          <Property Name="DOCID" Type="int" />
+          <Property Name="LEGALTIME" Type="int" />
+          <Property Name="DISCOUNTRATE" Type="tinyint" />
+          <Property Name="REFSSO" Type="varchar" MaxLength="10" />
+          <Property Name="REFHC" Type="varchar" MaxLength="10" />
+          <Property Name="SPECIFICBILLTXT" Type="varchar" MaxLength="30" />
+          <Property Name="PATROW" Type="tinyint" />
+          <Property Name="PATRELATIONSHIP" Type="tinyint" />
+          <Property Name="EXEMPCODE" Type="tinyint" />
+          <Property Name="INSNATURE" Type="int" />
+          <Property Name="HCSTATUS" Type="varchar" MaxLength="10" />
+          <Property Name="RIGHTORIGIN" Type="tinyint" />
+          <Property Name="SSOSTATUS" Type="varchar" MaxLength="10" />
+          <Property Name="BG_ABO" Type="varchar" MaxLength="6" />
+          <Property Name="BG_RHESUS" Type="varchar" MaxLength="12" />
+          <Property Name="BG_PHENOTYPES" Type="varchar" MaxLength="12" />
+          <Property Name="BG_KELL" Type="varchar" MaxLength="12" />
+          <Property Name="FIRSTITEMID" Type="int" />
+          <Property Name="STARTVALIDDATE" Type="datetime" Nullable="false" />
+          <Property Name="ENDVALIDDATE" Type="datetime" />
+          <Property Name="STATCODE" Type="varchar" MaxLength="30" />
+          <Property Name="LISUSER" Type="varchar" MaxLength="8" />
+          <Property Name="LISDATE" Type="datetime" />
+          <Property Name="LOGSESSION" Type="varchar" MaxLength="10" />
+          <Property Name="LOGUSERID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="LOGDATE" Type="datetime" Nullable="false" />
+          <Property Name="ACTIONTRACE" Type="varchar" MaxLength="2000" />
+          <Property Name="ERRONEOUSADDRESS" Type="tinyint" />
+          <Property Name="SAFETYMEASURES" Type="int" />
+          <Property Name="TELEPHON2" Type="varchar" MaxLength="20" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="255" />
+          <Property Name="VIP" Type="tinyint" />
+          <Property Name="SECRETRESULT" Type="tinyint" />
+          <Property Name="CITIZENSHIP" Type="varchar" MaxLength="255" />
+          <Property Name="TOBEREMINDED" Type="tinyint" />
+          <Property Name="SSONUMBER" Type="varchar" MaxLength="20" />
+          <Property Name="DRIVERSLICENSENUM" Type="varchar" MaxLength="20" />
+          <Property Name="BG_PRAIDATE" Type="datetime" />
+          <Property Name="PRECAUTION" Type="smallint" />
+        </EntityType>
+        <EntityType Name="REQUESTS">
+          <Key>
+            <PropertyRef Name="REQUESTID" />
+          </Key>
+          <Property Name="REQUESTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ACCESSNUMBER" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="REQCREATIONDATE" Type="int" Nullable="false" />
+          <Property Name="PATID" Type="int" Nullable="false" />
+          <Property Name="HOSPITID" Type="int" />
+          <Property Name="CATEGORY" Type="tinyint" />
+          <Property Name="REDACCNUM" Type="varchar" MaxLength="10" />
+          <Property Name="REQSTATUS" Type="tinyint" />
+          <Property Name="STATUSDATE" Type="datetime" />
+          <Property Name="REQDATE" Type="datetime" />
+          <Property Name="COLLECTIONDATE" Type="datetime" />
+          <Property Name="URGENT" Type="tinyint" />
+          <Property Name="ROOMNUMBER" Type="varchar" MaxLength="20" />
+          <Property Name="LASTUPDTESTDATE" Type="datetime" />
+          <Property Name="REQTOVALID" Type="tinyint" />
+          <Property Name="REQURL" Type="varchar" MaxLength="100" />
+          <Property Name="TOPHONE" Type="tinyint" />
+          <Property Name="LMP" Type="datetime" />
+          <Property Name="NBCHILDS" Type="tinyint" />
+          <Property Name="AUTODATE" Type="datetime" />
+          <Property Name="NECROSCOPY" Type="varchar" MaxLength="10" />
+          <Property Name="ENCLOSED" Type="varchar" MaxLength="20" />
+          <Property Name="RECEIVEDDATE" Type="datetime" />
+          <Property Name="LISUSER" Type="varchar" MaxLength="8" />
+          <Property Name="LISDATE" Type="datetime" />
+          <Property Name="LOGSESSION" Type="varchar" MaxLength="10" />
+          <Property Name="LOGUSERID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="LOGDATE" Type="datetime" Nullable="false" />
+          <Property Name="EXTERNALORDERNUMBER" Type="varchar" MaxLength="20" />
+          <Property Name="RECBYCNX" Type="tinyint" />
+          <Property Name="LABOID" Type="int" />
+          <Property Name="STANDORDERVALIDITYDATE" Type="datetime" />
+          <Property Name="EXPIREDSTANDORDER" Type="tinyint" />
+          <Property Name="STANDORDERNBOCC" Type="int" />
+          <Property Name="USERFIELD1" Type="varchar" MaxLength="25" />
+          <Property Name="USERFIELD2" Type="varchar" MaxLength="25" />
+          <Property Name="PATHOGEN" Type="tinyint" />
+          <Property Name="CREATEDONTDR" Type="tinyint" />
+          <Property Name="SOURCESITEID" Type="int" />
+          <Property Name="EXTERNALCOLLECTION" Type="tinyint" />
+          <Property Name="ALLPRINTED" Type="tinyint" />
+          <Property Name="VALREQUESTED" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="TESTS">
+          <Key>
+            <PropertyRef Name="REQTESTID" />
+          </Key>
+          <Property Name="REQTESTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CHAPID" Type="int" />
+          <Property Name="TESTID" Type="int" Nullable="false" />
+          <Property Name="STNID" Type="int" />
+          <Property Name="REQUESTID" Type="int" Nullable="false" />
+          <Property Name="LISTESTID" Type="int" Nullable="false" />
+          <Property Name="TESTORDER" Type="int" />
+          <Property Name="DEPTH" Type="tinyint" />
+          <Property Name="TXTCOLLCOND" Type="varchar" MaxLength="10" />
+          <Property Name="URGENT" Type="tinyint" />
+          <Property Name="NOTPRINTABLE" Type="tinyint" />
+          <Property Name="VALIDATIONCAUSE" Type="tinyint" />
+          <Property Name="VALIDATIONINITIALS" Type="varchar" MaxLength="8" />
+          <Property Name="VALIDATIONSTATUS" Type="tinyint" />
+          <Property Name="RESTYPE" Type="tinyint" />
+          <Property Name="RESVALUE" Type="varchar" MaxLength="4000" />
+          <Property Name="RESSTATUS" Type="tinyint" />
+          <Property Name="RESUPDDATE" Type="datetime" />
+          <Property Name="LASTUPDTESTDATE" Type="datetime" />
+          <Property Name="CODEDRESULTID" Type="int" />
+          <Property Name="MINIMUM" Type="varchar" MaxLength="25" />
+          <Property Name="MAXIMUM" Type="varchar" MaxLength="25" />
+          <Property Name="TESTURL" Type="varchar" MaxLength="100" />
+          <Property Name="SAMPLEID" Type="int" />
+          <Property Name="LOGUSERID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="LOGDATE" Type="datetime" Nullable="false" />
+          <Property Name="SECRETTEST" Type="tinyint" />
+          <Property Name="UPDSTATUS" Type="tinyint" />
+          <Property Name="BINDATALINK" Type="tinyint" />
+          <Property Name="ORDERPLACERNUMBER" Type="varchar" MaxLength="20" />
+          <Property Name="ORDERFILLERNUMBER" Type="varchar" MaxLength="20" />
+          <Property Name="LABOID" Type="int" />
+          <Property Name="INSTPERI" Type="int" />
+          <Property Name="INSTNUM" Type="int" />
+          <Property Name="TECHNICALINITIALS" Type="varchar" MaxLength="8" />
+          <Property Name="CREATEDONTDR" Type="tinyint" />
+          <Property Name="INST_IDENTIFIER" Type="varchar" MaxLength="20" />
+          <Property Name="RERUN" Type="tinyint" />
+          <Property Name="VALIDATIONDATE" Type="datetime" />
+          <Property Name="FIRSTVALIDATIONDATE" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_PRESCRIPTION">
+          <End Role="PATIENTS" Type="Self.PATIENTS" Multiplicity="1" />
+          <End Role="REQUESTS" Type="Self.REQUESTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PATIENTS">
+              <PropertyRef Name="PATID" />
+            </Principal>
+            <Dependent Role="REQUESTS">
+              <PropertyRef Name="PATID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REFERENCE_PAYER">
+          <End Role="PATIENTS" Type="Self.PATIENTS" Multiplicity="0..1" />
+          <End Role="PATIENTS1" Type="Self.PATIENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PATIENTS">
+              <PropertyRef Name="PATID" />
+            </Principal>
+            <Dependent Role="PATIENTS1">
+              <PropertyRef Name="PAYERPATID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RQST_CONTAINS_TST">
+          <End Role="REQUESTS" Type="Self.REQUESTS" Multiplicity="1" />
+          <End Role="TESTS" Type="Self.TESTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REQUESTS">
+              <PropertyRef Name="REQUESTID" />
+            </Principal>
+            <Dependent Role="TESTS">
+              <PropertyRef Name="REQUESTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LMDLABModelStoreContainer">
+          <EntitySet Name="PATIENTS" EntityType="Self.PATIENTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REQUESTS" EntityType="Self.REQUESTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TESTS" EntityType="Self.TESTS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PRESCRIPTION" Association="Self.FK_PRESCRIPTION">
+            <End Role="PATIENTS" EntitySet="PATIENTS" />
+            <End Role="REQUESTS" EntitySet="REQUESTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REFERENCE_PAYER" Association="Self.FK_REFERENCE_PAYER">
+            <End Role="PATIENTS" EntitySet="PATIENTS" />
+            <End Role="PATIENTS1" EntitySet="PATIENTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RQST_CONTAINS_TST" Association="Self.FK_RQST_CONTAINS_TST">
+            <End Role="REQUESTS" EntitySet="REQUESTS" />
+            <End Role="TESTS" EntitySet="TESTS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LMDLABModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="PATIENT">
+          <Key>
+            <PropertyRef Name="PATID" />
+          </Key>
+          <Property Name="PATID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PATNUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="REFHOSPNUMBER" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="BENNUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="INTNUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PATCREATIONDATE" Type="Int32" />
+          <Property Name="TITLEID" Type="Int32" />
+          <Property Name="NAME" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="MAIDENNAME" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="FIRSTNAME" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="NAMESK" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="MAIDENNAMESK" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="FIRSTNAMESK" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="ADDRESS1" Type="String" MaxLength="65" FixedLength="false" Unicode="false" />
+          <Property Name="ADDRESS2" Type="String" MaxLength="65" FixedLength="false" Unicode="false" />
+          <Property Name="CITY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="STATE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="POSTALCODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="COUNTRY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BIRTHDATE" Type="DateTime" Precision="3" />
+          <Property Name="ETHNICORIGIN" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="RELIGION" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="SEX" Type="Byte" />
+          <Property Name="TELEPHON" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FAX" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="INCOMMINGDATE" Type="DateTime" Precision="3" />
+          <Property Name="OUTPUTDATE" Type="DateTime" Precision="3" />
+          <Property Name="ROOMNUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="REFDOCTOR" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="REFLOCATION" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="RECBYCNX" Type="Byte" />
+          <Property Name="LASTUPDTESTDATE" Type="DateTime" Precision="3" />
+          <Property Name="LASTREVIEWDATE" Type="DateTime" Precision="3" />
+          <Property Name="DEATHDATE" Type="DateTime" Precision="3" />
+          <Property Name="RECALLDATE" Type="DateTime" Precision="3" />
+          <Property Name="RECALLREQNUM" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="REMINDERDATE" Type="DateTime" Precision="3" />
+          <Property Name="REMINDERLEVEL" Type="Byte" />
+          <Property Name="REMINDERTIME1" Type="Int32" />
+          <Property Name="REMINDERTIME2" Type="Int32" />
+          <Property Name="REMINDERTIME3" Type="Int32" />
+          <Property Name="PAYERPATID" Type="Int32" />
+          <Property Name="HOLDERPROFID" Type="Int32" />
+          <Property Name="INSUREDPROFID" Type="Int32" />
+          <Property Name="DOCID" Type="Int32" />
+          <Property Name="LEGALTIME" Type="Int32" />
+          <Property Name="DISCOUNTRATE" Type="Byte" />
+          <Property Name="REFSSO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="REFHC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SPECIFICBILLTXT" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PATROW" Type="Byte" />
+          <Property Name="PATRELATIONSHIP" Type="Byte" />
+          <Property Name="EXEMPCODE" Type="Byte" />
+          <Property Name="INSNATURE" Type="Int32" />
+          <Property Name="HCSTATUS" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="RIGHTORIGIN" Type="Byte" />
+          <Property Name="SSOSTATUS" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="BG_ABO" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="BG_RHESUS" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="BG_PHENOTYPES" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="BG_KELL" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="FIRSTITEMID" Type="Int32" />
+          <Property Name="STARTVALIDDATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ENDVALIDDATE" Type="DateTime" Precision="3" />
+          <Property Name="STATCODE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="LISUSER" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="LISDATE" Type="DateTime" Precision="3" />
+          <Property Name="LOGSESSION" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LOGUSERID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LOGDATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ACTIONTRACE" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="ERRONEOUSADDRESS" Type="Byte" />
+          <Property Name="SAFETYMEASURES" Type="Int32" />
+          <Property Name="TELEPHON2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="VIP" Type="Byte" />
+          <Property Name="SECRETRESULT" Type="Byte" />
+          <Property Name="CITIZENSHIP" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TOBEREMINDED" Type="Byte" />
+          <Property Name="SSONUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DRIVERSLICENSENUM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BG_PRAIDATE" Type="DateTime" Precision="3" />
+          <Property Name="PRECAUTION" Type="Int16" />
+          <NavigationProperty Name="REQUESTS" Relationship="Self.FK_PRESCRIPTION" FromRole="PATIENTS" ToRole="REQUESTS" />
+          <NavigationProperty Name="PATIENTS1" Relationship="Self.FK_REFERENCE_PAYER" FromRole="PATIENTS" ToRole="PATIENTS1" />
+          <NavigationProperty Name="PATIENT1" Relationship="Self.FK_REFERENCE_PAYER" FromRole="PATIENTS1" ToRole="PATIENTS" />
+        </EntityType>
+        <EntityType Name="REQUEST">
+          <Key>
+            <PropertyRef Name="REQUESTID" />
+          </Key>
+          <Property Name="REQUESTID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ACCESSNUMBER" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="REQCREATIONDATE" Type="Int32" Nullable="false" />
+          <Property Name="PATID" Type="Int32" Nullable="false" />
+          <Property Name="HOSPITID" Type="Int32" />
+          <Property Name="CATEGORY" Type="Byte" />
+          <Property Name="REDACCNUM" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="REQSTATUS" Type="Byte" />
+          <Property Name="STATUSDATE" Type="DateTime" Precision="3" />
+          <Property Name="REQDATE" Type="DateTime" Precision="3" />
+          <Property Name="COLLECTIONDATE" Type="DateTime" Precision="3" />
+          <Property Name="URGENT" Type="Byte" />
+          <Property Name="ROOMNUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LASTUPDTESTDATE" Type="DateTime" Precision="3" />
+          <Property Name="REQTOVALID" Type="Byte" />
+          <Property Name="REQURL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TOPHONE" Type="Byte" />
+          <Property Name="LMP" Type="DateTime" Precision="3" />
+          <Property Name="NBCHILDS" Type="Byte" />
+          <Property Name="AUTODATE" Type="DateTime" Precision="3" />
+          <Property Name="NECROSCOPY" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ENCLOSED" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RECEIVEDDATE" Type="DateTime" Precision="3" />
+          <Property Name="LISUSER" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="LISDATE" Type="DateTime" Precision="3" />
+          <Property Name="LOGSESSION" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LOGUSERID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LOGDATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EXTERNALORDERNUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RECBYCNX" Type="Byte" />
+          <Property Name="LABOID" Type="Int32" />
+          <Property Name="STANDORDERVALIDITYDATE" Type="DateTime" Precision="3" />
+          <Property Name="EXPIREDSTANDORDER" Type="Byte" />
+          <Property Name="STANDORDERNBOCC" Type="Int32" />
+          <Property Name="USERFIELD1" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="USERFIELD2" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="PATHOGEN" Type="Byte" />
+          <Property Name="CREATEDONTDR" Type="Byte" />
+          <Property Name="SOURCESITEID" Type="Int32" />
+          <Property Name="EXTERNALCOLLECTION" Type="Byte" />
+          <Property Name="ALLPRINTED" Type="Byte" />
+          <Property Name="VALREQUESTED" Type="Byte" />
+          <NavigationProperty Name="PATIENT" Relationship="Self.FK_PRESCRIPTION" FromRole="REQUESTS" ToRole="PATIENTS" />
+          <NavigationProperty Name="TESTS" Relationship="Self.FK_RQST_CONTAINS_TST" FromRole="REQUESTS" ToRole="TESTS" />
+        </EntityType>
+        <EntityType Name="TEST">
+          <Key>
+            <PropertyRef Name="REQTESTID" />
+          </Key>
+          <Property Name="REQTESTID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CHAPID" Type="Int32" />
+          <Property Name="TESTID" Type="Int32" Nullable="false" />
+          <Property Name="STNID" Type="Int32" />
+          <Property Name="REQUESTID" Type="Int32" Nullable="false" />
+          <Property Name="LISTESTID" Type="Int32" Nullable="false" />
+          <Property Name="TESTORDER" Type="Int32" />
+          <Property Name="DEPTH" Type="Byte" />
+          <Property Name="TXTCOLLCOND" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="URGENT" Type="Byte" />
+          <Property Name="NOTPRINTABLE" Type="Byte" />
+          <Property Name="VALIDATIONCAUSE" Type="Byte" />
+          <Property Name="VALIDATIONINITIALS" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="VALIDATIONSTATUS" Type="Byte" />
+          <Property Name="RESTYPE" Type="Byte" />
+          <Property Name="RESVALUE" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="RESSTATUS" Type="Byte" />
+          <Property Name="RESUPDDATE" Type="DateTime" Precision="3" />
+          <Property Name="LASTUPDTESTDATE" Type="DateTime" Precision="3" />
+          <Property Name="CODEDRESULTID" Type="Int32" />
+          <Property Name="MINIMUM" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="MAXIMUM" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="TESTURL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SAMPLEID" Type="Int32" />
+          <Property Name="LOGUSERID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LOGDATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SECRETTEST" Type="Byte" />
+          <Property Name="UPDSTATUS" Type="Byte" />
+          <Property Name="BINDATALINK" Type="Byte" />
+          <Property Name="ORDERPLACERNUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ORDERFILLERNUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LABOID" Type="Int32" />
+          <Property Name="INSTPERI" Type="Int32" />
+          <Property Name="INSTNUM" Type="Int32" />
+          <Property Name="TECHNICALINITIALS" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="CREATEDONTDR" Type="Byte" />
+          <Property Name="INST_IDENTIFIER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RERUN" Type="Byte" />
+          <Property Name="VALIDATIONDATE" Type="DateTime" Precision="3" />
+          <Property Name="FIRSTVALIDATIONDATE" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="REQUEST" Relationship="Self.FK_RQST_CONTAINS_TST" FromRole="TESTS" ToRole="REQUESTS" />
+        </EntityType>
+        <Association Name="FK_PRESCRIPTION">
+          <End Role="PATIENTS" Type="Self.PATIENT" Multiplicity="1" />
+          <End Role="REQUESTS" Type="Self.REQUEST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PATIENTS">
+              <PropertyRef Name="PATID" />
+            </Principal>
+            <Dependent Role="REQUESTS">
+              <PropertyRef Name="PATID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REFERENCE_PAYER">
+          <End Role="PATIENTS" Type="Self.PATIENT" Multiplicity="0..1" />
+          <End Role="PATIENTS1" Type="Self.PATIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PATIENTS">
+              <PropertyRef Name="PATID" />
+            </Principal>
+            <Dependent Role="PATIENTS1">
+              <PropertyRef Name="PAYERPATID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RQST_CONTAINS_TST">
+          <End Role="REQUESTS" Type="Self.REQUEST" Multiplicity="1" />
+          <End Role="TESTS" Type="Self.TEST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REQUESTS">
+              <PropertyRef Name="REQUESTID" />
+            </Principal>
+            <Dependent Role="TESTS">
+              <PropertyRef Name="REQUESTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LMDLABEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PATIENTS" EntityType="Self.PATIENT" />
+          <EntitySet Name="REQUESTS" EntityType="Self.REQUEST" />
+          <EntitySet Name="TESTS" EntityType="Self.TEST" />
+          <AssociationSet Name="FK_PRESCRIPTION" Association="Self.FK_PRESCRIPTION">
+            <End Role="PATIENTS" EntitySet="PATIENTS" />
+            <End Role="REQUESTS" EntitySet="REQUESTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REFERENCE_PAYER" Association="Self.FK_REFERENCE_PAYER">
+            <End Role="PATIENTS" EntitySet="PATIENTS" />
+            <End Role="PATIENTS1" EntitySet="PATIENTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RQST_CONTAINS_TST" Association="Self.FK_RQST_CONTAINS_TST">
+            <End Role="REQUESTS" EntitySet="REQUESTS" />
+            <End Role="TESTS" EntitySet="TESTS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LMDLABModelStoreContainer" CdmEntityContainer="LMDLABEntities">
+          <EntitySetMapping Name="PATIENTS">
+            <EntityTypeMapping TypeName="LMDLABModel.PATIENT">
+              <MappingFragment StoreEntitySet="PATIENTS">
+                <ScalarProperty Name="PATID" ColumnName="PATID" />
+                <ScalarProperty Name="PATNUMBER" ColumnName="PATNUMBER" />
+                <ScalarProperty Name="REFHOSPNUMBER" ColumnName="REFHOSPNUMBER" />
+                <ScalarProperty Name="BENNUMBER" ColumnName="BENNUMBER" />
+                <ScalarProperty Name="INTNUMBER" ColumnName="INTNUMBER" />
+                <ScalarProperty Name="PATCREATIONDATE" ColumnName="PATCREATIONDATE" />
+                <ScalarProperty Name="TITLEID" ColumnName="TITLEID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="MAIDENNAME" ColumnName="MAIDENNAME" />
+                <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+                <ScalarProperty Name="NAMESK" ColumnName="NAMESK" />
+                <ScalarProperty Name="MAIDENNAMESK" ColumnName="MAIDENNAMESK" />
+                <ScalarProperty Name="FIRSTNAMESK" ColumnName="FIRSTNAMESK" />
+                <ScalarProperty Name="ADDRESS1" ColumnName="ADDRESS1" />
+                <ScalarProperty Name="ADDRESS2" ColumnName="ADDRESS2" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+                <ScalarProperty Name="STATE" ColumnName="STATE" />
+                <ScalarProperty Name="POSTALCODE" ColumnName="POSTALCODE" />
+                <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+                <ScalarProperty Name="BIRTHDATE" ColumnName="BIRTHDATE" />
+                <ScalarProperty Name="ETHNICORIGIN" ColumnName="ETHNICORIGIN" />
+                <ScalarProperty Name="RELIGION" ColumnName="RELIGION" />
+                <ScalarProperty Name="SEX" ColumnName="SEX" />
+                <ScalarProperty Name="TELEPHON" ColumnName="TELEPHON" />
+                <ScalarProperty Name="FAX" ColumnName="FAX" />
+                <ScalarProperty Name="INCOMMINGDATE" ColumnName="INCOMMINGDATE" />
+                <ScalarProperty Name="OUTPUTDATE" ColumnName="OUTPUTDATE" />
+                <ScalarProperty Name="ROOMNUMBER" ColumnName="ROOMNUMBER" />
+                <ScalarProperty Name="REFDOCTOR" ColumnName="REFDOCTOR" />
+                <ScalarProperty Name="REFLOCATION" ColumnName="REFLOCATION" />
+                <ScalarProperty Name="RECBYCNX" ColumnName="RECBYCNX" />
+                <ScalarProperty Name="LASTUPDTESTDATE" ColumnName="LASTUPDTESTDATE" />
+                <ScalarProperty Name="LASTREVIEWDATE" ColumnName="LASTREVIEWDATE" />
+                <ScalarProperty Name="DEATHDATE" ColumnName="DEATHDATE" />
+                <ScalarProperty Name="RECALLDATE" ColumnName="RECALLDATE" />
+                <ScalarProperty Name="RECALLREQNUM" ColumnName="RECALLREQNUM" />
+                <ScalarProperty Name="REMINDERDATE" ColumnName="REMINDERDATE" />
+                <ScalarProperty Name="REMINDERLEVEL" ColumnName="REMINDERLEVEL" />
+                <ScalarProperty Name="REMINDERTIME1" ColumnName="REMINDERTIME1" />
+                <ScalarProperty Name="REMINDERTIME2" ColumnName="REMINDERTIME2" />
+                <ScalarProperty Name="REMINDERTIME3" ColumnName="REMINDERTIME3" />
+                <ScalarProperty Name="PAYERPATID" ColumnName="PAYERPATID" />
+                <ScalarProperty Name="HOLDERPROFID" ColumnName="HOLDERPROFID" />
+                <ScalarProperty Name="INSUREDPROFID" ColumnName="INSUREDPROFID" />
+                <ScalarProperty Name="DOCID" ColumnName="DOCID" />
+                <ScalarProperty Name="LEGALTIME" ColumnName="LEGALTIME" />
+                <ScalarProperty Name="DISCOUNTRATE" ColumnName="DISCOUNTRATE" />
+                <ScalarProperty Name="REFSSO" ColumnName="REFSSO" />
+                <ScalarProperty Name="REFHC" ColumnName="REFHC" />
+                <ScalarProperty Name="SPECIFICBILLTXT" ColumnName="SPECIFICBILLTXT" />
+                <ScalarProperty Name="PATROW" ColumnName="PATROW" />
+                <ScalarProperty Name="PATRELATIONSHIP" ColumnName="PATRELATIONSHIP" />
+                <ScalarProperty Name="EXEMPCODE" ColumnName="EXEMPCODE" />
+                <ScalarProperty Name="INSNATURE" ColumnName="INSNATURE" />
+                <ScalarProperty Name="HCSTATUS" ColumnName="HCSTATUS" />
+                <ScalarProperty Name="RIGHTORIGIN" ColumnName="RIGHTORIGIN" />
+                <ScalarProperty Name="SSOSTATUS" ColumnName="SSOSTATUS" />
+                <ScalarProperty Name="BG_ABO" ColumnName="BG_ABO" />
+                <ScalarProperty Name="BG_RHESUS" ColumnName="BG_RHESUS" />
+                <ScalarProperty Name="BG_PHENOTYPES" ColumnName="BG_PHENOTYPES" />
+                <ScalarProperty Name="BG_KELL" ColumnName="BG_KELL" />
+                <ScalarProperty Name="FIRSTITEMID" ColumnName="FIRSTITEMID" />
+                <ScalarProperty Name="STARTVALIDDATE" ColumnName="STARTVALIDDATE" />
+                <ScalarProperty Name="ENDVALIDDATE" ColumnName="ENDVALIDDATE" />
+                <ScalarProperty Name="STATCODE" ColumnName="STATCODE" />
+                <ScalarProperty Name="LISUSER" ColumnName="LISUSER" />
+                <ScalarProperty Name="LISDATE" ColumnName="LISDATE" />
+                <ScalarProperty Name="LOGSESSION" ColumnName="LOGSESSION" />
+                <ScalarProperty Name="LOGUSERID" ColumnName="LOGUSERID" />
+                <ScalarProperty Name="LOGDATE" ColumnName="LOGDATE" />
+                <ScalarProperty Name="ACTIONTRACE" ColumnName="ACTIONTRACE" />
+                <ScalarProperty Name="ERRONEOUSADDRESS" ColumnName="ERRONEOUSADDRESS" />
+                <ScalarProperty Name="SAFETYMEASURES" ColumnName="SAFETYMEASURES" />
+                <ScalarProperty Name="TELEPHON2" ColumnName="TELEPHON2" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="VIP" ColumnName="VIP" />
+                <ScalarProperty Name="SECRETRESULT" ColumnName="SECRETRESULT" />
+                <ScalarProperty Name="CITIZENSHIP" ColumnName="CITIZENSHIP" />
+                <ScalarProperty Name="TOBEREMINDED" ColumnName="TOBEREMINDED" />
+                <ScalarProperty Name="SSONUMBER" ColumnName="SSONUMBER" />
+                <ScalarProperty Name="DRIVERSLICENSENUM" ColumnName="DRIVERSLICENSENUM" />
+                <ScalarProperty Name="BG_PRAIDATE" ColumnName="BG_PRAIDATE" />
+                <ScalarProperty Name="PRECAUTION" ColumnName="PRECAUTION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REQUESTS">
+            <EntityTypeMapping TypeName="LMDLABModel.REQUEST">
+              <MappingFragment StoreEntitySet="REQUESTS">
+                <ScalarProperty Name="REQUESTID" ColumnName="REQUESTID" />
+                <ScalarProperty Name="ACCESSNUMBER" ColumnName="ACCESSNUMBER" />
+                <ScalarProperty Name="REQCREATIONDATE" ColumnName="REQCREATIONDATE" />
+                <ScalarProperty Name="PATID" ColumnName="PATID" />
+                <ScalarProperty Name="HOSPITID" ColumnName="HOSPITID" />
+                <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+                <ScalarProperty Name="REDACCNUM" ColumnName="REDACCNUM" />
+                <ScalarProperty Name="REQSTATUS" ColumnName="REQSTATUS" />
+                <ScalarProperty Name="STATUSDATE" ColumnName="STATUSDATE" />
+                <ScalarProperty Name="REQDATE" ColumnName="REQDATE" />
+                <ScalarProperty Name="COLLECTIONDATE" ColumnName="COLLECTIONDATE" />
+                <ScalarProperty Name="URGENT" ColumnName="URGENT" />
+                <ScalarProperty Name="ROOMNUMBER" ColumnName="ROOMNUMBER" />
+                <ScalarProperty Name="LASTUPDTESTDATE" ColumnName="LASTUPDTESTDATE" />
+                <ScalarProperty Name="REQTOVALID" ColumnName="REQTOVALID" />
+                <ScalarProperty Name="REQURL" ColumnName="REQURL" />
+                <ScalarProperty Name="TOPHONE" ColumnName="TOPHONE" />
+                <ScalarProperty Name="LMP" ColumnName="LMP" />
+                <ScalarProperty Name="NBCHILDS" ColumnName="NBCHILDS" />
+                <ScalarProperty Name="AUTODATE" ColumnName="AUTODATE" />
+                <ScalarProperty Name="NECROSCOPY" ColumnName="NECROSCOPY" />
+                <ScalarProperty Name="ENCLOSED" ColumnName="ENCLOSED" />
+                <ScalarProperty Name="RECEIVEDDATE" ColumnName="RECEIVEDDATE" />
+                <ScalarProperty Name="LISUSER" ColumnName="LISUSER" />
+                <ScalarProperty Name="LISDATE" ColumnName="LISDATE" />
+                <ScalarProperty Name="LOGSESSION" ColumnName="LOGSESSION" />
+                <ScalarProperty Name="LOGUSERID" ColumnName="LOGUSERID" />
+                <ScalarProperty Name="LOGDATE" ColumnName="LOGDATE" />
+                <ScalarProperty Name="EXTERNALORDERNUMBER" ColumnName="EXTERNALORDERNUMBER" />
+                <ScalarProperty Name="RECBYCNX" ColumnName="RECBYCNX" />
+                <ScalarProperty Name="LABOID" ColumnName="LABOID" />
+                <ScalarProperty Name="STANDORDERVALIDITYDATE" ColumnName="STANDORDERVALIDITYDATE" />
+                <ScalarProperty Name="EXPIREDSTANDORDER" ColumnName="EXPIREDSTANDORDER" />
+                <ScalarProperty Name="STANDORDERNBOCC" ColumnName="STANDORDERNBOCC" />
+                <ScalarProperty Name="USERFIELD1" ColumnName="USERFIELD1" />
+                <ScalarProperty Name="USERFIELD2" ColumnName="USERFIELD2" />
+                <ScalarProperty Name="PATHOGEN" ColumnName="PATHOGEN" />
+                <ScalarProperty Name="CREATEDONTDR" ColumnName="CREATEDONTDR" />
+                <ScalarProperty Name="SOURCESITEID" ColumnName="SOURCESITEID" />
+                <ScalarProperty Name="EXTERNALCOLLECTION" ColumnName="EXTERNALCOLLECTION" />
+                <ScalarProperty Name="ALLPRINTED" ColumnName="ALLPRINTED" />
+                <ScalarProperty Name="VALREQUESTED" ColumnName="VALREQUESTED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TESTS">
+            <EntityTypeMapping TypeName="LMDLABModel.TEST">
+              <MappingFragment StoreEntitySet="TESTS">
+                <ScalarProperty Name="REQTESTID" ColumnName="REQTESTID" />
+                <ScalarProperty Name="CHAPID" ColumnName="CHAPID" />
+                <ScalarProperty Name="TESTID" ColumnName="TESTID" />
+                <ScalarProperty Name="STNID" ColumnName="STNID" />
+                <ScalarProperty Name="REQUESTID" ColumnName="REQUESTID" />
+                <ScalarProperty Name="LISTESTID" ColumnName="LISTESTID" />
+                <ScalarProperty Name="TESTORDER" ColumnName="TESTORDER" />
+                <ScalarProperty Name="DEPTH" ColumnName="DEPTH" />
+                <ScalarProperty Name="TXTCOLLCOND" ColumnName="TXTCOLLCOND" />
+                <ScalarProperty Name="URGENT" ColumnName="URGENT" />
+                <ScalarProperty Name="NOTPRINTABLE" ColumnName="NOTPRINTABLE" />
+                <ScalarProperty Name="VALIDATIONCAUSE" ColumnName="VALIDATIONCAUSE" />
+                <ScalarProperty Name="VALIDATIONINITIALS" ColumnName="VALIDATIONINITIALS" />
+                <ScalarProperty Name="VALIDATIONSTATUS" ColumnName="VALIDATIONSTATUS" />
+                <ScalarProperty Name="RESTYPE" ColumnName="RESTYPE" />
+                <ScalarProperty Name="RESVALUE" ColumnName="RESVALUE" />
+                <ScalarProperty Name="RESSTATUS" ColumnName="RESSTATUS" />
+                <ScalarProperty Name="RESUPDDATE" ColumnName="RESUPDDATE" />
+                <ScalarProperty Name="LASTUPDTESTDATE" ColumnName="LASTUPDTESTDATE" />
+                <ScalarProperty Name="CODEDRESULTID" ColumnName="CODEDRESULTID" />
+                <ScalarProperty Name="MINIMUM" ColumnName="MINIMUM" />
+                <ScalarProperty Name="MAXIMUM" ColumnName="MAXIMUM" />
+                <ScalarProperty Name="TESTURL" ColumnName="TESTURL" />
+                <ScalarProperty Name="SAMPLEID" ColumnName="SAMPLEID" />
+                <ScalarProperty Name="LOGUSERID" ColumnName="LOGUSERID" />
+                <ScalarProperty Name="LOGDATE" ColumnName="LOGDATE" />
+                <ScalarProperty Name="SECRETTEST" ColumnName="SECRETTEST" />
+                <ScalarProperty Name="UPDSTATUS" ColumnName="UPDSTATUS" />
+                <ScalarProperty Name="BINDATALINK" ColumnName="BINDATALINK" />
+                <ScalarProperty Name="ORDERPLACERNUMBER" ColumnName="ORDERPLACERNUMBER" />
+                <ScalarProperty Name="ORDERFILLERNUMBER" ColumnName="ORDERFILLERNUMBER" />
+                <ScalarProperty Name="LABOID" ColumnName="LABOID" />
+                <ScalarProperty Name="INSTPERI" ColumnName="INSTPERI" />
+                <ScalarProperty Name="INSTNUM" ColumnName="INSTNUM" />
+                <ScalarProperty Name="TECHNICALINITIALS" ColumnName="TECHNICALINITIALS" />
+                <ScalarProperty Name="CREATEDONTDR" ColumnName="CREATEDONTDR" />
+                <ScalarProperty Name="INST_IDENTIFIER" ColumnName="INST_IDENTIFIER" />
+                <ScalarProperty Name="RERUN" ColumnName="RERUN" />
+                <ScalarProperty Name="VALIDATIONDATE" ColumnName="VALIDATIONDATE" />
+                <ScalarProperty Name="FIRSTVALIDATIONDATE" ColumnName="FIRSTVALIDATIONDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

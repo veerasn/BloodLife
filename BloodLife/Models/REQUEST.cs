@@ -17,36 +17,53 @@ namespace BloodLife.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public REQUEST()
         {
-            this.REQUEST_PRODUCT = new HashSet<REQUEST_PRODUCT>();
             this.TESTS = new HashSet<TEST>();
         }
     
+        public int REQUESTID { get; set; }
         public string ACCESSNUMBER { get; set; }
-        public double REQCREATIONDATE { get; set; }
-        public string REDACCNUM { get; set; }
-        public string PATNUMBER { get; set; }
-        public string DOCCODE { get; set; }
-        public Nullable<double> DOCCREDATE { get; set; }
-        public string LOCCODE { get; set; }
-        public Nullable<double> LOCCREDATE { get; set; }
+        public int REQCREATIONDATE { get; set; }
+        public int PATID { get; set; }
+        public Nullable<int> HOSPITID { get; set; }
         public Nullable<byte> CATEGORY { get; set; }
-        public Nullable<System.DateTime> REQDATE { get; set; }
+        public string REDACCNUM { get; set; }
         public Nullable<byte> REQSTATUS { get; set; }
         public Nullable<System.DateTime> STATUSDATE { get; set; }
-        public Nullable<System.DateTime> REQUIREDDATE { get; set; }
-        public Nullable<byte> REQURGENT { get; set; }
-        public Nullable<int> SAMPLEID { get; set; }
-        public string LINKACCESSNUMBER { get; set; }
-        public Nullable<double> LINKREQCREATIONDATE { get; set; }
-        public Nullable<int> RFTID { get; set; }
-        public Nullable<byte> RESPRODCOMPLETED { get; set; }
-        public Nullable<int> HOSPITID { get; set; }
-        public Nullable<System.DateTime> BGMISMATCHDATE { get; set; }
-        public byte[] SSMA_TimeStamp { get; set; }
+        public Nullable<System.DateTime> REQDATE { get; set; }
+        public Nullable<System.DateTime> COLLECTIONDATE { get; set; }
+        public Nullable<byte> URGENT { get; set; }
+        public string ROOMNUMBER { get; set; }
+        public Nullable<System.DateTime> LASTUPDTESTDATE { get; set; }
+        public Nullable<byte> REQTOVALID { get; set; }
+        public string REQURL { get; set; }
+        public Nullable<byte> TOPHONE { get; set; }
+        public Nullable<System.DateTime> LMP { get; set; }
+        public Nullable<byte> NBCHILDS { get; set; }
+        public Nullable<System.DateTime> AUTODATE { get; set; }
+        public string NECROSCOPY { get; set; }
+        public string ENCLOSED { get; set; }
+        public Nullable<System.DateTime> RECEIVEDDATE { get; set; }
+        public string LISUSER { get; set; }
+        public Nullable<System.DateTime> LISDATE { get; set; }
+        public string LOGSESSION { get; set; }
+        public string LOGUSERID { get; set; }
+        public System.DateTime LOGDATE { get; set; }
+        public string EXTERNALORDERNUMBER { get; set; }
+        public Nullable<byte> RECBYCNX { get; set; }
+        public Nullable<int> LABOID { get; set; }
+        public Nullable<System.DateTime> STANDORDERVALIDITYDATE { get; set; }
+        public Nullable<byte> EXPIREDSTANDORDER { get; set; }
+        public Nullable<int> STANDORDERNBOCC { get; set; }
+        public string USERFIELD1 { get; set; }
+        public string USERFIELD2 { get; set; }
+        public Nullable<byte> PATHOGEN { get; set; }
+        public Nullable<byte> CREATEDONTDR { get; set; }
+        public Nullable<int> SOURCESITEID { get; set; }
+        public Nullable<byte> EXTERNALCOLLECTION { get; set; }
+        public Nullable<byte> ALLPRINTED { get; set; }
+        public Nullable<byte> VALREQUESTED { get; set; }
     
         public virtual PATIENT PATIENT { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<REQUEST_PRODUCT> REQUEST_PRODUCT { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TEST> TESTS { get; set; }
     }

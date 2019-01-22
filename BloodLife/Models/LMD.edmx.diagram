@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ed82a2ca58864ffbb529e077a2f69ea1" Name="Diagram1">
+        <EntityTypeShape EntityType="LMDLABModel.PATIENT" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMDLABModel.REQUEST" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMDLABModel.TEST" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
+        <AssociationConnector Association="LMDLABModel.FK_PRESCRIPTION" ManuallyRouted="false" />
+        <AssociationConnector Association="LMDLABModel.FK_REFERENCE_PAYER" ManuallyRouted="false" />
+        <AssociationConnector Association="LMDLABModel.FK_RQST_CONTAINS_TST" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

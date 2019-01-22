@@ -17,7 +17,7 @@ namespace BloodLife.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DICT_TESTS()
         {
-            this.TESTS = new HashSet<TEST>();
+            this.TESTS = new HashSet<BBSTEST>();
         }
     
         public string TESTCODE { get; set; }
@@ -34,6 +34,6 @@ namespace BloodLife.Models
         public byte[] SSMA_TimeStamp { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TEST> TESTS { get; set; }
+        public virtual ICollection<BBSTEST> TESTS { get; set; }
     }
 }

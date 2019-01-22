@@ -7,11 +7,11 @@
       <Diagram DiagramId="a54a7c47c67f409ca6efcffc3a407692" Name="Diagram1">
         <EntityTypeShape EntityType="BBSModelNew.DICT_PRODUCTS" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BBSModelNew.DICT_TESTS" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BBSModelNew.PATIENT" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BBSModelNew.BBSPATIENT" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="BBSModelNew.PRODUCT" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
         <EntityTypeShape EntityType="BBSModelNew.REQUEST_PRODUCT" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BBSModelNew.REQUEST" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BBSModelNew.TEST" Width="1.5" PointX="8.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BBSModelNew.BBSREQUEST" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BBSModelNew.BBSTEST" Width="1.5" PointX="8.25" PointY="7.5" IsExpanded="true" />
         <AssociationConnector Association="BBSModelNew.FK__PRODUCTS__3B75D760" ManuallyRouted="false" />
         <AssociationConnector Association="BBSModelNew.FK__TESTS__3C69FB99" ManuallyRouted="false" />
         <AssociationConnector Association="BBSModelNew.FK__REQUESTS__PATNUM__34C8D9D1" ManuallyRouted="false" />

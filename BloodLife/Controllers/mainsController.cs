@@ -48,7 +48,7 @@ namespace BloodLife.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            PATIENT Patient = db.PATIENTS.Find(id);
+            BBSPATIENT Patient = db.PATIENTS.Find(id);
 
             if (Patient == null)
             {
@@ -277,7 +277,7 @@ namespace BloodLife.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PATNUMBER,PATCREATIONDATE,HOSPNUMBER,BENNUMBER,INTNUM,NAME,MAIDENNAME,FIRSTNAME,PATTITLE,BIRTHDATE,SEX,PATGROUP,ANTIBODIES,REQUIREMENTS,ADDRESS1,ADDRESS2,ADDRESS3,TELEPHON,REFDOCTOR,REFLOCATION,RECBYCNX,LINKNUMBER,LINKTYPE,ABO,RHFACTOR,RHPHENO,KELL,BGRPSTATUS,BGRPSTATUSDATE,BGRPSTATUSUID,ETHNICORIGIN,RELIGION,MOPATNUMBER,ANID,MANDATORYXMATCH,SAFETYMEASURES,BGRPSTATUSTMP,LOGUSERID,LOGDATE,ADDITIONALDATA,SSMA_TimeStamp")] PATIENT pATIENT)
+        public ActionResult Create([Bind(Include = "PATNUMBER,PATCREATIONDATE,HOSPNUMBER,BENNUMBER,INTNUM,NAME,MAIDENNAME,FIRSTNAME,PATTITLE,BIRTHDATE,SEX,PATGROUP,ANTIBODIES,REQUIREMENTS,ADDRESS1,ADDRESS2,ADDRESS3,TELEPHON,REFDOCTOR,REFLOCATION,RECBYCNX,LINKNUMBER,LINKTYPE,ABO,RHFACTOR,RHPHENO,KELL,BGRPSTATUS,BGRPSTATUSDATE,BGRPSTATUSUID,ETHNICORIGIN,RELIGION,MOPATNUMBER,ANID,MANDATORYXMATCH,SAFETYMEASURES,BGRPSTATUSTMP,LOGUSERID,LOGDATE,ADDITIONALDATA,SSMA_TimeStamp")] BBSPATIENT pATIENT)
         {
             if (ModelState.IsValid)
             {
@@ -296,7 +296,7 @@ namespace BloodLife.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PATIENT pATIENT = db.PATIENTS.Find(id);
+            BBSPATIENT pATIENT = db.PATIENTS.Find(id);
             if (pATIENT == null)
             {
                 return HttpNotFound();
@@ -309,7 +309,7 @@ namespace BloodLife.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PATNUMBER,PATCREATIONDATE,HOSPNUMBER,BENNUMBER,INTNUM,NAME,MAIDENNAME,FIRSTNAME,PATTITLE,BIRTHDATE,SEX,PATGROUP,ANTIBODIES,REQUIREMENTS,ADDRESS1,ADDRESS2,ADDRESS3,TELEPHON,REFDOCTOR,REFLOCATION,RECBYCNX,LINKNUMBER,LINKTYPE,ABO,RHFACTOR,RHPHENO,KELL,BGRPSTATUS,BGRPSTATUSDATE,BGRPSTATUSUID,ETHNICORIGIN,RELIGION,MOPATNUMBER,ANID,MANDATORYXMATCH,SAFETYMEASURES,BGRPSTATUSTMP,LOGUSERID,LOGDATE,ADDITIONALDATA,SSMA_TimeStamp")] PATIENT pATIENT)
+        public ActionResult Edit([Bind(Include = "PATNUMBER,PATCREATIONDATE,HOSPNUMBER,BENNUMBER,INTNUM,NAME,MAIDENNAME,FIRSTNAME,PATTITLE,BIRTHDATE,SEX,PATGROUP,ANTIBODIES,REQUIREMENTS,ADDRESS1,ADDRESS2,ADDRESS3,TELEPHON,REFDOCTOR,REFLOCATION,RECBYCNX,LINKNUMBER,LINKTYPE,ABO,RHFACTOR,RHPHENO,KELL,BGRPSTATUS,BGRPSTATUSDATE,BGRPSTATUSUID,ETHNICORIGIN,RELIGION,MOPATNUMBER,ANID,MANDATORYXMATCH,SAFETYMEASURES,BGRPSTATUSTMP,LOGUSERID,LOGDATE,ADDITIONALDATA,SSMA_TimeStamp")] BBSPATIENT pATIENT)
         {
             if (ModelState.IsValid)
             {
@@ -327,7 +327,7 @@ namespace BloodLife.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PATIENT pATIENT = db.PATIENTS.Find(id);
+            BBSPATIENT pATIENT = db.PATIENTS.Find(id);
             if (pATIENT == null)
             {
                 return HttpNotFound();
@@ -340,7 +340,7 @@ namespace BloodLife.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            PATIENT pATIENT = db.PATIENTS.Find(id);
+            BBSPATIENT pATIENT = db.PATIENTS.Find(id);
             db.PATIENTS.Remove(pATIENT);
             db.SaveChanges();
             return RedirectToAction("Index");
