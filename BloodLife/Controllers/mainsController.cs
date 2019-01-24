@@ -262,36 +262,130 @@ namespace BloodLife.Controllers
                     on tst.REQUESTID equals rq.REQUESTID
                     join pt in dl.PATIENTS
                     on rq.PATID equals pt.PATID
-                    where pt.PATNUMBER == id && tst.TESTID == 2719 
+                    where pt.PATNUMBER == id && (tst.CHAPID == 36 | tst.CHAPID == 40)
                         && tst.RESVALUE !=null && rq.COLLECTIONDATE != null
                     orderby rq.COLLECTIONDATE descending
                     select new
                     {
                         Interval = DbFunctions.DiffDays(DateTime.Now, rq.COLLECTIONDATE),
-                        Resvalue = tst.RESVALUE
+                        Resvalue = tst.RESVALUE,
+                        TestId = tst.TESTID
                     }
                     ).ToList();
 
-            int iRes = 0;
-            iRes = result.Select(x => x.Resvalue).Count();
-            ViewBag.iRes = iRes;
+            //Hgb
+            var hgb = result.Where(i => i.TestId == 2719).ToList();
+            int iHgb = hgb.Count;
+            ViewBag.iHgb = iHgb;
 
-            if (iRes > 0)
+            if (iHgb > 0)
             {
-                double[] y = new double[iRes];
-                string[] x = new string[iRes];
+                double[] y = new double[iHgb];
+                string[] x = new string[iHgb];
                 double temp;
-                for(int i = 0; i < iRes; i++)
+                for (int i = 0; i < iHgb; i++)
                 {
-                    if (double.TryParse(result[i].Resvalue, out temp))
+                    if (double.TryParse(hgb[i].Resvalue, out temp))
                     {
                         y[i] = temp;
-                        x[i] = result[i].Interval.ToString();
+                        x[i] = hgb[i].Interval.ToString();
                     }
                 }
 
                 ViewBag.xHb = x;
                 ViewBag.yHb = y;
+            }
+
+            //Mcv
+            var mcv = result.Where(i => i.TestId == 1848).ToList();
+            int iMcv = mcv.Count;
+            ViewBag.iMcv = iMcv;
+
+            if (iMcv > 0)
+            {
+                int[] y = new int[iMcv];
+                string[] x = new string[iMcv];
+                int temp;
+                for(int i = 0; i < iMcv; i++)
+                {
+                    if (int.TryParse(mcv[i].Resvalue, out temp))
+                    {
+                        y[i] = temp;
+                        x[i] = mcv[i].Interval.ToString();
+                    }
+                }
+
+                ViewBag.xMcv = x;
+                ViewBag.yMcv = y;
+            }
+
+            //Platelet
+            var plt = result.Where(i => i.TestId == 1999).ToList();
+            int iPlt = plt.Count;
+            ViewBag.iPlt = iPlt;
+
+            if (iPlt > 0)
+            {
+                double[] y = new double[iPlt];
+                string[] x = new string[iPlt];
+                double temp;
+                for (int i = 0; i < iPlt; i++)
+                {
+                    if (double.TryParse(plt[i].Resvalue, out temp))
+                    {
+                        y[i] = temp;
+                        x[i] = plt[i].Interval.ToString();
+                    }
+                }
+
+                ViewBag.xPlt = x;
+                ViewBag.yPlt = y;
+            }
+
+            //INR
+            var inr = result.Where(i => i.TestId == 2761).ToList();
+            int iInr = inr.Count;
+            ViewBag.iInr = iInr;
+
+            if (iInr > 0)
+            {
+                double[] y = new double[iInr];
+                string[] x = new string[iInr];
+                double temp;
+                for (int i = 0; i < iInr; i++)
+                {
+                    if (double.TryParse(inr[i].Resvalue, out temp))
+                    {
+                        y[i] = temp;
+                        x[i] = inr[i].Interval.ToString();
+                    }
+                }
+
+                ViewBag.xInr = x;
+                ViewBag.yInr = y;
+            }
+
+            //APTT
+            var apt = result.Where(i => i.TestId == 2704).ToList();
+            int iApt = apt.Count;
+            ViewBag.iApt = iApt;
+
+            if (iApt > 0)
+            {
+                double[] y = new double[iApt];
+                string[] x = new string[iApt];
+                double temp;
+                for (int i = 0; i < iApt; i++)
+                {
+                    if (double.TryParse(apt[i].Resvalue, out temp))
+                    {
+                        y[i] = temp;
+                        x[i] = apt[i].Interval.ToString();
+                    }
+                }
+
+                ViewBag.xApt = x;
+                ViewBag.yApt = y;
             }
 
             //Create table for choosing blood products

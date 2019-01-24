@@ -173,38 +173,57 @@
         </div>
 
         <!--LMD Results and charts-->
-        @if (ViewBag.iRes > 0)
+        <!--Render charts for Hgb, Plt, INR and APT-->
+        <div class="w3-container">
+            @if (ViewBag.iHgb > 0)
+            {
+                <div class="w3-quarter">
+                    <canvas id="bar-chart-hgb" width="50" height="50"></canvas>
+                </div>
+            }
+            @if (ViewBag.iPlt > 0)
+            {
+                <div class="w3-quarter">
+                    <canvas id="bar-chart-plt" width="50" height="50"></canvas>
+                </div>
+            }
+            @if (ViewBag.iInr > 0)
+            {
+                <div class="w3-quarter">
+                    <canvas id="bar-chart-inr" width="50" height="50"></canvas>
+                </div>
+            }
+            @if (ViewBag.iApt > 0)
+            {
+                <div class="w3-quarter">
+                    <canvas id="bar-chart-apt" width="50" height="50"></canvas>
+                </div>
+            }
+        </div>
+
+        <!--Hb chart-->
+        @if (ViewBag.iHgb > 0)
         {
-            
-            <table>
-                <thead>
-                    <tr><th>@ViewBag.iRes</th> </tr>
-                </thead>
-                <tbody>
-                    @foreach (var str in ViewBag.yHb)
-                    {
-                        <tr>@Html.Raw(str)</tr>;
-                    }
-                </tbody>
-            </table>
-        
-            <div class="w3-quarter">
-                <canvas id="bar-chart" width="50" height="50"></canvas>
-            </div>
+            <script type="text/javascript">
+                var hgb_x = @Html.Raw(Json.Encode(ViewBag.xHb))
+                var hgb_y = @Html.Raw(Json.Encode(ViewBag.yHb))
+                var mcv_y = @Html.Raw(Json.Encode(ViewBag.yMcv))
 
-            <script tyep="text/javascript">
-                var axis_x = @Html.Raw(Json.Encode(ViewBag.xHb))
-                var axis_y = @Html.Raw(Json.Encode(ViewBag.yHb))
-
-                new Chart(document.getElementById("bar-chart"), {
+                new Chart(document.getElementById("bar-chart-hgb"), {
                     type: 'bar',
                     data: {
-                        labels: axis_x,
+                        labels: hgb_x,
                         datasets: [
                             {
                                 label: "Hgb (g/L)",
-                                backgroundColor: "#3e95cd",
-                                data: axis_y
+                                backgroundColor: "#ff6666",
+                                data: hgb_y
+                            },
+                            {
+                                label: "MCV (fl)",
+                                borderColor: "#cc0000",
+                                data: mcv_y,
+                                type: "line"
                             }
                         ]
                     },
@@ -223,7 +242,6 @@
                                 }
 
                             }],
-
                             yAxes: [{
                                 display: true,
                                 ticks: {
@@ -232,6 +250,20 @@
                                     stepValue: 5,
                                     max:150
                                 }
+                            }],
+                        },
+                        annotation: {
+                            annotations: [{
+                                type: 'line',
+                                mode: 'horizontal',
+                                scaleID: 'y-axis-0',
+                                value: 80,
+                                borderColor: 'rgb(255,51,51)',
+                                borderWidth: 4,
+                                label: {
+                                    enabled: false,
+                                    content: 'Max limit'
+                                }
                             }]
                         }
                     }
@@ -239,7 +271,194 @@
             </script>
         }
 
+        <!--Plt chart-->
+        @if (ViewBag.iPlt > 0)
+        {
+            <script tyep="text/javascript">
+                var plt_x = @Html.Raw(Json.Encode(ViewBag.xPlt))
+                var plt_y = @Html.Raw(Json.Encode(ViewBag.yPlt))
 
+                new Chart(document.getElementById("bar-chart-plt"), {
+                    type: 'bar',
+                    data: {
+                        labels: plt_x,
+                        datasets: [
+                            {
+                                label: "Platelet (x 10^9/L)",
+                                backgroundColor: "#ffb266",
+                                data: plt_y
+                            }
+                        ]
+                    },
+                    options: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: "Platelet (x 10^9/L)"
+                        },
+                        scales: {
+                            xAxes: [{
+                                display: true,
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Interval (days)'
+                                }
+
+                            }],
+                            yAxes: [{
+                                display: true,
+                                ticks: {
+                                    beginAtZero: true,
+                                    steps: 50,
+                                    stepValue: 10,
+                                    max:400
+                                }
+                            }],
+                        },
+                        annotation: {
+                            annotations: [{
+                                type: 'line',
+                                mode: 'horizontal',
+                                scaleID: 'y-axis-0',
+                                value: 20,
+                                borderColor: 'rgb(255,128,0)',
+                                borderWidth: 4,
+                                label: {
+                                    enabled: false,
+                                    content: 'Max limit'
+                                }
+                            }]
+                        }
+                    }
+                });
+            </script>
+        }
+
+        <!--INR chart-->
+        @if (ViewBag.iInr > 0)
+        {
+            <script tyep="text/javascript">
+                var inr_x = @Html.Raw(Json.Encode(ViewBag.xInr))
+                var inr_y = @Html.Raw(Json.Encode(ViewBag.yInr))
+
+                new Chart(document.getElementById("bar-chart-inr"), {
+                    type: 'bar',
+                    data: {
+                        labels: inr_x,
+                        datasets: [
+                            {
+                                label: "INR",
+                                backgroundColor: "#66b2ff",
+                                data: inr_y
+                            }
+                        ]
+                    },
+                    options: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: "INR"
+                        },
+                        scales: {
+                            xAxes: [{
+                                display: true,
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Interval (days)'
+                                }
+
+                            }],
+                            yAxes: [{
+                                display: true,
+                                ticks: {
+                                    beginAtZero: true,
+                                    steps: 1,
+                                    stepValue: 0.5,
+                                    max:6
+                                }
+                            }],
+                        },
+                        annotation: {
+                            annotations: [{
+                                type: 'line',
+                                mode: 'horizontal',
+                                scaleID: 'y-axis-0',
+                                value: 1,
+                                borderColor: 'rgb(0,128,255)',
+                                borderWidth: 4,
+                                label: {
+                                    enabled: false,
+                                    content: 'Max limit'
+                                }
+                            }]
+                        }
+                    }
+                });
+            </script>
+        }
+
+        <!--APT chart-->
+        @if (ViewBag.iApt > 0)
+        {
+            <script tyep="text/javascript">
+                var apt_x = @Html.Raw(Json.Encode(ViewBag.xApt))
+                var apt_y = @Html.Raw(Json.Encode(ViewBag.yApt))
+
+                new Chart(document.getElementById("bar-chart-apt"), {
+                    type: 'bar',
+                    data: {
+                        labels: apt_x,
+                        datasets: [
+                            {
+                                label: "APTT (sec)",
+                                backgroundColor: "#cc0066",
+                                data: apt_y
+                            }
+                        ]
+                    },
+                    options: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: "APTT (sec)"
+                        },
+                        scales: {
+                            xAxes: [{
+                                display: true,
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Interval (days)'
+                                }
+
+                            }],
+                            yAxes: [{
+                                display: true,
+                                ticks: {
+                                    beginAtZero: true,
+                                    steps: 10,
+                                    stepValue: 5,
+                                    max:60
+                                }
+                            }],
+                        },
+                        annotation: {
+                            annotations: [{
+                                type: 'line',
+                                mode: 'horizontal',
+                                scaleID: 'y-axis-0',
+                                value: 34,
+                                borderColor: 'rgb(0,0,255)',
+                                borderWidth: 4,
+                                label: {
+                                    enabled: false,
+                                    content: 'Max limit'
+                                }
+                            }]
+                        }
+                    }
+                });
+            </script>
+        }
 
         <!-- Review results and transfusions -->
         <div class="w3-container">
@@ -686,8 +905,6 @@
                 </div>
             </div>
         </div>
-
-
 
 
 
