@@ -31,6 +31,14 @@ namespace BloodLife.Models
         public Nullable<System.DateTime> STATUSDATE { get; set; }
         public Nullable<System.DateTime> REQDATE { get; set; }
         public Nullable<System.DateTime> COLLECTIONDATE { get; set; }
+        public int HRINTERVAL
+        {
+            get
+            {
+                return COLLECTIONDATE != null ? (DateTime.Today - COLLECTIONDATE).Value.Days : 0;
+            }
+        }
+
         public Nullable<byte> URGENT { get; set; }
         public string ROOMNUMBER { get; set; }
         public Nullable<System.DateTime> LASTUPDTESTDATE { get; set; }

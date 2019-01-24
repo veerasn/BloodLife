@@ -7,12 +7,15 @@ using System.Net;
 using System.Web;using System.Web.Mvc;
 using BloodLife.Models;
 using BloodLife.ViewModels;
+using Newtonsoft.Json;
+
 
 namespace BloodLife.Controllers
 {
     public class mainsController : Controller
     {
         private BBSEntitiesNew db = new BBSEntitiesNew();
+        private LMDLABEntities dl = new LMDLABEntities();
 
         // GET: mains
         public ActionResult Index(string searchString)
@@ -122,7 +125,7 @@ namespace BloodLife.Controllers
                             {
                                 reqvalid = reqvalid + 1;
                                 reqvaliddate = testrequests[i].RequestDate.ToString();
-                            }
+                            } 
                             break;
                         case "RH":
                             res[j, 4] = testrequests[i].TestResult;
@@ -252,6 +255,44 @@ namespace BloodLife.Controllers
 
             ViewBag.Tcount = prodrequests.Count();
 
+            //LMD results for chart
+            var result = (
+                    from tst in dl.TESTS
+                    join rq in dl.REQUESTS
+                    on tst.REQUESTID equals rq.REQUESTID
+                    join pt in dl.PATIENTS
+                    on rq.PATID equals pt.PATID
+                    where pt.PATNUMBER == id && tst.TESTID == 2719 
+                        && tst.RESVALUE !=null && rq.COLLECTIONDATE != null
+                    orderby rq.COLLECTIONDATE descending
+                    select new
+                    {
+                        Interval = DbFunctions.DiffDays(DateTime.Now, rq.COLLECTIONDATE),
+                        Resvalue = tst.RESVALUE
+                    }
+                    ).ToList();
+
+            int iRes = 0;
+            iRes = result.Select(x => x.Resvalue).Count();
+            ViewBag.iRes = iRes;
+
+            if (iRes > 0)
+            {
+                double[] y = new double[iRes];
+                string[] x = new string[iRes];
+                double temp;
+                for(int i = 0; i < iRes; i++)
+                {
+                    if (double.TryParse(result[i].Resvalue, out temp))
+                    {
+                        y[i] = temp;
+                        x[i] = result[i].Interval.ToString();
+                    }
+                }
+
+                ViewBag.xHb = x;
+                ViewBag.yHb = y;
+            }
 
             //Create table for choosing blood products
             BloodProductModel bloodProductModel = new BloodProductModel();
@@ -265,6 +306,31 @@ namespace BloodLife.Controllers
             return View("Details", prodrequests);
         }
     
+        //GET: mains/GetHb
+        public ContentResult GetHb(string id)
+        {
+            using (var dl = new LMDLABEntities())
+            {
+                var result = (
+                    from tst in dl.TESTS
+                    join rq in dl.REQUESTS
+                    on tst.REQUESTID equals rq.REQUESTID
+                    join pt in dl.PATIENTS
+                    on rq.PATID equals pt.PATID
+                    where pt.PATNUMBER == id && tst.TESTID == 2719 && DbFunctions.DiffDays(rq.COLLECTIONDATE, DateTime.Now) < 365 
+                    orderby rq.COLLECTIONDATE descending
+                    select new
+                    {
+                        rq.COLLECTIONDATE,
+                        tst.TESTID,
+                        tst.RESVALUE,
+                        tst.VALIDATIONSTATUS
+                    }
+                    ).ToList();
+                return Content(JsonConvert.SerializeObject(result));
+            }
+        }
+
 
         // GET: PATIENTs/Create
         public ActionResult Create()
