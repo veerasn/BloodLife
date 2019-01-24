@@ -278,6 +278,8 @@ namespace BloodLife.Controllers
             int iHgb = hgb.Count;
             ViewBag.iHgb = iHgb;
 
+            string cHgb = "";
+
             if (iHgb > 0)
             {
                 double[] y = new double[iHgb];
@@ -294,12 +296,38 @@ namespace BloodLife.Controllers
 
                 ViewBag.xHb = x;
                 ViewBag.yHb = y;
+
+                switch (x[0])
+                {
+                    case "0":
+                        cHgb = "The patient's last Hb result was " + y[0] + "g/L checked today.";
+                        break;
+                    case "1":
+                    case "2":
+                    case "3":
+                        cHgb = "The patient's last Hb result was " + y[0] + " g/L checked " + x[0] + " days ago.";
+                        break;
+                    default:
+                        cHgb = "The patient's last Hb result was " + y[0] + " g/L checked " + x[0] + " days ago. " +
+                                "Please ensure a recent Hb level has been determined " +
+                                "before proceeding to order red cells.";
+                        break;
+                }
             }
+            else
+            {
+                cHgb = "No Hb results are available for this patient. Please ensure that the Hb level has been determined " +
+                        "before proceeding to order red cells.";
+            }
+
+            ViewBag.cHgb = cHgb;
 
             //Mcv
             var mcv = result.Where(i => i.TestId == 1848).ToList();
             int iMcv = mcv.Count;
             ViewBag.iMcv = iMcv;
+
+            string cMcv = "";
 
             if (iMcv > 0)
             {
@@ -312,12 +340,21 @@ namespace BloodLife.Controllers
                     {
                         y[i] = temp;
                         x[i] = mcv[i].Interval.ToString();
+
+                        if(y[0] < 72)
+                        {
+                            cMcv = "The patient's MCV is " + y[0] + " fL which is low. " +
+                                    "Investigations to exclude iron deficiency or thalassaemia would be advised, if not already done. " +
+                                    "Iron therapy would be warranted before an elective red cell transfusion, if there is evidence to indicate iron deficiency.";
+                        }
                     }
                 }
 
                 ViewBag.xMcv = x;
                 ViewBag.yMcv = y;
             }
+
+            ViewBag.cMcv = cMcv;
 
             //Platelet
             var plt = result.Where(i => i.TestId == 1999).ToList();
