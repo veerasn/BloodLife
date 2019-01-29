@@ -809,8 +809,9 @@
                         Select suitable products and required quantity. Remember that the minimum number of RBC units should be transfused to
                         achieve the desired response. Refer to <a href="#"><b>Guidelines for Red Cell Use</b></a> to aid your transfusion decision.
                     </h6>
-                    <p>@ViewBag.cHgb</p>
-                    <p>@ViewBag.cMcv</p>
+                    <p id="alert_redcell" style="color: orangered"></p>
+                    <p id="notice_hb" style="color: red">@ViewBag.cHgb</p>
+                    <p id="notice_mcv" style="color: red">@ViewBag.cMcv</p>
                     <div>
                         <table class="table">
                             <thead>
@@ -863,23 +864,27 @@
                         <div class="w3-container w3-white">
                             <table class="table">
                                 <tr>
-                                    <td><input type="radio" name="redcell" value="RC1" /></td>
-                                    <td>Hb &#8804 70g/L in a hemodynamically stable ICU patient</td>
+                                    <td><input type="radio" name="redcell" value="RC1"  onchange="checkIndication(75, @ViewBag.yHb[0])" /></td>
+                                    <td>Hb &#8804 70g/L in a hemodynamically stable ICU patient.</td>
                                 </tr>
                                 <tr>
-                                    <td><input type="radio" name="redcell" value="RC2" /></td>
-                                    <td>Hb &#8804 80g/L in a non- ICU patient with symptomatic anaemia</td>
+                                    <td><input type="radio" name="redcell" value="RC2" onchange="checkIndication(85, @ViewBag.yHb[0])" /></td>
+                                    <td>Hb &#8804 80g/L in a non- ICU patient with symptomatic anaemia.</td>
                                 </tr>
                                 <tr>
-                                    <td><input type="radio" name="redcell" value="RC3" /></td>
+                                    <td><input type="radio" name="redcell" value="RC3" onchange="checkIndication(105, @ViewBag.yHb[0])" /></td>
                                     <td>Hb &#8804 100g/L in a patient experiencing acute ischaemiac cardiovascular disease (e.g. angina pectoris, acute myocardial infarction).</td>
                                 </tr>
                                 <tr>
-                                    <td><input type="radio" name="redcell" value="RC4" /></td>
+                                    <td><input type="radio" name="redcell" value="RC4" onchange="checkIndication(0, 0)" /></td>
                                     <td>Acute bleeding with hemodynamic instability requiring urgent RBC transfusion.</td>
                                 </tr>
                                 <tr>
-                                    <td><input type="radio" name="redcell" value="RC5" /></td>
+                                    <td><input type="radio" name="redcell" value="RC5" onchange="checkIndication(0, 0)"/></td>
+                                    <td>Regular red cell transfusion in a transfusion dependant patient (e.g. thalassaemia major).</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="radio" name="redcell" value="RC6" onchange="checkIndication(0, 0)"/></td>
                                     <td>Others</td>
                                 </tr>
                             </table>
@@ -992,6 +997,26 @@
                 vis = "none";
             }
             document.getElementById(val).style.display = vis;
+        }
+    </script>
+
+    <script>
+        //Validate radio-button for red cell indications
+        function checkIndication(a,b) {
+            var radios = document.getElementsByName("redcell");
+            var fback;
+            for (var i = 0; i < radios.length; i++) {
+                if (b > a) {
+                    fback = "You have chosen to transfuse at a target Hb of " + a + " but the patient's last Hb was " + b + " g/L.";
+                }
+                else {
+                    fback = "";
+                }
+                if (b == 0) {
+                    fback = "Red cell request has been made with no prior Hb results."
+                }
+                document.getElementById("alert_redcell").innerHTML = fback;
+            }
         }
     </script>
 

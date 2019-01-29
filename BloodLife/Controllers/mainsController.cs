@@ -318,6 +318,8 @@ namespace BloodLife.Controllers
             {
                 cHgb = "No Hb results are available for this patient. Please ensure that the Hb level has been determined " +
                         "before proceeding to order red cells.";
+                double[] y = { 0 };
+                ViewBag.yHb = y;
             }
 
             ViewBag.cHgb = cHgb;
@@ -341,7 +343,7 @@ namespace BloodLife.Controllers
                         y[i] = temp;
                         x[i] = mcv[i].Interval.ToString();
 
-                        if(y[0] < 72)
+                        if(y[0] < 76)
                         {
                             cMcv = "The patient's MCV is " + y[0] + " fL which is low. " +
                                     "Investigations to exclude iron deficiency or thalassaemia would be advised, if not already done. " +
