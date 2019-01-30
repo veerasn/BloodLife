@@ -33,7 +33,7 @@ namespace BloodLife.Models
                     Irradiate = 0,
                     Upperage = 99999,
                     Lowerage = 120,
-                    Filelocation = "a",
+                    Filelocation = "RCSAG.pdf",
                     Comments = ""
                 },
                 new BloodProduct{

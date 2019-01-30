@@ -398,6 +398,24 @@
     <Content Include="Models\LMD.edmx.diagram">
       <DependentUpon>LMD.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\pdf\RCWB.pdf" />
+    <Content Include="Content\pdf\RCSAG.pdf" />
+    <Content Include="Content\pdf\PLTRD.pdf" />
+    <Content Include="Content\pdf\PLTAP.pdf" />
+    <Content Include="Content\pdf\FFPRD.pdf" />
+    <Content Include="Content\pdf\CRYPP.pdf" />
+    <Content Include="Content\pdf\PCC.pdf" />
+    <Content Include="Content\pdf\rFVIIa.pdf" />
+    <Content Include="Content\pdf\RhoD.pdf" />
+    <Content Include="Content\pdf\PLT_recommendation.pdf" />
+    <Content Include="Content\pdf\RBC_recommendation.pdf" />
+    <Content Include="Content\pdf\IRR.pdf" />
+    <Content Include="Content\pdf\LD.pdf" />
+    <Content Include="Content\pdf\WASH.pdf" />
+    <Content Include="Content\pdf\Emergency transfusion.pdf" />
+    <Content Include="Content\pdf\GSH.pdf" />
+    <Content Include="Content\pdf\Safe transfusion always.pdf" />
+    <Content Include="Content\pdf\MSBOS.pdf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

@@ -807,7 +807,7 @@
                 <div id="Rbc" class="w3-container request" style="display:none">
                     <h6>
                         Select suitable products and required quantity. Remember that the minimum number of RBC units should be transfused to
-                        achieve the desired response. Refer to <a href="#"><b>Guidelines for Red Cell Use</b></a> to aid your transfusion decision.
+                        achieve the desired response. Refer to <a href="~/Content/pdf/RBC_recommendation.pdf" target="_blank"><b>Guidelines for Red Cell Use</b></a> to aid your transfusion decision.
                     </h6>
                     <p id="alert_redcell" style="color: orangered"></p>
                     <p id="notice_hb" style="color: red">@ViewBag.cHgb</p>
@@ -840,7 +840,7 @@
                                                 @bloodProduct.Name
                                                 @if (bloodProduct.Filelocation != "none")
                                                 {
-                                                    <a href="@bloodProduct.Filelocation">
+                                                    <a href="@bloodProduct.Filelocation" target="_blank">
                                                         <sup><i class="fa-info-circle"></i>info</sup>
                                                     </a>
                                                 }
@@ -864,27 +864,27 @@
                         <div class="w3-container w3-white">
                             <table class="table">
                                 <tr>
-                                    <td><input type="radio" name="redcell" value="RC1"  onchange="checkIndication(75, @ViewBag.yHb[0])" /></td>
+                                    <td><input type="radio" name="redcell" value="RC1"  onchange="checkIndication(75, @ViewBag.yHb[0], 'redcell')" /></td>
                                     <td>Hb &#8804 70g/L in a hemodynamically stable ICU patient.</td>
                                 </tr>
                                 <tr>
-                                    <td><input type="radio" name="redcell" value="RC2" onchange="checkIndication(85, @ViewBag.yHb[0])" /></td>
+                                    <td><input type="radio" name="redcell" value="RC2" onchange="checkIndication(85, @ViewBag.yHb[0], 'redcell')" /></td>
                                     <td>Hb &#8804 80g/L in a non- ICU patient with symptomatic anaemia.</td>
                                 </tr>
                                 <tr>
-                                    <td><input type="radio" name="redcell" value="RC3" onchange="checkIndication(105, @ViewBag.yHb[0])" /></td>
+                                    <td><input type="radio" name="redcell" value="RC3" onchange="checkIndication(105, @ViewBag.yHb[0], 'redcell')" /></td>
                                     <td>Hb &#8804 100g/L in a patient experiencing acute ischaemiac cardiovascular disease (e.g. angina pectoris, acute myocardial infarction).</td>
                                 </tr>
                                 <tr>
-                                    <td><input type="radio" name="redcell" value="RC4" onchange="checkIndication(0, 0)" /></td>
+                                    <td><input type="radio" name="redcell" value="RC4" onchange="checkIndication(150, @ViewBag.yHb[0], 'redcell')" /></td>
                                     <td>Acute bleeding with hemodynamic instability requiring urgent RBC transfusion.</td>
                                 </tr>
                                 <tr>
-                                    <td><input type="radio" name="redcell" value="RC5" onchange="checkIndication(0, 0)"/></td>
+                                    <td><input type="radio" name="redcell" value="RC5" onchange="checkIndication(150, @ViewBag.yHb[0], 'redcell')"/></td>
                                     <td>Regular red cell transfusion in a transfusion dependant patient (e.g. thalassaemia major).</td>
                                 </tr>
                                 <tr>
-                                    <td><input type="radio" name="redcell" value="RC6" onchange="checkIndication(0, 0)"/></td>
+                                    <td><input type="radio" name="redcell" value="RC6" onchange="checkIndication(150, @ViewBag.yHb[0], 'redcell')"/></td>
                                     <td>Others</td>
                                 </tr>
                             </table>
@@ -1002,8 +1002,8 @@
 
     <script>
         //Validate radio-button for red cell indications
-        function checkIndication(a,b) {
-            var radios = document.getElementsByName("redcell");
+        function checkIndication(a,b,c) {
+            var radios = document.getElementsByName(c);
             var fback;
             for (var i = 0; i < radios.length; i++) {
                 if (b > a) {
@@ -1015,7 +1015,12 @@
                 if (b == 0) {
                     fback = "Red cell request has been made with no prior Hb results."
                 }
+            }
+            if (c == "redcell") {
                 document.getElementById("alert_redcell").innerHTML = fback;
+            }
+            else if (c == "platelet") {
+                document.getElementById("alert_platelet").innerHTML = fback;
             }
         }
     </script>

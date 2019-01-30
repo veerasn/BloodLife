@@ -361,6 +361,7 @@ namespace BloodLife.Controllers
             //Platelet
             var plt = result.Where(i => i.TestId == 1999).ToList();
             int iPlt = plt.Count;
+            string cPlt = "";
             ViewBag.iPlt = iPlt;
 
             if (iPlt > 0)
@@ -379,7 +380,31 @@ namespace BloodLife.Controllers
 
                 ViewBag.xPlt = x;
                 ViewBag.yPlt = y;
+
+                switch (x[0])
+                {
+                    case "0":
+                        cPlt = "The patient's last platelet count was " + y[0] + " x 10^9/L checked today.";
+                        break;
+                    case "1":
+                        cPlt = "The patient's last platelet count was " + y[0] + " x 10^9/L checked yesterday.";
+                        break;
+                    default:
+                        cPlt = "The patient's last platelet count was " + y[0] + " x 10^9/L checked " + x[0] + " days ago. " +
+                                "Please ensure a recent platelet count has been determined " +
+                                "before proceeding to order platelets.";
+                        break;
+                }
             }
+            else
+            {
+                cPlt = "No platelet counts are available for this patient. Please ensure that the platelet count has been determined " +
+                        "before proceeding to order platelets.";
+                double[] y = { 0 };
+                ViewBag.yPlt = y;
+            }
+
+            ViewBag.cPlt = cPlt;
 
             //INR
             var inr = result.Where(i => i.TestId == 2761).ToList();

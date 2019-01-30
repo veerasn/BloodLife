@@ -2,8 +2,10 @@
 @using BloodLife.Models;
 
 <h6>
-    Select suitable products and required quantity. Refer to <a href="#"><b>Guidelines for Platelet Transfusions</b></a> to aid your transfusion decision.
+    Select suitable products and required quantity. Refer to <a href="~/Content/pdf/PLT_recommendation.pdf" target="_blank"><b>Guidelines for Platelet Transfusions</b></a> to aid your transfusion decision.
 </h6>
+<p id="alert_platelet" style="color: orangered"></p>
+<p id="notice_platelet" style="color: red">@ViewBag.cPlt</p>
 <div>
     <table class="table">
         <thead>
@@ -56,39 +58,39 @@
     <div class="w3-container w3-white">
         <table class="table">
             <tr>
-                <td><input type="radio" name="platelet" value="PL1" /></td>
+                <td><input type="radio" name="platelet" value="PL1" onchange="checkIndication(15, @ViewBag.yPlt[0], 'platelet')"/></td>
                 <td>
                     Prophylactic transfusion to prevent spontaneous bleeding in a stable patient with
                     platelet count &#8804 10 x 10<sup>9</sup>/L.
                 </td>
             </tr>
             <tr>
-                <td><input type="radio" name="platelet" value="PL2" /></td>
+                <td><input type="radio" name="platelet" value="PL2" onchange="checkIndication(25, @ViewBag.yPlt[0], 'platelet')" /></td>
                 <td>
                     Prophylactic transfusion to prevent spontaneous bleeding in patient with
                     consumptive state (e.g. high fever, sepsis, DIC, splenomegaly) and platelet count &#8804 20 x 10<sup>9</sup>/L
                 </td>
             </tr>
             <tr>
-                <td><input type="radio" name="platelet" value="PL3" /></td>
+                <td><input type="radio" name="platelet" value="PL3" onchange="checkIndication(55, @ViewBag.yPlt[0], 'platelet')"/></td>
                 <td>Active bleeding or pre-procedure with platelet count &#8804 50 x 10<sup>9</sup>/L.</td>
             </tr>
             <tr>
-                <td><input type="radio" name="platelet" value="PL4" /></td>
+                <td><input type="radio" name="platelet" value="PL4" onchange="checkIndication(110, @ViewBag.yPlt[0], 'platelet')"/></td>
                 <td>
                     Active bleeding or pre-procedure involving an enclosed space
                     (e.g. intracranial, opthalmic) with platelet count &#8804 100 x 10<sup>9</sup>/L.
                 </td>
             </tr>
             <tr>
-                <td><input type="radio" name="platelet" value="PL5" /></td>
+                <td><input type="radio" name="platelet" value="PL5" onchange="checkIndication(400, @ViewBag.yPlt[0], 'platelet')"/></td>
                 <td>
                     Pre-procedure or bleeding patient who has taken a recent dose of anti-platelet medications,
                     or with documented platelet dysfunction.
                 </td>
             </tr>
             <tr>
-                <td><input type="radio" name="platelet" value="PL6" /></td>
+                <td><input type="radio" name="platelet" value="PL6" onchange="checkIndication(400, @ViewBag.yPlt[0], 'platelet')"/></td>
                 <td>
                     Other.
                 </td>
